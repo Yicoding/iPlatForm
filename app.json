@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/add/index",
+    "pages/logs/logs",
+    "pages/test/test"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#262834",
+    "navigationBarTitleText": "iFoodiMusic",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1C1F27"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "元素",
+        "iconPath": "images/icon/food.png",
+        "selectedIconPath": "images/icon/food.png"
+      },
+      {
+        "pagePath": "pages/add/index",
+        "text": "宝箱",
+        "iconPath": "images/icon/music.png",
+        "selectedIconPath": "images/icon/music.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "专栏",
+        "iconPath": "images/icon/diary.png",
+        "selectedIconPath": "images/icon/diary.png"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "text": "发现",
+        "iconPath": "images/icon/unburden.png",
+        "selectedIconPath": "images/icon/unburden.png"
+      }
+    ],
+    "color": "#c2c4d0",
+    "selectedColor": "#ffcd32",
+    "backgroundColor": "#252934"
+  },
+  "sitemapLocation": "sitemap.json"
+}

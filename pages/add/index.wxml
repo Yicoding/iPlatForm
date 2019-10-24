@@ -1,0 +1,24 @@
+<!-- index.wxml -->
+<view>
+  <verticalnav></verticalnav>
+  <!-- <l-tabs
+    class="tabs"
+    bind:linchange="changeTabs"
+    animated
+    swipeable
+    placement="left"
+  >
+    <l-tabpanel tab="京东物流" key="1" slot="1">
+      <view class="tab-content">京东物流</view>
+    </l-tabpanel>
+    <l-tabpanel tab="品牌" key="2" slot="2">
+      <view class="tab-content">品牌</view>
+    </l-tabpanel>
+    <l-tabpanel tab="接口" key="3" slot="3">
+      <view class="tab-content">接口</view>
+    </l-tabpanel>
+    <l-tabpanel tab="面板" key="4" slot="4">
+      <view class="tab-content">面板</view>
+    </l-tabpanel>
+  </l-tabs> -->
+</view>
