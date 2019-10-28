@@ -1,3 +1,13 @@
 {
-  "usingComponents": {}
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "wux-landscape": "/miniprogram_npm/wux-weapp/landscape/index",
+    "wux-badge": "/miniprogram_npm/wux-weapp/badge/index",
+    "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index",
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+  }
 }

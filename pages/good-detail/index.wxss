@@ -1,0 +1,25 @@
+.van-goods-actio{
+  display: flex;
+}
+
+.goods-collect{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #7d7e80;
+  background: #fff;
+  border-right: 1rpx solid #eee;
+  font-size: 10px;
+}
+
+.goods-collect-click{
+  background: #eee;
+}
+
+.goods-collect .cuIcon-likefill{
+  font-size: 20px;
+  margin-bottom: 2px;
+}

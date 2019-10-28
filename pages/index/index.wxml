@@ -1,16 +1,3 @@
-<!-- <view class='cu-custom'>
-  <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <text class='cuIcon-back'></text> 返回
-    </navigator>
-    <view class='content' style='top:{{StatusBar}}px;'>Tab索引</view>
-  </view>
-</view>
-<swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{4}}" wx:key>
-    <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill'></image>
-  </swiper-item>
-</swiper> -->
 <view class="cu-bar bg-white search">
   <view class="search-form round">
     <text class="cuIcon-search"></text>
@@ -25,30 +12,81 @@
     <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
       {{item.name}}
     </view>
+    <view style="height: 120rpx"></view>
   </scroll-view>
   <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
-    <view class="padding-top padding-lr {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key id="main-{{index}}">
-      <view class='cu-bar solid-bottom bg-white'>
-        <view class='action'>
-          <text class='cuIcon-title text-green'></text> {{item.name}} </view>
-      </view>
-      <view class="cu-list menu-avatar">
-        <view class="cu-item" wx:for="{{item.children}}" wx:for-item="todu" wx:key data-id="{{}}">
+    <view class="type-container {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key id="main-{{index}}">
+      <view class="type-box">
+        <view class="type-name">
+          <text class="cuIcon-title text-green"></text>
+          {{item.name}}
+        </view>
+        <view class="good-box" wx:for="{{item.children}}" wx:for-item="todu" wx:key data-id="{{todu.id}}">
           <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});"></view>
-          <view class="content">
-            <view class="text-grey">{{todu.name}}</view>
-            <view class="text-gray text-sm flex">
-              <text class="text-cut">
-                    <text class="cuIcon-infofill text-red  margin-right-xs"></text> 我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。
-              </text>
+          <view class="good-content">
+            <view class="good-name">{{todu.name}}</view>
+            <view class="good-desc">{{todu.desc}}</view>
+            <view class="good-num">总销售 {{todu.saleNum}} 次</view>
+            <view class="good-price">
+              <text>￥</text>{{todu.sellSingle}}
             </view>
           </view>
-          <view class="action">
-            <view class="text-grey text-xs">22:20</view>
-            <view class="cu-tag round bg-grey sm">5</view>
-          </view>
+          <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
         </view>
       </view>
     </view>
   </scroll-view>
 </view>
+<!-- 弹窗 -->
+<van-dialog
+  use-slot
+  show="{{ visible }}"
+  bind:close="onClose"
+>
+  <view class="space-box">
+    <view class="space-container">
+      <view class="space-title">{{good.name}}</view>
+      <wux-white-space size="large" />
+      <wux-white-space size="small" />
+      <view class="space-item-title">
+        <text>规格</text>
+      </view>
+      <wux-white-space size="small" />
+      <view>
+        <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{good.unitOne.name}}</van-button>
+        <van-button type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{good.unitDouble.name}}</van-button>
+      </view>
+      <wux-white-space size="large" />
+      <wux-white-space size="small" />
+      <view class="space-item-title">
+        <text>价格</text>
+        <switch checked="{{showPrice}}" bindchange="switchChange" />
+      </view>
+      <view>
+        <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售</van-button>
+        <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发</van-button>
+      </view>
+    </view>
+    <wux-white-space size="large" />
+    <wux-white-space size="large" />
+    <view class="space-txt">
+      <text>已选规格：</text>
+      {{goodNum}}{{goodUnitType === 1 ? good.unitOne.name : good.unitDouble.name}}、{{goodPriceType === 1 ? '零售' : '批发'}}
+    </view>
+    <wux-white-space size="large" />
+    <view class="space-info">
+      <view class="space-price">
+        <text>总价：</text>
+        <text>￥</text>
+        {{
+          goodUnitType === 1 ? (
+            goodPriceType === 1 ? goodNum * good.sellSingle : goodNum * good.midSingle
+          ) : (
+            goodPriceType === 1 ? goodNum * good.sellAll : goodNum * good.midAll
+          )
+        }}
+      </view>
+      <wux-input-number value="{{goodNum}}" shape="circle" color="balanced" slot="footer" min="{{0}}" max="{{9999}}" controlled bindchange="shopChange" disabled="{{false}}" />
+    </view>
+  </view>
+</van-dialog>

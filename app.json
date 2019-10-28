@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/add/index",
+    "pages/shop/index",
+    "pages/good-detail/index",
     "pages/logs/logs",
     "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#262834",
-    "navigationBarTitleText": "iFoodiMusic",
+    "navigationBarTitleText": "iPlatForm",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#1C1F27"
   },
@@ -21,10 +22,11 @@
         "selectedIconPath": "images/icon/food.png"
       },
       {
-        "pagePath": "pages/add/index",
+        "pagePath": "pages/shop/index",
         "text": "宝箱",
-        "iconPath": "images/icon/music.png",
-        "selectedIconPath": "images/icon/music.png"
+        "iconPath": "images/icon/gift-box.png",
+        
+        "selectedIconPath": "images/icon/gift-box.png"
       },
       {
         "pagePath": "pages/logs/logs",
@@ -35,8 +37,8 @@
       {
         "pagePath": "pages/test/test",
         "text": "发现",
-        "iconPath": "images/icon/unburden.png",
-        "selectedIconPath": "images/icon/unburden.png"
+        "iconPath": "images/icon/music.png",
+        "selectedIconPath": "images/icon/music.png"
       }
     ],
     "color": "#c2c4d0",

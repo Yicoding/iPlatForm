@@ -13,6 +13,9 @@
   border: none;
   height: 50px;
   position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .VerticalNav.nav .cu-item.cur {
@@ -30,20 +33,191 @@
   bottom: 0;
   margin: auto;
 }
+/* 自定义修改 */
 .VerticalBox{
   display: flex;
+  height: calc(100vh - 100rpx);
 }
+
 .VerticalMain{
   background-color: #f1f1f1;
+  flex: 1;
+  padding-left: 30rpx;
+}
+
+.type-container{
+  padding-top: 30rpx;
+}
+
+.type-box{
+  background: #fff;
+}
+
+.type-name{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.type-name .cuIcon-title{
+  margin-right: 10rpx;
 }
 
 .VerticalMain .last-view{
-  min-height: 101%;
+  min-height: 100%;
+  margin-bottom: 0;
 }
 
-page{
-  height: 100vh;
+.good-box{
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  padding: 30rpx;
 }
+
+.good-box .cu-avatar{
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.good-content{
+  flex: 1;
+  padding-left: 20rpx;
+}
+
+
+.good-btn{
+  color: #35bfa3;
+  font-size: 20rpx;
+  background: #e0fffd;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  position: relative;
+}
+
+.good-btn-badge{
+  position: absolute;
+  right: 10rpx;
+  top: -25rpx;
+}
+
+.cu-avatar{
+  border-radius: 0;
+}
+
+.good-name{
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: -5rpx;
+}
+
+.good-desc{
+  color: #999;
+  font-size: 20rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 220rpx;
+  margin-top: 5rpx;
+}
+
+.good-num{
+  color: #999;
+  font-size: 20rpx;
+  margin-top: 5rpx;
+}
+
+.good-price{
+  color: #e4393c;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+
+.good-price text{
+  font-size: 20rpx;
+}
+
+/* 弹窗 */
+.space-box{
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 25rpx 0;
+  text-align: justify;
+}
+
+.space-container{
+  padding: 0 40rpx;
+}
+
+.space-title{
+  color: #222;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.space-item-title{
+  color: #999;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-check-item{
+  margin-right: 20rpx;
+}
+
+.space-txt{
+  background: #fafafa;
+  padding: 10rpx 40rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.space-txt text{
+  color: #999;
+}
+
+.space-info{
+  padding: 0 40rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-price{
+  color: #e4393c;
+  font-size: 32rpx;
+}
+
+.space-price text:first-of-type{
+  font-size: 22rpx;
+  color: #333;
+}
+
+.space-price text:last-of-type{
+  font-size: 20rpx;
+}
+
+.space-btn{
+  color: #35bfa3;
+  font-size: 20rpx;
+  background: #e0fffd;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+}
+
+.space-btn .space-plus{
+  line-height: 1;
+  margin-right: 10rpx;
+}
+
