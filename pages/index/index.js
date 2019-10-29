@@ -50,7 +50,8 @@ Page({
       console.log('getGoodsByCompany', data);
       this.setData({
         list: data,
-        listCur: data[0]
+        listCur: data[0],
+        load: true
       })
       wx.hideLoading();
       wx.stopPullDownRefresh()
@@ -278,11 +279,16 @@ Page({
     const num = this.data.goodNum;
     const { value } = e.detail;
     const countInfo = this.data.countInfo;
-    countInfo[this.data.good.id] += (value - num);
+    if (countInfo[this.data.good.id]) {
+      countInfo[this.data.good.id] += (value - num);
+    } else {
+      countInfo[this.data.good.id] = value;
+    }
     this.setData({
       countInfo,
       goodNum: value
     });
+    console.log('countInfo-shopChange', countInfo)
     this.editShop(value);
   },
   editShop(val) { // 修改购物车
