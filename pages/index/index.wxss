@@ -221,3 +221,8 @@
   margin-right: 10rpx;
 }
 
+.van-button--mini{
+  width: auto !important;
+  min-width: 50px;
+  padding: 0 10rpx !important;
+}
