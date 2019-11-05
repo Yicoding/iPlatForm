@@ -2,6 +2,7 @@ const app = getApp();
 const config = require('../../config');
 
 const { ajax } = require('../../utils/ajax');
+import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog';
 
 Page({
   data: {
@@ -20,7 +21,9 @@ Page({
     goodUnitType: 1,
     goodPriceType: 1,
     showPrice: false,
-    countInfo: {}
+    countInfo: {},
+    writePrice: '',
+    visible2: false,
   },
   onLoad() {
     this.getGoodsByCompany();
@@ -55,7 +58,7 @@ Page({
       })
       wx.hideLoading();
       wx.stopPullDownRefresh()
-    } catch(e) {
+    } catch (e) {
       wx.hideLoading();
       console.log('getGoodsByCompany报错', e);
       wx.stopPullDownRefresh()
@@ -83,7 +86,7 @@ Page({
         shopList: data,
         countInfo
       });
-    } catch(e) {
+    } catch (e) {
       console.log('getShoplist报错', e);
     }
   },
@@ -107,13 +110,13 @@ Page({
       });
       console.log('addShop', data);
       wx.hideLoading();
-    } catch(e) {
+    } catch (e) {
       wx.hideLoading();
       console.log('addShop报错', e);
     }
   },
   // 修改单个购物车商品数量
-  async updateShop(num, value=null) {
+  async updateShop(num, value = null) {
     console.log('updateShop**num', num);
     wx.showLoading({
       title: '加载中...',
@@ -134,7 +137,7 @@ Page({
       });
       console.log('updateShop', data);
       wx.hideLoading();
-    } catch(e) {
+    } catch (e) {
       wx.hideLoading();
       console.log('updateShop报错', e);
     }
@@ -158,7 +161,7 @@ Page({
       });
       console.log('removeShop', data);
       wx.hideLoading();
-    } catch(e) {
+    } catch (e) {
       wx.hideLoading();
       console.log('removeShop报错', e);
     }
@@ -183,7 +186,7 @@ Page({
         }, data => {
           list[i].top = tabHeight;
           tabHeight = tabHeight + data.height;
-          list[i].bottom = tabHeight; 
+          list[i].bottom = tabHeight;
         }).exec();
       }
       that.setData({
@@ -218,7 +221,8 @@ Page({
         goodNum: Number(todu.num),
         goodUnitType: Number(todu.unitType),
         goodPriceType: Number(todu.priceType),
-        showPrice: Number(todu.priceType) === 2
+        showPrice: Number(todu.priceType) === 2,
+        writePrice: todu.writePrice
       });
     } else {
       this.setData({
@@ -227,13 +231,22 @@ Page({
         goodNum: 0,
         goodUnitType: 1,
         goodPriceType: 1,
-        showPrice: false
+        showPrice: false,
+        writePrice: ''
       });
     }
   },
   // 规格弹窗关闭
   onClose() {
     this.setData({ visible: false });
+  },
+  // 自定义价格弹窗关闭
+  onClose2() {
+    this.setData({ visible2: false });
+  },
+  // 确认自定义价格
+  onOk() {
+
   },
   // 单选
   switchType(e) {
@@ -243,7 +256,7 @@ Page({
       return;
     }
     console.log(data);
-    if (key === 'goodPriceType' && this.data.goodNum > 0) { // 切换价格并且购物车中存在
+    if (key === 'goodPriceType' && this.data.goodNum > 0 && value !== 3) { // 切换价格并且购物车中存在
       const index = this.data.shopList.findIndex(item => (
         (item.good_id === this.data.good.id) && (Number(item.unitType) === this.data.goodUnitType) && (Number(item.priceType) === this.data.goodPriceType)
       ));
@@ -253,18 +266,37 @@ Page({
       console.log('shopList', shopList)
       this.updateShop(this.goodNum, value);
     }
-    this.setData({ [key]: value });
+    if (value === 3) {
+      this.setData({ visible2: true });
+      const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === 3));
+      console.log('todu', todu)
+      if (todu) {
+        this.setData({
+          writePrice: todu.writePrice
+        });
+      } else {
+        this.setData({
+          writePrice: ''
+        })
+      }
+    } else {
+      this.setData({ [key]: value });
+    }
     if (key === 'goodUnitType') { // 切换规格时去查询购物车
       const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === value));
       console.log('todu', todu)
       if (todu) {
         this.setData({
           goodNum: Number(todu.num),
-          goodPriceType:  Number(todu.priceType),
-          showPrice: Number(todu.priceType) === 2
+          goodPriceType: Number(todu.priceType),
+          showPrice: Number(todu.priceType) === 2,
+          writePrice: todu.writePrice
         });
       } else {
-        this.setData({ goodNum: 0 })
+        this.setData({
+          goodNum: 0,
+          writePrice: ''
+        })
       }
     }
   },
