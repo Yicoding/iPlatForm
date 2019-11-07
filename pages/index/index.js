@@ -2,7 +2,6 @@ const app = getApp();
 const config = require('../../config');
 
 const { ajax } = require('../../utils/ajax');
-import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog';
 
 Page({
   data: {
@@ -246,7 +245,11 @@ Page({
   },
   // 确认自定义价格
   onOk() {
-
+    this.setData({
+      visible2: false,
+      goodPriceType: 3
+    });
+    this.updateShop(this.data.goodNum, 3, this.data.writePrice);
   },
   // 单选
   switchType(e) {
@@ -258,17 +261,17 @@ Page({
     console.log(data);
     if (key === 'goodPriceType' && this.data.goodNum > 0 && value !== 3) { // 切换价格并且购物车中存在
       const index = this.data.shopList.findIndex(item => (
-        (item.good_id === this.data.good.id) && (Number(item.unitType) === this.data.goodUnitType) && (Number(item.priceType) === this.data.goodPriceType)
+        (item.good_id === this.data.good.id) && (Number(item.unitType) === this.data.goodUnitType)
       ));
       const shopList = this.data.shopList;
       shopList[index].priceType = value;
       this.setData({ shopList });
       console.log('shopList', shopList)
-      this.updateShop(this.goodNum, value);
+      this.updateShop(this.data.goodNum, value);
     }
-    if (value === 3) {
+    if (value === 3) { // 自定义价格
       this.setData({ visible2: true });
-      const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === 3));
+      const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === this.data.goodUnitType));
       console.log('todu', todu)
       if (todu) {
         this.setData({
