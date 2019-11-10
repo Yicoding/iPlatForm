@@ -27,6 +27,8 @@ Page({
   },
   onLoad() {
     this.getGoodsByCompany();
+  },
+  onShow() {
     this.getShoplistEasy();
   },
   onReady() {
@@ -91,11 +93,12 @@ Page({
     }
   },
   // 新增购物车
-  async addShop() {
+  async addShop(goodPriceType=null, writePrice=null) {
     wx.showLoading({
       title: '加载中...',
       mask: true
     });
+    const num = 1;
     try {
       const { data } = await ajax({
         url: config.service.addShop,
@@ -103,11 +106,39 @@ Page({
         data: {
           good_id: this.data.good.id,
           unitType: this.data.goodUnitType,
-          priceType: this.data.goodPriceType,
+          priceType: goodPriceType || this.data.goodPriceType,
           user_id: 2,
-          num: 1
+          num,
+          writePrice: writePrice
         }
       });
+      if (goodPriceType) {
+        const countInfo = this.data.countInfo;
+        if (countInfo[this.data.good.id]) {
+          countInfo[this.data.good.id] += (num - this.data.goodNum);
+        } else {
+          countInfo[this.data.good.id] = num;
+        }
+        this.setData({
+          goodNum: num,
+          goodPriceType,
+          shopList: [...this.data.shopList, {
+            good_id: this.data.good.id,
+            num,
+            unitType: this.data.goodUnitType,
+            priceType: goodPriceType,
+            writePrice
+          }],
+          countInfo,
+          todu: {
+            good_id: this.data.good.id,
+            num,
+            unitType: this.data.goodUnitType,
+            priceType: goodPriceType,
+            writePrice
+          }
+        });
+      }
       console.log('addShop', data);
       wx.hideLoading();
     } catch (e) {
@@ -136,10 +167,19 @@ Page({
           writePrice
         }
       });
+      if (value) {
+        this.setData({ goodPriceType: value });
+        const index = this.data.shopList.findIndex(item => (
+          (item.good_id === this.data.good.id) && (Number(item.unitType) === this.data.goodUnitType)
+        ));
+        const shopList = this.data.shopList;
+        shopList[index].priceType = value;
+        this.setData({ shopList });
+        const todu = this.data.todu;
+        todu.writePrice = writePrice;
+        this.setData({ todu });
+      }
       console.log('updateShop', data);
-      const todu = this.data.todu;
-      todu.writePrice = writePrice;
-      this.setData({ todu });
       wx.hideLoading();
     } catch (e) {
       wx.hideLoading();
@@ -254,11 +294,21 @@ Page({
   },
   // 确认自定义价格
   onOk() {
+    const val = this.data.writePrice.replace(/(^\s*)|(\s*$)/g, "");
+    if (!val) {
+      return wx.showToast({
+        title: '价格不能为空',
+        icon: 'none'
+      })
+    }
     this.setData({
-      visible2: false,
-      goodPriceType: 3
+      visible2: false
     });
-    this.updateShop(this.data.goodNum, 3, this.data.writePrice);
+    if (this.data.goodNum === 0) { // 新增
+      this.addShop(3, val);
+    } else {
+      this.updateShop(this.data.goodNum, 3, val);
+    }
   },
   // 输入框变化
   changePrice(e) {
@@ -274,16 +324,10 @@ Page({
     }
     console.log(data);
     if (key === 'goodPriceType' && this.data.goodNum > 0 && value !== 3) { // 切换价格并且购物车中存在
-      const index = this.data.shopList.findIndex(item => (
-        (item.good_id === this.data.good.id) && (Number(item.unitType) === this.data.goodUnitType)
-      ));
-      const shopList = this.data.shopList;
-      shopList[index].priceType = value;
-      this.setData({ shopList });
-      console.log('shopList', shopList)
       this.updateShop(this.data.goodNum, value);
     }
     if (value === 3) { // 自定义价格
+      console.log('this.data.goodPriceType', this.data.goodPriceType)
       this.setData({ visible2: true });
       const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === this.data.goodUnitType));
       console.log('todu111', todu)

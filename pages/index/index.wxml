@@ -93,9 +93,9 @@
         <text>￥</text>
         {{
           goodUnitType === 1 ? (
-            goodPriceType === 1 ? goodNum * good.sellSingle : goodPriceType === 2 ? goodNum * good.midSingle : goodNum * tudo.writePrice
+            goodPriceType === 1 ? goodNum * good.sellSingle : goodPriceType === 2 ? goodNum * good.midSingle : goodNum * todu.writePrice
           ) : (
-            goodPriceType === 1 ? goodNum * good.sellAll : goodPriceType === 2 ? goodNum * good.midAll : goodNum * tudo.writePrice
+            goodPriceType === 1 ? goodNum * good.sellAll : goodPriceType === 2 ? goodNum * good.midAll : goodNum * todu.writePrice
           )
         }}
       </view>
