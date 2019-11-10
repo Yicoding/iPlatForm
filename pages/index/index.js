@@ -23,6 +23,7 @@ Page({
     countInfo: {},
     writePrice: '',
     visible2: false,
+    todu: {}
   },
   onLoad() {
     this.getGoodsByCompany();
@@ -115,7 +116,7 @@ Page({
     }
   },
   // 修改单个购物车商品数量
-  async updateShop(num, value = null) {
+  async updateShop(num, value = null, writePrice = null) {
     console.log('updateShop**num', num);
     wx.showLoading({
       title: '加载中...',
@@ -131,10 +132,14 @@ Page({
           priceType: this.data.goodPriceType,
           user_id: 2,
           num,
-          value
+          value,
+          writePrice
         }
       });
       console.log('updateShop', data);
+      const todu = this.data.todu;
+      todu.writePrice = writePrice;
+      this.setData({ todu });
       wx.hideLoading();
     } catch (e) {
       wx.hideLoading();
@@ -221,10 +226,12 @@ Page({
         goodUnitType: Number(todu.unitType),
         goodPriceType: Number(todu.priceType),
         showPrice: Number(todu.priceType) === 2,
+        todu,
         writePrice: todu.writePrice
       });
     } else {
       this.setData({
+        todu: {},
         visible: true,
         good: item,
         goodNum: 0,
@@ -241,7 +248,9 @@ Page({
   },
   // 自定义价格弹窗关闭
   onClose2() {
-    this.setData({ visible2: false });
+    this.setData({
+      visible2: false
+    });
   },
   // 确认自定义价格
   onOk() {
@@ -251,11 +260,16 @@ Page({
     });
     this.updateShop(this.data.goodNum, 3, this.data.writePrice);
   },
+  // 输入框变化
+  changePrice(e) {
+    const { value } = e.detail;
+    this.setData({ writePrice: value });
+  },
   // 单选
   switchType(e) {
     const data = e.currentTarget.dataset;
     const { key, value } = data;
-    if (this.data[key] === value) {
+    if (this.data[key] === value && value !== 3) {
       return;
     }
     console.log(data);
@@ -272,14 +286,16 @@ Page({
     if (value === 3) { // 自定义价格
       this.setData({ visible2: true });
       const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === this.data.goodUnitType));
-      console.log('todu', todu)
+      console.log('todu111', todu)
       if (todu) {
         this.setData({
-          writePrice: todu.writePrice
+          writePrice: todu.writePrice,
+          todu
         });
       } else {
         this.setData({
-          writePrice: ''
+          writePrice: '',
+          todu: {}
         })
       }
     } else {
@@ -293,12 +309,14 @@ Page({
           goodNum: Number(todu.num),
           goodPriceType: Number(todu.priceType),
           showPrice: Number(todu.priceType) === 2,
-          writePrice: todu.writePrice
+          writePrice: todu.writePrice,
+          todu
         });
       } else {
         this.setData({
           goodNum: 0,
-          writePrice: ''
+          writePrice: '',
+          todu: {}
         })
       }
     }

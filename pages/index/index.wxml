@@ -70,7 +70,7 @@
           goodUnitType === 1 ? good.midSingle : good.midAll
         }})</van-button>
         <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{
-          writePrice ? '(' + writePrice + ')' : ''
+          todu.writePrice ? '(' + todu.writePrice + ')' : ''
         }}</van-button>
       </view>
     </view>
@@ -80,9 +80,9 @@
       <text>已选规格：</text>
       {{goodNum}}{{goodUnitType === 1 ? good.unitOne.name : good.unitDouble.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{
         goodUnitType === 1 ? (
-          goodPriceType === 1 ? good.sellSingle : goodPriceType === 2 ? good.midSingle : writePrice
+          goodPriceType === 1 ? good.sellSingle : goodPriceType === 2 ? good.midSingle : todu.writePrice
         ) : (
-          goodPriceType === 1 ? good.sellAll : goodPriceType === 2 ? good.midAll : writePrice
+          goodPriceType === 1 ? good.sellAll : goodPriceType === 2 ? good.midAll : todu.writePrice
         )
       }}元
     </view>
@@ -93,9 +93,9 @@
         <text>￥</text>
         {{
           goodUnitType === 1 ? (
-            goodPriceType === 1 ? goodNum * good.sellSingle : goodPriceType === 2 ? goodNum * good.midSingle : goodNum * writePrice
+            goodPriceType === 1 ? goodNum * good.sellSingle : goodPriceType === 2 ? goodNum * good.midSingle : goodNum * tudo.writePrice
           ) : (
-            goodPriceType === 1 ? goodNum * good.sellAll : goodPriceType === 2 ? goodNum * good.midAll : goodNum * writePrice
+            goodPriceType === 1 ? goodNum * good.sellAll : goodPriceType === 2 ? goodNum * good.midAll : goodNum * tudo.writePrice
           )
         }}
       </view>
@@ -118,6 +118,7 @@
         label="价格"
         placeholder="请输入价格"
         controlled
+        bind:change="changePrice"
         value="{{writePrice}}" />
     </wux-cell>
     <wux-white-space size="large" />
