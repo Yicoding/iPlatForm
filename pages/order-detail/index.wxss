@@ -1,13 +1,16 @@
-
 .good-box{
   padding: 20rpx 15rpx 110rpx;
+}
+
+.good-box-iphonex{
+  padding-bottom: 180rpx;
 }
 
 .good-item{
   background: #fff;
   border-radius: 10rpx;
   padding: 20rpx;
-  margin-bottom: 20rpx;
+  margin-top: 20rpx;
   display: flex;
 }
 
@@ -64,10 +67,6 @@
   margin-left: 20rpx;
 }
 
-.btn-empty{
-  opacity: .7;
-}
-
 .remove{
   width: 64px;
   height: 100%;
@@ -78,4 +77,6 @@
   color: #fff;
 }
 
-
+.van-submit-bar__bar{
+  height: auto !important;
+}

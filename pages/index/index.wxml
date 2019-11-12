@@ -105,7 +105,7 @@
 </van-dialog>
 <!-- 自定义价格输入框 -->
 <view wx:if="{{visible2}}">
-  <view class="price-mask"></view>
+  <view class="price-mask" bindtap="onClose2"></view>
   <view class="price-container">
     <view class="price-title">
       <text bindtap="onClose2">取消</text>
@@ -119,6 +119,7 @@
         placeholder="请输入价格"
         controlled
         bind:change="changePrice"
+        focus
         value="{{writePrice}}" />
     </wux-cell>
     <wux-white-space size="large" />

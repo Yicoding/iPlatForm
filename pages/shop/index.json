@@ -1,4 +1,9 @@
 {
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index",
+    "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index",
+    "wux-prompt": "/miniprogram_npm/wux-weapp/prompt/index",
+    "van-swipe-cell": "/miniprogram_npm/vant-weapp/swipe-cell/index"
+  }
 }

@@ -1,0 +1,21 @@
+<van-cell title="订单状态" value="{{orderInfo.state === 1 ? '待付款' : orderInfo.state === 2 ? '待发货' : '已完成'}}" />
+<van-steps
+  steps="{{ steps }}"
+  active="{{ active }}"
+/>
+<view class="good-box {{isIpx && 'good-box-iphonex'}}">
+  <view class="good-item" wx:for="{{orderList}}" wx:key>
+    <image src="{{item.coverImg}}" />
+    <view class="good-info">
+      <view class="good-name">{{item.name}}</view>
+      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll}}、单价：{{item.sale}}</view>
+      <view class="space-info">
+        <view class="space-price">
+          <text>总价：</text>
+          <text>￥</text>
+          {{item.total}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

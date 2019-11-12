@@ -1,0 +1,69 @@
+<view class="good-box {{isIpx && 'good-box-iphonex'}}">
+  <van-cell-group>
+    <van-field
+      value="{{name}}"
+      label="客户名"
+      placeholder="请输入客户名"
+      left-icon="contact"
+      bind:input="changeVal"
+      data-type="name"
+    />
+    <van-field
+      value="{{phone}}"
+      label="客户手机"
+      type="number"
+      placeholder="请输入客户手机号"
+      left-icon="phone-o"
+      bind:input="changeVal"
+      data-type="phone"
+      maxlength="{{11}}"
+    />
+    <van-field
+      value="{{address}}"
+      label="客户地址"
+      type="textarea"
+      placeholder="请输入客户地址"
+      autosize
+      left-icon="logistics"
+      bind:input="changeVal"
+      data-type="address"
+    />
+  </van-cell-group>
+  <view class="good-item" wx:for="{{shopList}}" wx:key>
+    <image src="{{item.coverImg}}" />
+    <view class="good-info">
+      <view class="good-name">{{item.name}}</view>
+      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName}}、{{
+          item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''
+        }}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{
+        item.unitType === 1 ? (
+          item.priceType === 1 ? item.sellSingle : item.priceType === 2 ? item.midSingle : item.writePrice
+        ) : (
+          item.priceType === 1 ? item.sellAll : item.priceType === 2 ? item.midAll : item.writePrice
+        )
+      }}</text></view>
+      <view class="space-info">
+        <view class="space-price">
+          <text>总价：</text>
+          <text>￥</text>
+          {{
+            item.unitType === 1 ? (
+              item.priceType === 1 ? item.num * item.sellSingle : item.priceType === 2 ? item.num * item.midSingle : item.num * item.writePrice
+            ) : (
+              item.priceType === 1 ? item.num * item.sellAll : item.priceType === 2 ? item.num * item.midAll : item.num * item.writePrice
+            )
+          }}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<van-submit-bar
+  price="{{ totalPrice*100 }}"
+  button-text="提交订单"
+  bind:submit="onSubmit"
+  loading="{{loading}}"
+  disabled="{{disabled}}"
+>
+  <view class="clear-btn" bindtap="goBack">返回</view>
+</van-submit-bar>

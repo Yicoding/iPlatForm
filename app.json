@@ -1,8 +1,11 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/index/index",
     "pages/shop/index",
+    "pages/order-detail/index",
     "pages/good-detail/index",
+    "pages/order-confirm/index",
     "pages/logs/logs",
     "pages/test/test"
   ],
@@ -17,7 +20,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "元素",
+        "text": "商品",
         "iconPath": "images/icon/food.png",
         "selectedIconPath": "images/icon/food.png"
       },
@@ -30,13 +33,13 @@
       },
       {
         "pagePath": "pages/logs/logs",
-        "text": "专栏",
+        "text": "订单",
         "iconPath": "images/icon/diary.png",
         "selectedIconPath": "images/icon/diary.png"
       },
       {
         "pagePath": "pages/test/test",
-        "text": "发现",
+        "text": "我的",
         "iconPath": "images/icon/music.png",
         "selectedIconPath": "images/icon/music.png"
       }

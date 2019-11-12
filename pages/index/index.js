@@ -23,9 +23,12 @@ Page({
     countInfo: {},
     writePrice: '',
     visible2: false,
-    todu: {}
+    todu: {},
+    userInfo: {}
   },
   onLoad() {
+    console.log('app.globalData.userInfo**', app.globalData.userInfo)
+    this.setData({ userInfo: app.globalData.userInfo });
     this.getGoodsByCompany();
   },
   onShow() {
@@ -48,8 +51,8 @@ Page({
       const { data } = await ajax({
         url: config.service.getGoodsByCompany,
         data: {
-          company_id: 1,
-          role: 'admin'
+          company_id: this.data.userInfo.company_id,
+          role: this.data.userInfo.role_name
         }
       });
       console.log('getGoodsByCompany', data);
@@ -72,7 +75,7 @@ Page({
       const { data } = await ajax({
         url: config.service.getShoplistEasy,
         data: {
-          user_id: 2
+          user_id: this.data.userInfo.id
         }
       });
       const countInfo = {};
@@ -107,7 +110,7 @@ Page({
           good_id: this.data.good.id,
           unitType: this.data.goodUnitType,
           priceType: goodPriceType || this.data.goodPriceType,
-          user_id: 2,
+          user_id: this.data.userInfo.id,
           num,
           writePrice: writePrice
         }
@@ -161,7 +164,7 @@ Page({
           good_id: this.data.good.id,
           unitType: this.data.goodUnitType,
           priceType: this.data.goodPriceType,
-          user_id: 2,
+          user_id: this.data.userInfo.id,
           num,
           value,
           writePrice
@@ -176,7 +179,9 @@ Page({
         shopList[index].priceType = value;
         this.setData({ shopList });
         const todu = this.data.todu;
-        todu.writePrice = writePrice;
+        if (writePrice) {
+          todu.writePrice = writePrice;
+        }
         this.setData({ todu });
       }
       console.log('updateShop', data);
@@ -200,7 +205,7 @@ Page({
           good_id: this.data.good.id,
           unitType: this.data.goodUnitType,
           priceType: this.data.goodPriceType,
-          user_id: 2
+          user_id: this.data.userInfo.id
         }
       });
       console.log('removeShop', data);
@@ -301,6 +306,13 @@ Page({
         icon: 'none'
       })
     }
+    const patten = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g;
+    if (!patten.test(val)) {
+      return wx.showToast({
+        title: '请输入数字',
+        icon: 'none'
+      })
+    }
     this.setData({
       visible2: false
     });
@@ -360,7 +372,8 @@ Page({
         this.setData({
           goodNum: 0,
           writePrice: '',
-          todu: {}
+          todu: {},
+          goodPriceType: 1
         })
       }
     }

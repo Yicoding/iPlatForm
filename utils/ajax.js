@@ -6,11 +6,13 @@ const ajax = obj => {
   return new Promise((resolve, reject) => {
     wx.request(Object.assign(obj, {
       success: function({ data }) {
-        resolve(data);
-        if (data.code === -1) {
+        if (data.code === 0) {
+          resolve(data);
+        } else {
+          reject(data.data);
           wx.showModal({
             title: '出错啦',
-            content: data.error,
+            content: data.data,
             showCancel: false,
             confirmColor: '#e4393c'
           })

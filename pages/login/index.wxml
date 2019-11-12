@@ -1,0 +1,46 @@
+<image src="/images/avatar.png" class="avatar" />
+<view class="buttun-wrapper">
+  <l-input
+    placeholder="请输入手机号"
+    type="number"
+    show-row="{{ false }}"
+    width="600"
+    maxlength="{{11}}"
+    l-class='input-phone'
+    label-width="120"
+    clear="{{true}}"
+    value="{{phone}}"
+    bind:lininput="changeVal"
+    data-key="phone"
+    bind:linclear="clearVal"
+  >
+    <l-icon class='input-icon' slot="left" name="phone"/>
+  </l-input>
+</view>
+<view class="buttun-wrapper">
+  <l-input
+    placeholder="请输入密码"
+    type="password"
+    show-row="{{ false }}"
+    width="600"
+    l-class='input-phone'
+    label-width="120"
+    clear="{{true}}"
+    value="{{password}}"
+    bind:lininput="changeVal"
+    data-key="password"
+    bind:linclear="clearVal"
+  >
+    <l-icon class='input-icon' slot="left" name="password"/>
+  </l-input>
+</view>
+<wux-white-space size="large" />
+<wux-white-space size="large" />
+<van-button
+  type="primary"
+  size="large"
+  class="btn"
+  round
+  disabled="{{disabled}}"
+  bindtap="login"
+>登录</van-button>

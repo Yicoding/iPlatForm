@@ -100,6 +100,7 @@ var config = {
         getUserList: `${host}/weapp/getUserList`, // 查看用户列表
         getUserDetail: `${host}/weapp/getUserDetail`, // 查看单个用户
         userLogin: `${host}/weapp/userLogin`, // 用户登录
+        loginByWx: `${host}/weapp/loginByWx`, // 用户登录
         addUser: `${host}/weapp/addUser`, // 新增用户
         updateUser: `${host}/weapp/updateUser`, // 更新单个用户
         removeUser: `${host}/weapp/removeUser`, // 删除单个用户
@@ -119,6 +120,7 @@ var config = {
         // 订单
         getOrderList: `${host}/weapp/getOrderList`, // 查看订单列表
         getOrderDetail: `${host}/weapp/getOrderDetail`, // 查看订单详情
+        addOrder: `${host}/weapp/addOrder`, // 更新单个订单信息
         updateOrder: `${host}/weapp/updateOrder`, // 更新单个订单信息
         removeOrder: `${host}/weapp/removeOrder`, // 删除单个订单
         getOrderDetailList: `${host}/weapp/getOrderDetailList`, // 单个订单包含的商品列表
@@ -127,6 +129,8 @@ var config = {
         addShop: `${host}/weapp/addShop`, // 获取购物车列表easy版
         updateShop: `${host}/weapp/updateShop`, // 获取购物车列表easy版
         removeShop: `${host}/weapp/removeShop`, // 获取购物车列表easy版
+        removeShopById: `${host}/weapp/removeShopById`, // 获取购物车列表easy版
+        removeShopByUser: `${host}/weapp/removeShopByUser`, // 获取购物车列表easy版
     }
 };
 

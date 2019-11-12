@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "l-input": "/miniprogram_npm/lin-ui/input/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index"
+  }
+}
