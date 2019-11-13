@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "购物车",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index",

@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "订单",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "van-cell": "/miniprogram_npm/vant-weapp/cell/index",

@@ -47,6 +47,7 @@ App({
         wx.switchTab({
           url: '../index/index'
           // url: '../order-list/index'
+          // url: '../mine/index'
         });
         // wx.redirectTo({
         //   url: '../ship/index'

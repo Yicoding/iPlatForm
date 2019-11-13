@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "商品",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "wux-badge": "/miniprogram_npm/wux-weapp/badge/index",

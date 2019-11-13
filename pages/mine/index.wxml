@@ -1,0 +1,8 @@
+<water-flow generic:l-water-flow-item="water-card"/>
+<loadmore
+  wx:if="{{goodList.length > 0}}"
+  show="{{true}}"
+  line
+  type="end"
+  end-text="我是有底线的"
+/>
