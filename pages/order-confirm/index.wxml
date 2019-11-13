@@ -57,6 +57,13 @@
       </view>
     </view>
   </view>
+  <loadmore
+    wx:if="{{shopList.length > 0}}"
+    show="{{true}}"
+    line
+    type="end"
+    end-text="我是有底线的"
+  />
 </view>
 <van-submit-bar
   price="{{ totalPrice*100 }}"

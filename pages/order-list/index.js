@@ -15,7 +15,6 @@ Page({
     value: [],
     hasMore: false,
     loading: true,
-    info: ''
   },
   pageIndex: 0,
   pageSize: 10,
@@ -44,10 +43,15 @@ Page({
   // 获取订单列表
   async getOrderList() {
     try {
-      this.setData({
-        loading: true,
-        nfo: '数据加载中...'
-      });
+      this.setData({ loading: true });
+      if (this.pageIndex === 0) {
+        this.timee = setTimeout(() => {
+          wx.showLoading({
+            title: '加载中...',
+            mask: true
+          });
+        }, 300);
+      }
       const { userInfo, value, state } = this.data;
       const info = {
         company_id: userInfo.company_id,
@@ -78,6 +82,9 @@ Page({
     } finally {
       wx.stopPullDownRefresh();
       this.setData({ loading: false });
+      this.pageIndex === 0 && wx.hideLoading();
+      this.timee && clearTimeout(this.timee);
+      this.timee = null;
     }
   },
   // tab切换

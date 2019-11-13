@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index",
+    "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
     "van-field": "/miniprogram_npm/vant-weapp/field/index",
     "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index"
   }

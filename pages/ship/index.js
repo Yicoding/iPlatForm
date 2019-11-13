@@ -143,6 +143,9 @@ Page({
             unShipList,
             shipList
           });
+          if (unShipList.length === 0) {
+            this.setData({active: 1});
+          }
         }, 1400);
       } else {
         shipList[index].isChecked = check;
@@ -163,6 +166,9 @@ Page({
             unShipList,
             shipList
           });
+          if (shipList.length === 0) {
+            this.setData({active: 0});
+          }
         }, 1400);
       }
       console.log('updateOrderGood', data);
@@ -189,7 +195,7 @@ Page({
         title: '加载中...',
         mask: true
       });
-      const { data } = await ajax({
+      await ajax({
         url: config.service.updateOrderGood,
         method: 'PUT',
         data: {

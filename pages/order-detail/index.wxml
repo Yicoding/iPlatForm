@@ -92,4 +92,11 @@
       </view>
     </view>
   </view>
+  <loadmore
+    wx:if="{{orderList.length > 0}}"
+    show="{{true}}"
+    line
+    type="end"
+    end-text="我是有底线的"
+  />
 </view>

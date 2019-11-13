@@ -2,6 +2,7 @@
   "usingComponents": {
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-steps": "/miniprogram_npm/vant-weapp/steps/index"
   }

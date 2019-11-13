@@ -1,9 +1,9 @@
 .good-box{
-  padding: 20rpx 15rpx 110rpx;
+  padding: 20rpx 15rpx 30rpx;
 }
 
 .good-box-iphonex{
-  padding-bottom: 180rpx;
+  padding-bottom: 80rpx;
 }
 
 .good-item{
