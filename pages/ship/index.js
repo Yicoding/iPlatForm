@@ -54,6 +54,9 @@ Page({
         unShipList,
         shipList
       });
+      if (unShipList.length === 0) {
+        this.setData({active: 1});
+      }
     } catch (e) {
       console.log('getOrderDetailList报错', e);
     } finally {
