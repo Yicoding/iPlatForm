@@ -1,0 +1,135 @@
+page{
+  padding-top: 40px;
+}
+
+.tab-box{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3000;
+  background: #fff;
+}
+
+.good-box{
+  padding: 20rpx 15rpx 150rpx;
+}
+
+.good-box-iphonex{
+  padding-bottom: 200rpx;
+}
+
+.good-item{
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.good-item image{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 30rpx;
+}
+
+.good-info{
+  flex: 1;
+}
+
+.good-name{
+  color: #666;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.good-tip{
+  color: #333;
+  font-size: 28rpx;
+  margin: 10rpx 0;
+}
+
+.good-tip text{
+  color: #666;
+}
+
+.space-info{
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-price{
+  color: #e4393c;
+  font-size: 32rpx;
+}
+.red{
+  color: #e4393c !important;
+}
+
+.space-price text:first-of-type{
+  font-size: 22rpx;
+  color: #333;
+}
+
+.van-submit-bar__bar{
+  height: auto !important;
+}
+
+.clear-btn{
+  color: #fff;
+  font-size: 26rpx;
+  background: coral;
+  padding: 15rpx 20rpx;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+}
+
+.order-empty{
+  text-align: center;
+  color: #999;
+}
+
+.order-empty image{
+  width: 300rpx;
+  height: 241.16rpx;
+  display: block;
+  margin: 200rpx auto 50rpx;
+}
+
+/*动画*/
+.hide-line {
+  animation: myHide 1s ease .5s;
+}
+.hide-line-left {
+  animation: myHideLeft 1s ease .5s;
+}
+
+@keyframes myHide {
+  0% {
+    transform: translateX(0);
+    height: auto;
+  }
+  98% {
+    height: auto;
+  }
+  100% {
+    transform: translateX(100%);
+    height: 0;
+    opacity: 0;
+  }
+}
+@keyframes myHideLeft {
+  0% {
+    transform: translateX(0);
+    height: auto;
+  }
+  98% {
+    height: auto;
+  }
+  100% {
+    transform: translateX(-100%);
+    height: 0;
+    opacity: 0;
+  }
+}

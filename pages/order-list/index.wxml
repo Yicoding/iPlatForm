@@ -1,0 +1,103 @@
+<view class="tab-box">
+  <van-cell border="{{false}}">
+    <view slot="title" class="date-box" bindtap="openCalendar">
+      <view class="search-box">
+        <van-icon custom-class="search-i" name="search" />
+        <text>查看订单日期</text>
+      </view>
+      <text class="date-txt">{{value[0]}}</text>
+      <van-button wx:if="{{value.length}}" size="small" type="warning" round catchtap="clearDate">清除</van-button>
+    </view>
+  </van-cell>
+  <van-tabs
+    active="{{ active }}"
+    bind:change="changeTabs"
+  >
+    <van-tab title="全部"></van-tab>
+    <van-tab title="待付款"></van-tab>
+    <van-tab title="待发货"></van-tab>
+    <van-tab title="已完成"></van-tab>
+  </van-tabs>
+</view>
+<view wx:for="{{orderList}}" wx:key class="order-item" bindtap="linkDetail" data-id="{{item.id}}">
+  <state-box state="{{item.state}}" />
+  <van-cell>
+      <view slot="title" class="order-line">
+      <text>订单编号</text>
+      <l-tag shape="square" bg-color="orange">{{item.id}}</l-tag>
+      <!-- <text class="red">{{item.id}}</text> -->
+    </view>  
+  </van-cell>
+  <van-cell>
+    <view slot="title" class="order-line">
+      <text>订单金额</text>
+      <text class="red txt-bg">{{item.total}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view slot="title" class="order-line">
+      <text>订单状态</text>
+      <text class="red">{{item.state === 1 ? '待付款' : item.state === 2 ? '待发货' : '已完成'}}</text>
+    </view>
+  </van-cell>
+  <van-cell>
+    <view slot="title" class="order-line">
+      <text>创建时间</text>
+      <text class="red">{{item.createTime}}</text>
+    </view>
+  </van-cell>
+  <van-cell title="创建人" value="{{item.createUser.name}}">
+    <view slot="title" class="order-line">
+      <text>创建人</text>
+      <text>{{item.createUser.name}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.payTime}}" title="收款时间" value="{{item.payTime}}">
+    <view slot="title" class="order-line">
+      <text>收款时间</text>
+      <text>{{item.payTime}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.payUser}}" title="收款人" value="{{item.payUser.name}}">
+    <view slot="title" class="order-line">
+      <text>收款人</text>
+      <text>{{item.payUser.name}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.finishTime}}" title="发货时间" value="{{item.finishTime}}">
+    <view slot="title" class="order-line">
+      <text>发货时间</text>
+      <text>{{item.finishTime}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.finishUser}}" title="发货人" value="{{item.finishUser.name}}">
+    <view slot="title" class="order-line">
+      <text>发货人</text>
+      <text>{{item.finishUser.name}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.customerName}}">
+    <view slot="title" class="order-line">
+      <text>客户名称</text>
+      <text class="red">{{item.customerName}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.customerPhone}}" title="客户手机号" value="{{item.customerPhone}}">
+    <view slot="title" class="order-line">
+      <text>客户手机号</text>
+      <text>{{item.customerPhone}}</text>
+    </view>
+  </van-cell>
+  <van-cell wx:if="{{item.customerSite}}" title="客户地址" label="{{item.customerSite}}" border="{{ false }}">
+  </van-cell>
+</view>
+<loadmore
+  wx:if="{{orderList.length > 0}}"
+  show="{{true}}"
+  line type="{{loading ? 'loading' : 'end'}}"
+/>
+<view wx:else class="order-empty">
+  <image src="/images/order-empty.png" />
+  <text>您暂时还没有订单哦～</text>
+</view>
+<wux-calendar id="wux-calendar" />

@@ -122,7 +122,7 @@ Page({
           spend: spendAll,
           total: totalPrice,
           gain: totalPrice - spendAll,
-          createUser: 2,
+          createUser: this.data.userInfo.id,
           customerName: name,
           customerPhone: phone,
           customerSite: address,

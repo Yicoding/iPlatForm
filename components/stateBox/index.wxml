@@ -1,0 +1,6 @@
+<view class="root-state">
+  {{
+    state === 1 ? '待付款' :
+    state === 2 ? '待发货' : '已完成'
+  }}
+</view>

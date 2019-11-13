@@ -1,0 +1,15 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "wux-calendar": "/miniprogram_npm/wux-weapp/calendar/index",
+    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "state-box": "/components/stateBox/index"
+  }
+}

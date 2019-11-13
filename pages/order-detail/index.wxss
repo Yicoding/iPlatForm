@@ -80,3 +80,18 @@
 .van-submit-bar__bar{
   height: auto !important;
 }
+
+.order-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.txt-bg{
+  font-size: 35rpx;
+}
+
+.order-btn-box{
+  display: flex;
+  justify-content: flex-end;
+}

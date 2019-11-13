@@ -1,0 +1,83 @@
+<view class="tab-box">
+  <van-tabs
+    active="{{ active }}"
+    bind:change="changeTabs"
+  >
+    <van-tab title="未发货"></van-tab>
+    <van-tab title="已发货"></van-tab>
+  </van-tabs>
+</view>
+<!-- 未发货 -->
+<view hidden="{{active == 1}}" class="good-box {{isIpx && 'good-box-iphonex'}}">
+  <view class="good-item {{item.ani && 'hide-line'}}" wx:for="{{unShipList}}" wx:key>
+    <van-checkbox
+      value="{{ item.isChecked }}"
+      bind:change="onChange"
+      data-index="{{index}}"
+      data-type="unShipList"
+      data-check="{{1}}"
+      data-id="{{item.id}}"
+      disabled="{{item.disabled}}"
+    />
+    <image src="{{item.coverImg}}" />
+    <view class="good-info">
+      <view class="good-name">{{item.name}}</view>
+      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll}}、单价：{{item.sale}}</view>
+      <view class="space-info">
+        <view class="space-price">
+          <text>总价：</text>
+          <text>￥</text>
+          {{item.total}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 已发货 -->
+<view hidden="{{active === 0}}" class="good-box {{isIpx && 'good-box-iphonex'}}">
+  <view class="good-item {{item.ani && 'hide-line-left'}}" wx:for="{{shipList}}" wx:key>
+    <van-checkbox
+      value="{{ item.isChecked }}"
+      bind:change="onChange"
+      data-index="{{index}}"
+      data-type="shipList"
+      data-check="{{0}}"
+      data-id="{{item.id}}"
+      disabled="{{item.disabled}}"
+    />
+    <image src="{{item.coverImg}}" />
+    <view class="good-info">
+      <view class="good-name">{{item.name}}</view>
+      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll}}、单价：{{item.sale}}</view>
+      <view class="space-info">
+        <view class="space-price">
+          <text>总价：</text>
+          <text>￥</text>
+          {{item.total}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{active === 0 && unShipList.length === 0 && !loading}}" class="order-empty">
+  <image src="/images/product-empty.png" />
+  <text>货物已全部发完啦～</text>
+</view>
+
+<view wx:if="{{active === 1 && shipList.length === 0 && !loading}}" class="order-empty">
+  <image src="/images/data-empty.png" />
+  <text>还没开始发货呢～</text>
+</view>
+
+<van-submit-bar
+  price="{{ total*100 }}"
+  button-text="确认发货"
+  bind:submit="onSubmit"
+  loading="{{loading}}"
+  disabled="{{disabled || unShipList.length}}"
+>
+  <view wx:if="{{active === 0 && unShipList.length > 0}}" class="clear-btn" bindtap="changeCheck">一键发货</view>
+  <view wx:if="{{active === 1 && shipList.length > 0}}" class="clear-btn" bindtap="changeCheck">一键撤回</view>
+</van-submit-bar>
+

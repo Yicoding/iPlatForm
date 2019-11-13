@@ -1,0 +1,16 @@
+.root-state{
+    position: absolute;
+    top: 50rpx;
+    left: 200rpx;
+    width: 250rpx;
+    height: 250rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-30deg);
+    border: 1rpx solid red;
+    color: red;
+    font-size: 60rpx;
+    border-radius: 50%;
+    z-index: 999;
+}

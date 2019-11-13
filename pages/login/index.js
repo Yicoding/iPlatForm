@@ -36,6 +36,9 @@ Page({
   },
   // 点击登录
   login() {
+    if (!this.data.phone || !this.data.password) {
+      return;
+    }
     const patten = /^1\d{10}$/;
     if (!patten.test(this.data.phone)) {
       return wx.showToast({

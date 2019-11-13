@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/login/index",
+    "pages/order-list/index",
     "pages/index/index",
     "pages/shop/index",
+    "pages/ship/index",
     "pages/order-detail/index",
     "pages/good-detail/index",
     "pages/order-confirm/index",
@@ -32,7 +34,7 @@
         "selectedIconPath": "images/icon/gift-box.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/order-list/index",
         "text": "订单",
         "iconPath": "images/icon/diary.png",
         "selectedIconPath": "images/icon/diary.png"
