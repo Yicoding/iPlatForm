@@ -1,0 +1,44 @@
+/**
+ * 单个商品价格
+ */
+var setSingle = function(item) {
+  var unitType = item.unitType;
+  var priceType = item.priceType;
+  var sellSingle = item.sellSingle;
+  var midSingle = item.midSingle;
+  var sellAll = item.sellAll;
+  var midAll = item.midAll;
+  var writePrice = item.writePrice;
+  return unitType === 1 ? (
+    priceType === 1 ? sellSingle : priceType === 2 ? midSingle : writePrice
+  ) : (
+    priceType === 1 ? sellAll : priceType === 2 ? midAll : writePrice
+  );
+}
+
+/**
+ * 单个商品总价
+ */
+var setAll = function (item) {
+  var unitType = item.unitType;
+  var priceType = item.priceType;
+  var sellSingle = item.sellSingle;
+  var midSingle = item.midSingle;
+  var sellAll = item.sellAll;
+  var midAll = item.midAll;
+  var writePrice = item.writePrice;
+  var goodNum = item.goodNum || item.num;
+  if (!goodNum) {
+    return 0;
+  }
+  return unitType === 1 ? (
+    priceType === 1 ? goodNum * sellSingle : priceType === 2 ? goodNum * midSingle : goodNum * writePrice
+  ) : (
+    priceType === 1 ? goodNum * sellAll : priceType === 2 ? goodNum * midAll : goodNum * writePrice
+  );
+}
+
+module.exports = {
+  setSingle: setSingle,
+  setAll: setAll
+};

@@ -1,14 +1,13 @@
 {
   "pages": [
     "pages/login/index",
-    "pages/order-list/index",
+    "pages/order/index",
     "pages/index/index",
     "pages/shop/index",
     "pages/ship/index",
     "pages/order-detail/index",
     "pages/good-detail/index",
     "pages/order-confirm/index",
-    "pages/logs/logs",
     "pages/mine/index"
   ],
   "window": {
@@ -34,7 +33,7 @@
         "selectedIconPath": "images/icon/gift-box.png"
       },
       {
-        "pagePath": "pages/order-list/index",
+        "pagePath": "pages/order/index",
         "text": "订单",
         "iconPath": "images/icon/diary.png",
         "selectedIconPath": "images/icon/diary.png"

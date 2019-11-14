@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class="good-box">
   <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopList}}" wx:key>
     <view class="good-item">
@@ -6,24 +8,12 @@
         <view class="good-name">{{item.name}}</view>
         <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName}}、{{
           item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''
-        }}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{
-          item.unitType === 1 ? (
-            item.priceType === 1 ? item.sellSingle : item.priceType === 2 ? item.midSingle : item.writePrice
-          ) : (
-            item.priceType === 1 ? item.sellAll : item.priceType === 2 ? item.midAll : item.writePrice
-          )
-        }}</text></view>
+        }}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{tools.setSingle(item)}}</text></view>
         <view class="space-info">
           <view class="space-price">
             <text>总价：</text>
             <text>￥</text>
-            {{
-              item.unitType === 1 ? (
-                item.priceType === 1 ? item.num * item.sellSingle : item.priceType === 2 ? item.num * item.midSingle : item.num * item.writePrice
-              ) : (
-                item.priceType === 1 ? item.num * item.sellAll : item.priceType === 2 ? item.num * item.midAll : item.num * item.writePrice
-              )
-            }}
+            {{tools.setAll(item)}}
           </view>
           <wux-input-number value="{{item.num}}" shape="circle" color="balanced" slot="footer" min="{{1}}" max="{{9999}}" controlled bindchange="shopChange" data-index="{{index}}" data-item="{{item}}" disabled="{{false}}" />
         </view>

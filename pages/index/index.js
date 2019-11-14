@@ -24,7 +24,9 @@ Page({
     writePrice: '',
     visible2: false,
     todu: {},
-    userInfo: {}
+    userInfo: {},
+    shopNum: 0,
+    totalPrice: 0,
   },
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
@@ -32,14 +34,14 @@ Page({
     this.getGoodsByCompany();
   },
   onShow() {
-    this.getShoplistEasy();
+    this.getShoplist();
   },
   onReady() {
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
     this.getGoodsByCompany();
-    this.getShoplistEasy();
+    this.getShoplist();
   },
   // 按公司查找所有商品类型+类型下的商品列表
   async getGoodsByCompany() {
@@ -70,33 +72,45 @@ Page({
     }
   },
   // 查询购物车列表
-  async getShoplistEasy() {
+  async getShoplist() {
     try {
       const { data } = await ajax({
-        url: config.service.getShoplistEasy,
+        url: config.service.getShoplist,
         data: {
           user_id: this.data.userInfo.id
         }
       });
       const countInfo = {};
+      let shopNum = 0;
       data.forEach(item => {
         if (countInfo[item.good_id]) {
           countInfo[item.good_id] += Number(item.num);
         } else {
           countInfo[item.good_id] = Number(item.num);
         }
+        shopNum += Number(item.num);
       });
-      console.log('getShoplistEasy', data, countInfo);
+      const totalPrice = data.reduce((total, item) => {
+        const currentPrice = item.unitType === 1 ? (
+          item.priceType === 1 ? item.num * item.sellSingle : item.priceType === 2 ? item.num * item.midSingle : item.num * item.writePrice
+        ) : (
+            item.priceType === 1 ? item.num * item.sellAll : item.priceType === 2 ? item.num * item.midAll : item.num * item.writePrice
+          );
+        return total + currentPrice;
+      }, 0);
+      console.log('getShoplist', data, countInfo, shopNum, totalPrice);
       this.setData({
         shopList: data,
-        countInfo
+        countInfo,
+        shopNum,
+        totalPrice
       });
     } catch (e) {
       console.log('getShoplist报错', e);
     }
   },
   // 新增购物车
-  async addShop(goodPriceType=null, writePrice=null) {
+  async addShop(goodPriceType = null, writePrice = null) {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -130,7 +144,11 @@ Page({
             num,
             unitType: this.data.goodUnitType,
             priceType: goodPriceType,
-            writePrice
+            writePrice,
+            midSingle: this.data.good.midSingle,
+            midAll: this.data.good.midAll,
+            sellSingle: this.data.good.sellSingle,
+            sellAll: this.data.good.sellAll,
           }],
           countInfo,
           todu: {
@@ -141,6 +159,13 @@ Page({
             writePrice
           }
         });
+        this.setData({
+          totalPrice: Number(this.data.totalPrice) + Number((this.data.goodUnitType === 1 ? (
+            this.data.goodPriceType === 1 ? this.data.good.sellSingle : this.data.goodPriceType === 2 ? this.data.good.midSingle : writePrice
+          ) : (
+              this.data.goodPriceType === 1 ? this.data.good.sellAll : this.data.goodPriceType === 2 ? this.data.good.midAll : writePrice
+            )))
+        });
       }
       console.log('addShop', data);
       wx.hideLoading();
@@ -150,8 +175,8 @@ Page({
     }
   },
   // 修改单个购物车商品数量
-  async updateShop(num, value = null, writePrice = null) {
-    console.log('updateShop**num', num);
+  async updateShop(num, value = null, writePrice = null, key = null) {
+    console.log('updateShop**num', num, value, this.data.goodUnitType);
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -170,8 +195,8 @@ Page({
           writePrice
         }
       });
-      if (value) {
-        this.setData({ goodPriceType: value });
+      if (value) { // 价格切换
+        // this.setData({ goodPriceType: value });
         const index = this.data.shopList.findIndex(item => (
           (item.good_id === this.data.good.id) && (Number(item.unitType) === this.data.goodUnitType)
         ));
@@ -179,6 +204,30 @@ Page({
         shopList[index].priceType = value;
         this.setData({ shopList });
         const todu = this.data.todu;
+        
+        if (num - this.data.goodNum) { // 数量变化
+          this.setData({
+            totalPrice: Number(this.data.totalPrice) + Number((num - this.data.goodNum) * (this.data.goodUnitType === 1 ? (
+              this.data.goodPriceType === 1 ? this.data.good.sellSingle : this.data.goodPriceType === 2 ? this.data.good.midSingle : writePrice
+            ) : (
+                this.data.goodPriceType === 1 ? this.data.good.sellAll : this.data.goodPriceType === 2 ? this.data.good.midAll : writePrice
+              )))
+          });
+        } else { // 价格切换
+          const newPrice = value === 1 ?
+            this.data.goodUnitType === 1 ? todu.sellSingle : todu.sellAll :
+            value === 2 ? this.data.goodUnitType === 1 ? todu.midSingle : todu.midAll : writePrice;
+          const oldPrice = this.data.goodPriceType === 1 ?
+            this.data.goodUnitType === 1 ? todu.sellSingle : todu.sellAll :
+            this.data.goodPriceType === 2 ? this.data.goodUnitType === 1 ? todu.midSingle : todu.midAll : todu.writePrice;
+          console.log('价格切换', value, this.data.goodPriceType, newPrice, oldPrice)
+          this.setData({
+            totalPrice: Number(this.data.totalPrice) + Number(num * (newPrice - oldPrice))
+          });
+        }
+        if (key) {
+          this.setData({ [key]: value });
+        }
         if (writePrice) {
           todu.writePrice = writePrice;
         }
@@ -318,8 +367,11 @@ Page({
     });
     if (this.data.goodNum === 0) { // 新增
       this.addShop(3, val);
+      this.setData({
+        shopNum: this.data.shopNum + 1
+      });
     } else {
-      this.updateShop(this.data.goodNum, 3, val);
+      this.updateShop(this.data.goodNum, 3, val, 'goodPriceType');
     }
   },
   // 输入框变化
@@ -336,7 +388,10 @@ Page({
     }
     console.log(data);
     if (key === 'goodPriceType' && this.data.goodNum > 0 && value !== 3) { // 切换价格并且购物车中存在
-      this.updateShop(this.data.goodNum, value);
+      this.updateShop(this.data.goodNum, value, null, 'goodPriceType');
+    }
+    if ((key === 'goodPriceType' && value !== 3 && this.data.goodNum === 0) || key === 'goodUnitType') {
+      this.setData({ [key]: value });
     }
     if (value === 3) { // 自定义价格
       console.log('this.data.goodPriceType', this.data.goodPriceType)
@@ -354,9 +409,10 @@ Page({
           todu: {}
         })
       }
-    } else {
-      this.setData({ [key]: value });
     }
+    // else {
+    //   this.setData({ [key]: value });
+    // }
     if (key === 'goodUnitType') { // 切换规格时去查询购物车
       const todu = this.data.shopList.find(item => (item.good_id === this.data.good.id && Number(item.unitType) === value));
       console.log('todu', todu)
@@ -389,14 +445,17 @@ Page({
     const num = this.data.goodNum;
     const { value } = e.detail;
     const countInfo = this.data.countInfo;
+    let shopNum = this.data.shopNum;
     if (countInfo[this.data.good.id]) {
       countInfo[this.data.good.id] += (value - num);
+      shopNum += (value - num);
     } else {
       countInfo[this.data.good.id] = value;
+      shopNum += value;
     }
     this.setData({
       countInfo,
-      goodNum: value
+      shopNum
     });
     console.log('countInfo-shopChange', countInfo)
     this.editShop(value);
@@ -410,6 +469,16 @@ Page({
     if (index > -1) { // 存在，修改数量
       if (val === 0) { // 移除购物车
         const shopList = this.data.shopList;
+        const todu = shopList[index];
+        // return console.log('todu***', todu, this.data.totalPrice, this.data.goodNum);
+        // 计算总价
+        this.setData({
+          totalPrice: this.data.totalPrice - this.data.goodNum * (todu.unitType === 1 ? (
+            todu.priceType === 1 ? todu.sellSingle : todu.priceType === 2 ? todu.midSingle : todu.writePrice
+          ) : (
+              todu.priceType === 1 ? todu.sellAll : todu.priceType === 2 ? todu.midAll : todu.writePrice
+            ))
+        });
         shopList.splice(index, 1)
         this.setData({ shopList });
         this.removeShop();
@@ -419,6 +488,13 @@ Page({
         this.setData({ shopList });
         console.log('shopList', shopList)
         this.updateShop(val);
+        this.setData({
+          totalPrice: Number(this.data.totalPrice) + Number((val - this.data.goodNum) * (this.data.goodUnitType === 1 ? (
+            this.data.goodPriceType === 1 ? this.data.good.sellSingle : this.data.goodPriceType === 2 ? this.data.good.midSingle : this.data.todu.writePrice
+          ) : (
+              this.data.goodPriceType === 1 ? this.data.good.sellAll : this.data.goodPriceType === 2 ? this.data.good.midAll : this.data.todu.writePrice
+            )))
+        });
       }
     } else { // 不存在新增
       this.setData({
@@ -426,10 +502,29 @@ Page({
           good_id: this.data.good.id,
           num: val,
           unitType: this.data.goodUnitType,
-          priceType: this.data.goodPriceType
+          priceType: this.data.goodPriceType,
+          midSingle: this.data.good.midSingle,
+          midAll: this.data.good.midAll,
+          sellSingle: this.data.good.sellSingle,
+          sellAll: this.data.good.sellAll,
+          writePrice: this.data.todu.writePrice
         }]
       })
-      this.addShop();
+      this.setData({
+        totalPrice: Number(this.data.totalPrice) + Number((this.data.goodUnitType === 1 ? (
+          this.data.goodPriceType === 1 ? this.data.good.sellSingle : this.data.goodPriceType === 2 ? this.data.good.midSingle : this.data.todu.writePrice
+        ) : (
+            this.data.goodPriceType === 1 ? this.data.good.sellAll : this.data.goodPriceType === 2 ? this.data.good.midAll : this.data.todu.writePrice
+          )))
+      });
+      this.addShop(null, this.data.todu.writePrice);
     }
+    this.setData({ goodNum: val });
   },
+  // 查看购物车
+  onSubmit() {
+    wx.switchTab({
+      url: '../shop/index'
+    });
+  }
 })

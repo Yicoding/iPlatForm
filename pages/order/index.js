@@ -10,7 +10,7 @@ Page({
   data: {
     active: 0,
     userInfo: {},
-    state: '',
+    state: '1',
     orderList: [],
     value: [],
     hasMore: false,
@@ -70,13 +70,31 @@ Page({
         url: config.service.getOrderList,
         data: info
       });
+      const orderList = data.data;
       console.log('getOrderList', data);
+      orderList.forEach(item => {
+        item.steps = [
+          {
+            text: `已创建(${item.createUser.name})`,
+            desc: item.createTime.slice(0, -3)
+          },
+          {
+            text: item.state === 1 ? '待付款' : `已付款(${item.payUser.name})`,
+            desc: item.payTime && item.payTime.slice(0, -3) || ''
+          },
+          {
+            text: item.state === 3 ? `已发货(${item.finishUser.name})` : '待发货',
+            desc: item.finishTime && item.finishTime.slice(0, -3) || ''
+          }
+        ];
+        item.active = item.state - 1;
+      });
       if (this.pageIndex === 0) { // 初始化请求
-        this.setData({ orderList: data.data });
+        this.setData({ orderList: orderList });
       } else {
-        this.setData({ orderList: [...this.data.orderList, ...data.data] });
+        this.setData({ orderList: [...this.data.orderList, ...orderList] });
       }
-      this.setData({ hasMore: data.data.length === this.pageSize });
+      this.setData({ hasMore: orderList.length === this.pageSize });
     } catch (e) {
       console.log('getOrderList报错', e);
     } finally {
@@ -91,11 +109,12 @@ Page({
   changeTabs(e) {
     console.log(e)
     const { index } = e.detail;
-    if (index === 0) {
+    if (index === 3) {
       this.setData({ state: '' });
     } else {
-      this.setData({ state: index });
+      this.setData({ state: index + 1 });
     }
+    this.setData({active: index});
     wx.pageScrollTo({
       scrollTop: 0,
       success: () => {

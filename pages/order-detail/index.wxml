@@ -22,42 +22,6 @@
     <van-button wx:if="{{orderInfo.state === 2}}" type="primary" size="small" bindtap="linkShip">去发货</van-button>
   </view>
 </van-cell>
-<van-cell>
-  <view slot="title" class="order-line">
-    <text>创建时间</text>
-    <text class="red">{{orderInfo.createTime}}</text>
-  </view>
-</van-cell>
-<van-cell title="创建人" value="{{orderInfo.createUser.name}}">
-  <view slot="title" class="order-line">
-    <text>创建人</text>
-    <text>{{orderInfo.createUser.name}}</text>
-  </view>
-</van-cell>
-<van-cell wx:if="{{orderInfo.payTime}}" title="收款时间" value="{{orderInfo.payTime}}">
-  <view slot="title" class="order-line">
-    <text>收款时间</text>
-    <text>{{orderInfo.payTime}}</text>
-  </view>
-</van-cell>
-<van-cell wx:if="{{orderInfo.payUser}}" title="收款人" value="{{orderInfo.payUser.name}}">
-  <view slot="title" class="order-line">
-    <text>收款人</text>
-    <text>{{orderInfo.payUser.name}}</text>
-  </view>
-</van-cell>
-<van-cell wx:if="{{orderInfo.finishTime}}" title="发货时间" value="{{orderInfo.finishTime}}">
-  <view slot="title" class="order-line">
-    <text>发货时间</text>
-    <text>{{orderInfo.finishTime}}</text>
-  </view>
-</van-cell>
-<van-cell wx:if="{{orderInfo.finishUser}}" title="发货人" value="{{orderInfo.finishUser.name}}">
-  <view slot="title" class="order-line">
-    <text>发货人</text>
-    <text>{{orderInfo.finishUser.name}}</text>
-  </view>
-</van-cell>
 <van-cell wx:if="{{orderInfo.customerName}}">
   <view slot="title" class="order-line">
     <text>客户名称</text>
@@ -72,7 +36,7 @@
 </van-cell>
 <van-cell wx:if="{{orderInfo.customerSite}}" title="客户地址" label="{{orderInfo.customerSite}}" border="{{ false }}">
 </van-cell>
-
+<wux-white-space />
 <van-steps
   steps="{{ steps }}"
   active="{{ active }}"

@@ -260,6 +260,9 @@
   color: #6c6;
 }
 
-
+.shop-num{
+  font-size: 60rpx;
+  margin-left: 120rpx;
+}
 
 

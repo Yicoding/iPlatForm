@@ -1,2 +1,2 @@
 .water-flow-container{display:flex;
-padding:0 30rpx;width:100%;box-sizing:border-box;background:0 0}.water-column{flex:1}
+padding:0 16rpx;width:100%;box-sizing:border-box;background:0 0}.water-column{flex:1}

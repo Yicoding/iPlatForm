@@ -3,11 +3,13 @@
   "enablePullDownRefresh": true,
   "usingComponents": {
     "wux-badge": "/miniprogram_npm/wux-weapp/badge/index",
+    "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index",
     "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index",
     "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
     "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
     "wux-input": "/miniprogram_npm/wux-weapp/input/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
-    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
   }
 }

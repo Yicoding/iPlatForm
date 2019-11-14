@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class="cu-bar bg-white search">
   <view class="search-form round">
     <text class="cuIcon-search"></text>
@@ -78,13 +80,15 @@
     <wux-white-space size="large" />
     <view class="space-txt">
       <text>已选规格：</text>
-      {{goodNum}}{{goodUnitType === 1 ? good.unitOne.name : good.unitDouble.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{
-        goodUnitType === 1 ? (
-          goodPriceType === 1 ? good.sellSingle : goodPriceType === 2 ? good.midSingle : todu.writePrice
-        ) : (
-          goodPriceType === 1 ? good.sellAll : goodPriceType === 2 ? good.midAll : todu.writePrice
-        )
-      }}元
+      {{goodNum}}{{goodUnitType === 1 ? good.unitOne.name : good.unitDouble.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{tools.setSingle({
+        unitType: goodUnitType,
+        priceType: goodPriceType,
+        sellSingle: good.sellSingle,
+        midSingle: good.midSingle,
+        sellAll: good.sellAll,
+        midAll: good.midAll,
+        writePrice: todu.writePrice
+      })}}元
     </view>
     <wux-white-space size="large" />
     <view class="space-info">
@@ -92,11 +96,16 @@
         <text>总价：</text>
         <text>￥</text>
         {{
-          goodUnitType === 1 ? (
-            goodPriceType === 1 ? goodNum * good.sellSingle : goodPriceType === 2 ? goodNum * good.midSingle : goodNum * todu.writePrice
-          ) : (
-            goodPriceType === 1 ? goodNum * good.sellAll : goodPriceType === 2 ? goodNum * good.midAll : goodNum * todu.writePrice
-          )
+          tools.setAll({
+            unitType: goodUnitType,
+            priceType: goodPriceType,
+            sellSingle: good.sellSingle,
+            midSingle: good.midSingle,
+            sellAll: good.sellAll,
+            midAll: good.midAll,
+            writePrice: todu.writePrice,
+            goodNum: goodNum
+          })
         }}
       </view>
       <wux-input-number value="{{goodNum}}" shape="circle" color="balanced" slot="footer" min="{{0}}" max="{{9999}}" controlled bindchange="shopChange" disabled="{{false}}" />
@@ -126,3 +135,12 @@
     <wux-white-space size="large" />
   </view>
 </view>
+
+<van-submit-bar
+  price="{{ totalPrice*100 }}"
+  button-text="查看购物车"
+  bind:submit="onSubmit"
+  safe-area-inset-bottom="{{false}}"
+>
+  <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
+</van-submit-bar>

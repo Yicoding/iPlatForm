@@ -46,7 +46,7 @@ App({
         this.globalData.userInfo = data;
         wx.switchTab({
           url: '../index/index'
-          // url: '../order-list/index'
+          // url: '../order/index'
           // url: '../mine/index'
         });
         // wx.redirectTo({

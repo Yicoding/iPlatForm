@@ -3,6 +3,7 @@
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
     "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-steps": "/miniprogram_npm/vant-weapp/steps/index"
   }
