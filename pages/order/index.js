@@ -15,6 +15,10 @@ Page({
     value: [],
     hasMore: false,
     loading: true,
+    msg: {
+      icon: '/images/order-empty.png',
+      title: '您暂时还没有订单哦～'
+    }
   },
   pageIndex: 0,
   pageSize: 10,

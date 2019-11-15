@@ -187,6 +187,7 @@
   padding: 0 40rpx;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .space-price{

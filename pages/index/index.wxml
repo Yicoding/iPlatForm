@@ -108,7 +108,21 @@
           })
         }}
       </view>
-      <wux-input-number value="{{goodNum}}" shape="circle" color="balanced" slot="footer" min="{{0}}" max="{{9999}}" controlled bindchange="shopChange" disabled="{{false}}" />
+      <block wx:if="{{ goodNum === 0 }}">
+        <van-button bindtap="shopChangeAdd" round size="mini" icon="plus" type="warning">加入购物车</van-button>
+      </block>
+      <block wx:else>
+        <van-stepper
+          min="{{ 0 }}"
+          max="{{99999}}"
+          integer
+          value="{{ goodNum }}"
+          bind:plus="shopChange"
+          bind:minus="shopChange"
+          bind:blur="shopBlur"
+        />
+        <!-- <wux-input-number value="{{goodNum}}" shape="circle" color="balanced" slot="footer" min="{{0}}" max="{{9999}}" controlled bindchange="shopChange" disabled="{{false}}" /> -->
+      </block>
     </view>
   </view>
 </van-dialog>

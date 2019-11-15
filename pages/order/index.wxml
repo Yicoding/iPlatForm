@@ -69,8 +69,12 @@
   type="{{loading ? 'loading' : 'end'}}"
   end-text="我是有底线的"
 />
-<view wx:if="{{orderList.length === 0 && !loading}}" class="order-empty">
-  <image src="/images/order-empty.png" />
-  <text>您暂时还没有订单哦～</text>
-</view>
+
+<!-- 订单为空 -->
+<empty-show
+  visible="{{ orderList.length === 0 && !loading }}"
+  icon="{{ msg.icon }}"
+  title="{{ msg.title }}"
+/>
+
 <wux-calendar id="wux-calendar" />

@@ -5,9 +5,6 @@ const { ajax } = require('../../utils/ajax');
 
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    Custom: app.globalData.Custom,
     TabCur: 0,
     MainCur: 0,
     VerticalNavTop: 0,
@@ -439,11 +436,55 @@ Page({
     const value = e.detail.value;
     this.setData({ showPrice: value });
   },
+  // 自定义新增
+  shopChangeAdd() {
+    const value = 1;
+    const num = this.data.goodNum;
+    const countInfo = this.data.countInfo;
+    let shopNum = this.data.shopNum;
+    if (countInfo[this.data.good.id]) {
+      countInfo[this.data.good.id] += (value - num);
+      shopNum += (value - num);
+    } else {
+      countInfo[this.data.good.id] = value;
+      shopNum += value;
+    }
+    this.setData({
+      countInfo,
+      shopNum
+    });
+    console.log('countInfo-shopChange', countInfo)
+    this.editShop(value);
+  },
+  shopBlur(e) {
+    console.log(e);
+    const num = this.data.goodNum;
+    let { value } = e.detail;
+    if (!value) {
+      value = 1;
+    }
+    const countInfo = this.data.countInfo;
+    let shopNum = this.data.shopNum;
+    if (countInfo[this.data.good.id]) {
+      countInfo[this.data.good.id] += (value - num);
+      shopNum += (value - num);
+    } else {
+      countInfo[this.data.good.id] = value;
+      shopNum += value;
+    }
+    this.setData({
+      countInfo,
+      shopNum
+    });
+    console.log('countInfo-shopChange', countInfo)
+    this.editShop(value);
+  },
   // 数量变化
   shopChange(e) {
     console.log(e);
     const num = this.data.goodNum;
-    const { value } = e.detail;
+    const { type } = e;
+    const value = type === 'plus' ? num + 1 : num - 1;
     const countInfo = this.data.countInfo;
     let shopNum = this.data.shopNum;
     if (countInfo[this.data.good.id]) {

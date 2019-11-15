@@ -5,6 +5,7 @@
     "van-checkbox": "/miniprogram_npm/vant-weapp/checkbox/index",
     "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "empty-show": "/components/empty-show/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index"
   }
 }

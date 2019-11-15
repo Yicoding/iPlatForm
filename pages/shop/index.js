@@ -9,11 +9,10 @@ Page({
     shopList: [],
     totalPrice: 0,
     msg: {
-      icon: '/images/icon/empty.png',
-      title: '您还没有添加购物车',
-      text: '可以去看看有哪些想买',
+      icon: '/images/shop-empty.png',
+      title: '购物车空空如也～',
       buttons: [{
-        text: '随便逛逛',
+        text: '随便逛逛'
       }],
     },
     loading: true,

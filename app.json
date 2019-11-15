@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/login/index",
-    "pages/order/index",
     "pages/index/index",
+    "pages/good/index",
+    "pages/order/index",
+    "pages/setting/index",
     "pages/shop/index",
     "pages/ship/index",
     "pages/order-detail/index",

@@ -60,15 +60,25 @@
   </view>
 </view>
 
-<view wx:if="{{active === 0 && unShipList.length === 0 && !loading}}" class="order-empty">
-  <image src="/images/product-empty.png" />
-  <text>货物已全部发完啦～</text>
-</view>
+<!-- 未发货为空 -->
+<empty-show
+  visible="{{ active === 0 && unShipList.length === 0 && !loading }}"
+  icon="{{ msgUnShip.icon }}"
+  title="{{ msgUnShip.title }}"
+  buttons="{{ msgUnShip.buttons }}"
+  bind:click="buttonClicked"
+  data-active="{{ 1 }}"
+/>
 
-<view wx:if="{{active === 1 && shipList.length === 0 && !loading}}" class="order-empty">
-  <image src="/images/data-empty.png" />
-  <text>还没开始发货呢～</text>
-</view>
+<!-- 已发货为空 -->
+<empty-show
+  visible="{{ active === 1 && shipList.length === 0 && !loading }}"
+  icon="{{ msgShip.icon }}"
+  title="{{ msgShip.title }}"
+  buttons="{{ msgShip.buttons }}"
+  bind:click="buttonClicked"
+  data-active="{{ 0 }}"
+/>
 
 <van-submit-bar
   price="{{ total*100 }}"

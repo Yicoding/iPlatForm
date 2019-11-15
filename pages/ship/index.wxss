@@ -85,18 +85,6 @@ page{
   margin-left: 20rpx;
 }
 
-.order-empty{
-  text-align: center;
-  color: #999;
-}
-
-.order-empty image{
-  width: 300rpx;
-  height: 241.16rpx;
-  display: block;
-  margin: 200rpx auto 50rpx;
-}
-
 /*动画*/
 .hide-line {
   animation: myHide 1s ease .5s;

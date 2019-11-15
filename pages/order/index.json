@@ -13,6 +13,7 @@
     "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
     "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
     "van-steps": "/miniprogram_npm/vant-weapp/steps/index",
+    "empty-show": "/components/empty-show/index",
     "state-box": "/components/stateBox/index"
   }
 }

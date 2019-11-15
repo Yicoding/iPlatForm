@@ -1,0 +1,50 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<view class="cu-bar bg-white search">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
+  </view>
+  <view class="action">
+    <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
+  </view>
+</view>
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+    <view style="height: 120rpx"></view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="type-container {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key id="main-{{index}}">
+      <view class="type-box">
+        <view class="type-name">
+          <text class="cuIcon-title text-green"></text>
+          {{item.name}}
+        </view>
+        <van-swipe-cell right-width="{{ 65 }}" wx:for="{{item.children}}" wx:for-item="todu" wx:for-index="i" wx:key data-id="{{todu.id}}">
+          <view class="good-box">
+            <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});"></view>
+            <view class="good-content">
+              <view class="good-name">{{todu.name}}</view>
+              <view class="good-desc">{{todu.desc}}</view>
+              <view class="good-num">总销售 {{todu.saleNum}} 次</view>
+              <view class="good-price">
+                <text>￥</text>{{todu.sellSingle}}
+              </view>
+            </view>
+            <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">
+              <van-icon name="edit" size="30px" color="#3963bc" />
+            </view>
+          </view>
+          <view slot="right" class="remove" bindtap="remove" data-item="{{item}}" data-todu="{{todu}}" data-index="{{index}}" data-i="{{i}}">删除</view>
+        </van-swipe-cell>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="add-box">
+  <van-icon name="add" size="70px" color="#34BFA3" />
+</view>

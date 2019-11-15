@@ -1,0 +1,144 @@
+/* pages/component/nav/nav.wxss */
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+  background: #fff;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+/* 自定义修改 */
+.VerticalBox{
+  display: flex;
+  height: calc(100vh - 100rpx);
+}
+
+.VerticalMain{
+  background-color: #f1f1f1;
+  flex: 1;
+  padding-left: 30rpx;
+}
+
+.type-container{
+  padding-top: 30rpx;
+}
+
+.type-box{
+  background: #fff;
+}
+
+.type-name{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.type-name .cuIcon-title{
+  margin-right: 10rpx;
+}
+
+.VerticalMain .last-view{
+  min-height: 100%;
+  margin-bottom: 0;
+}
+
+.good-box{
+  display: flex;
+  padding: 30rpx;
+}
+
+.good-box .cu-avatar{
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.good-content{
+  flex: 1;
+  padding-left: 20rpx;
+}
+
+
+.good-btn{
+  align-self: flex-end;
+}
+
+.cu-avatar{
+  border-radius: 0;
+}
+
+.good-name{
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: -5rpx;
+}
+
+.good-desc{
+  color: #999;
+  font-size: 20rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 220rpx;
+  margin-top: 5rpx;
+}
+
+.good-num{
+  color: #999;
+  font-size: 20rpx;
+  margin-top: 5rpx;
+}
+
+.good-price{
+  color: #e4393c;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+
+.good-price text{
+  font-size: 20rpx;
+}
+
+.add-box{
+  position: fixed;
+  bottom: 150rpx;
+  right: 30rpx;
+}
+
+.remove{
+  width: 64px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f44;
+  color: #fff;
+}

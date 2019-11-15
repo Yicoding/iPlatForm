@@ -1,3 +1,47 @@
+<view class="user-box">
+  <image src="{{ avatar }}" />
+  <view class="user-info">
+    <view>{{ userInfo.name }}</view>
+    <view>所属公司：{{ userInfo.companyName }}</view>
+  </view>
+</view>
+<wux-white-space />
+<block wx:if="{{userInfo.role_name === 'admin'}}">
+  <view class="grid-box">
+    <l-grid l-class="grid" row-num="4" show-border="{{true}}">
+      <l-grid-item 
+        wx:for="{{grids}}"
+        wx:key="{{index}}"
+        key="{{index}}"
+        slot="{{index}}"
+        bind:linitemtap="gridTap"
+        data-url="{{item.url}}"
+      >
+        <l-icon name="{{item.image}}" color="{{item.color}}" />
+        <view class="text">{{item.text}}</view>
+      </l-grid-item>
+    </l-grid>
+  </view>
+</block>
+<block wx:elif="{{userInfo.role_name === 'staff'}}">
+  <view class="grid-box">
+    <l-grid l-class="grid" row-num="4" show-border="{{true}}">
+      <l-grid-item 
+        wx:for="{{gridsStaff}}"
+        wx:key="{{index}}"
+        key="{{index}}"
+        slot="{{index}}"
+        bind:linitemtap="gridTap"
+        data-url="{{item.url}}"
+      >
+        <l-icon name="{{item.image}}" color="{{item.color}}" />
+        <view class="text">{{item.text}}</view>
+      </l-grid-item>
+    </l-grid>
+  </view>
+</block>
+
+
 <water-flow generic:l-water-flow-item="water-card"/>
 <loadmore
   wx:if="{{goodList.length > 0}}"

@@ -3,18 +3,33 @@
 const app = getApp()
 const config = require('../../config');
 const { ajax } = require('../../utils/ajax');
+const man = '/images/icon/user-man.png';
+const woman = '/images/icon/user-woman.png';
 
 Page({
   data: {
     userInfo: {},
     hasMore: false,
     loading: true,
-    goodList: []
+    goodList: [],
+    avatar: '',
+    grids: [
+      { image: 'user', text: '成员管理', url: 'user' },
+      { image: 'cart', text: '商品管理', url: 'good' },
+      { image: 'order', text: '字典管理', url: 'map' },
+      { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
+    ],
+    gridsStaff: [
+      { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
+    ]
   },
   pageIndex: 0,
   pageSize: 10,
   onLoad() {
-    this.setData({ userInfo: app.globalData.userInfo });
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      avatar: app.globalData.userInfo.sex === 'man' ? man : woman
+    });
     this.getGoodsList();
   },
   // 监听用户下拉动作
@@ -71,5 +86,13 @@ Page({
       wx.stopPullDownRefresh();
       this.setData({ loading: false });
     }
+  },
+  // 宫格点击
+  gridTap(e) {
+    console.log(e);
+    const { url } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../${url}/index`
+    });
   }
 })

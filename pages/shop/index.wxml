@@ -29,14 +29,17 @@
     end-text="我是有底线的"
   />
 </view>
-<wux-prompt
+
+<!-- 购物车为空 -->
+<empty-show
   visible="{{ shopList.length === 0 && !loading }}"
   icon="{{ msg.icon }}"
   title="{{ msg.title }}"
-  text="{{ msg.text }}"
   buttons="{{ msg.buttons }}"
   bind:click="buttonClicked"
 />
+
+
 <van-submit-bar
   price="{{ totalPrice*100 }}"
   button-text="去结算"

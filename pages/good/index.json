@@ -10,6 +10,7 @@
     "wux-input": "/miniprogram_npm/wux-weapp/input/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-stepper": "/miniprogram_npm/vant-weapp/stepper/index",
+    "van-swipe-cell": "/miniprogram_npm/vant-weapp/swipe-cell/index",
     "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
   }

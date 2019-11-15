@@ -16,11 +16,25 @@ Page({
     disabled: false,
     id: null,
     total: null,
+    msgUnShip: {
+      icon: '/images/product-empty.png',
+      title: '货物已全部发完啦～',
+      buttons: [{
+        text: '查看已发货'
+      }]
+    },
+    msgShip: {
+      icon: '/images/data-empty.png',
+      title: '还没开始发货呢～',
+      buttons: [{
+        text: '查看未发货'
+      }]
+    }
   },
   // 页面出现
   onLoad(options) {
     this.setData({ userInfo: app.globalData.userInfo });
-    const { id = 69, total = '250' } = options;
+    const { id = 73, total = '250' } = options;
     this.setData({
       id,
       total
@@ -102,9 +116,15 @@ Page({
     console.log(e)
     const { index } = e.detail;
     this.setData({ active: index });
-    if (index === 0) {
-    } else {
-    }
+    wx.pageScrollTo({
+      scrollTop: 0
+    });
+  },
+  // 按钮切换tab
+  buttonClicked(e) {
+    console.log(e);
+    const { active } = e.currentTarget.dataset;
+    this.setData({ active });
     wx.pageScrollTo({
       scrollTop: 0
     });

@@ -44,14 +44,16 @@ App({
       success: ({ data }) => {
         console.log('userInfo', data);
         this.globalData.userInfo = data;
-        wx.switchTab({
+        return wx.switchTab({
           url: '../index/index'
-          // url: '../order/index'
           // url: '../mine/index'
+          // url: '../order/index'
+          // url: '../shop/index'
         });
-        // wx.redirectTo({
-        //   url: '../ship/index'
-        // })
+        wx.redirectTo({
+          // url: '../ship/index'
+          url: '../good/index'
+        })
       }
     })
   },

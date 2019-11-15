@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "我的",
-  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "设置",
   "usingComponents": {
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
     "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",

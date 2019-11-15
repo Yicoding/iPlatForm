@@ -1,0 +1,3 @@
+<van-cell title="修改个人信息" is-link />
+<wux-white-space />
+<van-cell title="退出登录" is-link bind:click="loginOut" />

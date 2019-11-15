@@ -1,0 +1,11 @@
+<view class="empty-show" wx:if="{{ visible }}">
+  <image src="{{ icon }}" />
+  <text>{{title}}</text>
+  <block wx:if="{{ buttons.length }}">
+    <van-button
+      size="small"
+      type="info"
+      bindtap="clickHandle"
+    >{{ buttons[0].text }}</van-button>
+  </block>
+</view>

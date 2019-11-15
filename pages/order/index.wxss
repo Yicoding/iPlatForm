@@ -54,15 +54,3 @@ page{
 .txt-bg{
   font-size: 35rpx;
 }
-
-.order-empty{
-  text-align: center;
-  color: #999;
-}
-
-.order-empty image{
-  width: 300rpx;
-  height: 241.16rpx;
-  display: block;
-  margin: 200rpx auto 50rpx;
-}
