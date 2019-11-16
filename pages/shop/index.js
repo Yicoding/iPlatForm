@@ -249,6 +249,7 @@ Page({
       console.log('removeShopByUser', data);
       this.setData({
         shopList: [],
+        shopInvalidList: [],
         totalPrice: 0
       });
     } catch (e) {
