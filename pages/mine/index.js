@@ -15,7 +15,7 @@ Page({
     avatar: '',
     grids: [
       { image: 'user', text: '成员管理', url: 'user' },
-      { image: 'cart', text: '商品管理', url: 'good' },
+      { image: 'cart', text: '商品管理', url: 'good', color: '#34BFA3' },
       { image: 'order', text: '字典管理', url: 'map' },
       { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
     ],
