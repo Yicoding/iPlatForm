@@ -44,6 +44,7 @@
   use-slot
   show="{{ visible }}"
   bind:close="onClose"
+  confirm-button-text="关闭"
 >
   <view class="space-box">
     <view class="space-container">

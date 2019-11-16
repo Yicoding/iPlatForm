@@ -456,12 +456,24 @@ Page({
     console.log('countInfo-shopChange', countInfo)
     this.editShop(value);
   },
+  // 数量输入框失焦
   shopBlur(e) {
     console.log(e);
     const num = this.data.goodNum;
     let { value } = e.detail;
+    if (value == num) {
+      return;
+    }
     if (!value) {
       value = 1;
+    }
+    value = Number(value);
+    if (value > 9999) {
+      wx.showToast({
+        title: '数量不能超过9999',
+        icon: 'none'
+      });
+      value = 9999;
     }
     const countInfo = this.data.countInfo;
     let shopNum = this.data.shopNum;

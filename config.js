@@ -126,6 +126,7 @@ var config = {
         removeOrder: `${host}/weapp/removeOrder`, // 删除单个订单
         getOrderDetailList: `${host}/weapp/getOrderDetailList`, // 单个订单包含的商品列表
         getShoplist: `${host}/weapp/getShoplist`, // 获取购物车列表
+        getShoplistInValid: `${host}/weapp/getShoplistInValid`, // 获取购物车列表
         getShoplistEasy: `${host}/weapp/getShoplistEasy`, // 获取购物车列表easy版
         addShop: `${host}/weapp/addShop`, // 获取购物车列表easy版
         updateShop: `${host}/weapp/updateShop`, // 获取购物车列表easy版

@@ -7,6 +7,7 @@ const { ajax } = require('../../utils/ajax');
 Page({
   data: {
     shopList: [],
+    shopInvalidList: [],
     totalPrice: 0,
     msg: {
       icon: '/images/shop-empty.png',
@@ -24,10 +25,12 @@ Page({
   // 页面出现
   onShow() {
     this.getShoplist();
+    this.getShoplistInValid();
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
     this.getShoplist();
+    this.getShoplistInValid();
   },
   // 获取购物车列表
   async getShoplist() {
@@ -69,6 +72,22 @@ Page({
       this.setData({ loading: false });
     }
   },
+  // 获取购物车失效列表
+  async getShoplistInValid() {
+    try {
+      const { data } = await ajax({
+        url: config.service.getShoplistInValid,
+        data: { user_id: this.data.userInfo.id }
+      });
+      console.log('getShoplistInValid', data);
+      this.setData({ shopInvalidList: data });
+      if (data.length === 0) {
+        return;
+      }
+    } catch (e) {
+      console.log('getShoplistInValid报错', e);
+    }
+  },
   // 修改单个购物车商品数量
   async updateShop(index, num, item) {
     console.log('updateShop**num', index, num, item);
@@ -106,8 +125,12 @@ Page({
       wx.hideLoading();
     }
   },
+  // 删除无效商品
+  removeInvalid(e) {
+    this.remove(e, 'invalid');
+  },
   // 点击删除
-  remove(e) {
+  remove(e, isInvalid=null) {
     console.log(e)
     const { index, item } = e.currentTarget.dataset;
     wx.showModal({
@@ -116,10 +139,38 @@ Page({
         console.log(res);
         const { confirm } = res;
         if (confirm) { // 确定
-          this.removeShopById(item.id, index);
+          if (isInvalid) {
+            this.removeShopInvalid(item.id, index);
+          } else {
+            this.removeShopById(item.id, index);
+          }
         }
       }
     })
+  },
+  // 删除单个无效的购物车
+  async removeShopInvalid(id, index) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    try {
+      const { data } = await ajax({
+        url: config.service.removeShopById,
+        method: 'DELETE',
+        data: {
+          id
+        }
+      });
+      console.log('removeShopInvalid', data);
+      const shopInvalidList = JSON.parse(JSON.stringify(this.data.shopInvalidList));
+      shopInvalidList.splice(index, 1);
+      this.setData({ shopInvalidList });
+    } catch (e) {
+      console.log('removeShopInvalid报错', e);
+    } finally {
+      wx.hideLoading();
+    }
   },
   // 删除单个购物车
   async removeShopById(id, index) {
