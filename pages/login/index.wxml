@@ -1,4 +1,4 @@
-<image src="/images/avatar.png" class="avatar" />
+<image src="/images/avatar.png" mode="aspectFill" class="avatar" />
 <view class="buttun-wrapper">
   <l-input
     placeholder="请输入手机号"

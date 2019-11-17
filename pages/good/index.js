@@ -102,9 +102,42 @@ Page({
         console.log(res);
         const { confirm } = res;
         if (confirm) { // 确定
-          
+          this.removeGoods(todu.id, index, i);
         }
       }
     })
+  },
+  // 删除单个商品
+  async removeGoods(id, index, i) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    try {
+      const { data } = await ajax({
+        url: config.service.removeGoods,
+        method: 'DELETE',
+        data: { id }
+      });
+      console.log('removeGoods', data);
+      const list = JSON.parse(JSON.stringify(this.data.list));
+      list[index].children.splice(i, 1);
+      this.setData({
+        list,
+        load: true
+      })
+    } catch (e) {
+      console.log('removeGoods报错', e);
+    } finally{
+      wx.hideLoading();
+    }
+  },
+  // 修改商品
+  editGood(e) {
+    console.log(e);
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../good-edit/index?id=${id}`
+    });
   }
 })

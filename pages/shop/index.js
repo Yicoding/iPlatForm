@@ -218,7 +218,7 @@ Page({
   },
   // 清空购物车
   clearShop() {
-    if (this.data.shopList.length === 0) {
+    if (this.data.shopList.length === 0 && this.data.shopInvalidList.length === 0) {
       return;
     }
     wx.showModal({

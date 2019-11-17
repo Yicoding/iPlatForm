@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
+    "wux-select": "/miniprogram_npm/wux-weapp/select/index",
+    "vant-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-field": "/miniprogram_npm/vant-weapp/field/index"
+  }
+}

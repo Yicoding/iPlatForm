@@ -70,14 +70,9 @@ Page({
           count: item.sellSingle
         }
       })
-      if (this.pageIndex === 0) { // 初始化请求
-        console.log('pageIndex')
-        this.setData({ goodList });
-      } else {
-        this.setData({ goodList: [...this.data.goodList, ...goodList] });
-      }
+      this.setData({ goodList });
       this.setData({ hasMore: goodList.length === this.pageSize });
-      wx.lin.renderWaterFlow(this.data.goodList, true, () => {
+      wx.lin.renderWaterFlow(this.data.goodList, false, () => {
         console.log('渲染成功')
       })
     } catch (e) {

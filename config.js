@@ -107,6 +107,7 @@ var config = {
         // 商品
         getGoodsList: `${host}/weapp/getGoodsList`, // 查看商品列表
         getGoodsDetail: `${host}/weapp/getGoodsDetail`, // 查看单个商品
+        getGoodsDetailById: `${host}/weapp/getGoodsDetailById`, // 查看单个商品
         addGoods: `${host}/weapp/addGoods`, // 新增商品
         updateGoods: `${host}/weapp/updateGoods`, // 更新单个商品
         removeGoods: `${host}/weapp/removeGoods`, // 删除单个商品

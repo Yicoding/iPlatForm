@@ -43,7 +43,7 @@
 />
 <view class="good-box {{isIpx && 'good-box-iphonex'}}">
   <view class="good-item" wx:for="{{orderList}}" wx:key>
-    <image src="{{item.coverImg}}" />
+    <image src="{{item.coverImg}}" mode="aspectFill" />
     <view class="good-info">
       <view class="good-name">{{item.name}}</view>
       <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll}}、单价：{{item.sale}}</view>

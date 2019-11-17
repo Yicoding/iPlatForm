@@ -35,7 +35,7 @@
               </view>
             </view>
             <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">
-              <van-icon name="edit" size="30px" color="#3963bc" />
+              <van-icon name="edit" size="30px" color="#3963bc" bindtap="editGood" data-id="{{todu.id}}" />
             </view>
           </view>
           <view slot="right" class="remove" bindtap="remove" data-item="{{item}}" data-todu="{{todu}}" data-index="{{index}}" data-i="{{i}}">删除</view>

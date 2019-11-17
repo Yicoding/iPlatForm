@@ -1,0 +1,100 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<view class="food {{isIpx ? 'foodX' : ''}}">
+  <image class="coverImg" mode="aspectFill" src="{{coverImg}}" />
+  <view class="editBtn" catchtap="uploadCover">修改封面图片</view>
+  <van-field
+    value="{{ name }}"
+    required
+    clearable
+    label="商品名"
+    input-align="right"
+    placeholder="请输入商品名"
+  />
+  <wux-cell title="单价单位" extra="{{ tools.singleTitle(unitSingle, unitList) }}" bind:click="onClick1"></wux-cell>
+  <wux-cell title="总单位" extra="{{ tools.singleTitle(unitAll, unitList) }}" bind:click="onClick2"></wux-cell>
+  <wux-cell title="商品类别" extra="{{ typeName }}" bind:click="onClick3"></wux-cell>
+  <van-field
+    value="{{ buySingle }}"
+    required
+    clearable
+    input-align="right"
+    type="digit"
+    label="进货单价(元)"
+    placeholder="请输入进货单价"
+  />
+  <van-field
+    value="{{ buySingle }}"
+    required
+    clearable
+    input-align="right"
+    type="digit"
+    label="进货总价(元)"
+    placeholder="请输入进货总价"
+  />
+  <van-field
+    value="{{ midSingle }}"
+    required
+    input-align="right"
+    clearable
+    type="digit"
+    label="批发单价((元)"
+    placeholder="请输入批发单价("
+  />
+  <van-field
+    value="{{ midAll }}"
+    required
+    input-align="right"
+    clearable
+    type="digit"
+    label="批发总价(元)"
+    placeholder="请输入批发总价"
+  />
+  <van-field
+    value="{{ sellSingle }}"
+    required
+    input-align="right"
+    clearable
+    type="digit"
+    label="零售单价((元)"
+    placeholder="请输入零售单价("
+  />
+  <van-field
+    value="{{ sellAll }}"
+    required
+    input-align="right"
+    clearable
+    type="digit"
+    label="零售总价(元)"
+    placeholder="请输入零售总价"
+  />
+  <van-field
+    value="{{ num }}"
+    required
+    input-align="right"
+    clearable
+    type="number"
+    label="商品数量(元)"
+    placeholder="请输入商品数量"
+  />
+  <van-field
+    value="{{ desc }}"
+    label="商品描述"
+    type="textarea"
+    placeholder="请输入商品描述"
+    autosize
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ origin }}"
+    clearable
+    input-align="right"
+    label="商品来源"
+    placeholder="请输入商品来源"
+  />
+  
+  <view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="saveFood">保存</view>
+</view>
+<wux-select id="wux-select1" />
+<wux-select id="wux-select2" />
+<wux-select id="wux-select3" />

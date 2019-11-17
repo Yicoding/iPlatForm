@@ -38,7 +38,23 @@ var setAll = function (item) {
   );
 }
 
+/**
+ * 单选
+ */
+var singleTitle = function(value, options) {
+  var title;
+  for (var i = 0; i < options.length; i ++) {
+    var item = options[i];
+    if (item.id === value) {
+      title = item.name;
+    }
+  }
+  return title;
+}
+
+
 module.exports = {
   setSingle: setSingle,
-  setAll: setAll
+  setAll: setAll,
+  singleTitle: singleTitle
 };

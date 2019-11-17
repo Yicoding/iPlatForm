@@ -1,5 +1,5 @@
 <view class="user-box">
-  <image src="{{ avatar }}" />
+  <image src="{{ avatar }}" mode="aspectFill" />
   <view class="user-info">
     <view>{{ userInfo.name }}</view>
     <view>所属公司：{{ userInfo.companyName }}</view>
