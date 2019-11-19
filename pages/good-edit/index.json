@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
     "wux-select": "/miniprogram_npm/wux-weapp/select/index",

@@ -28,9 +28,9 @@ Page({
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
     this.setData({ userInfo: app.globalData.userInfo });
-    this.getGoodsByCompany();
   },
   onShow() {
+    this.getGoodsByCompany();
     this.getShoplist();
   },
   onReady() {

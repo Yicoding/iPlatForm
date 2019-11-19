@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "成员管理",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "van-submit-bar": "/miniprogram_npm/vant-weapp/submit-bar/index",
+    "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-swipe-cell": "/miniprogram_npm/vant-weapp/swipe-cell/index",
+    "empty-show": "/components/empty-show/index"
+  }
+}

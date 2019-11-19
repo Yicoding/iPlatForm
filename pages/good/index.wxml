@@ -46,5 +46,5 @@
 </view>
 
 <view class="add-box">
-  <van-icon name="add" size="70px" color="#34BFA3" />
+  <van-icon name="add" size="70px" color="#34BFA3" bindtap="editGood" data-id="" />
 </view>

@@ -10,10 +10,12 @@
     label="商品名"
     input-align="right"
     placeholder="请输入商品名"
+    bind:input="fieldChange"
+    data-key="name"
   />
-  <wux-cell title="单价单位" extra="{{ tools.singleTitle(unitSingle, unitList) }}" bind:click="onClick1"></wux-cell>
-  <wux-cell title="总单位" extra="{{ tools.singleTitle(unitAll, unitList) }}" bind:click="onClick2"></wux-cell>
-  <wux-cell title="商品类别" extra="{{ typeName }}" bind:click="onClick3"></wux-cell>
+  <wux-cell title="单价单位" is-link extra="{{ tools.singleTitle(unitSingle, unitList) }}" bind:click="onClick1"></wux-cell>
+  <wux-cell title="总单位" is-link extra="{{ tools.singleTitle(unitAll, unitList) }}" bind:click="onClick2"></wux-cell>
+  <wux-cell title="商品类别" is-link extra="{{ tools.multipleTitle(typeName, typeList) }}" bind:click="onClick3"></wux-cell>
   <van-field
     value="{{ buySingle }}"
     required
@@ -22,15 +24,19 @@
     type="digit"
     label="进货单价(元)"
     placeholder="请输入进货单价"
+    bind:input="fieldChange"
+    data-key="buySingle"
   />
   <van-field
-    value="{{ buySingle }}"
+    value="{{ buyAll }}"
     required
     clearable
     input-align="right"
     type="digit"
     label="进货总价(元)"
     placeholder="请输入进货总价"
+    bind:input="fieldChange"
+    data-key="buyAll"
   />
   <van-field
     value="{{ midSingle }}"
@@ -39,7 +45,9 @@
     clearable
     type="digit"
     label="批发单价((元)"
-    placeholder="请输入批发单价("
+    placeholder="请输入批发单价"
+    bind:input="fieldChange"
+    data-key="midSingle"
   />
   <van-field
     value="{{ midAll }}"
@@ -49,6 +57,8 @@
     type="digit"
     label="批发总价(元)"
     placeholder="请输入批发总价"
+    bind:input="fieldChange"
+    data-key="midAll"
   />
   <van-field
     value="{{ sellSingle }}"
@@ -57,7 +67,9 @@
     clearable
     type="digit"
     label="零售单价((元)"
-    placeholder="请输入零售单价("
+    placeholder="请输入零售单价"
+    bind:input="fieldChange"
+    data-key="sellSingle"
   />
   <van-field
     value="{{ sellAll }}"
@@ -67,6 +79,8 @@
     type="digit"
     label="零售总价(元)"
     placeholder="请输入零售总价"
+    bind:input="fieldChange"
+    data-key="sellAll"
   />
   <van-field
     value="{{ num }}"
@@ -76,6 +90,8 @@
     type="number"
     label="商品数量(元)"
     placeholder="请输入商品数量"
+    bind:input="fieldChange"
+    data-key="num"
   />
   <van-field
     value="{{ desc }}"
@@ -84,6 +100,8 @@
     placeholder="请输入商品描述"
     autosize
     border="{{ false }}"
+    bind:input="fieldChange"
+    data-key="desc"
   />
   <van-field
     value="{{ origin }}"
@@ -91,10 +109,11 @@
     input-align="right"
     label="商品来源"
     placeholder="请输入商品来源"
+    bind:input="fieldChange"
+    data-key="origin"
   />
   
-  <view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="saveFood">保存</view>
+  <view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="save">保存</view>
 </view>
 <wux-select id="wux-select1" />
 <wux-select id="wux-select2" />
-<wux-select id="wux-select3" />

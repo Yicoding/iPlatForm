@@ -17,6 +17,10 @@ Page({
     this.getGoodsByCompany();
   },
   onShow() {
+    if (app.globalData.isAlertGood) {
+      this.getGoodsByCompany();
+      app.globalData.isAlertGood = false;
+    }
   },
   onReady() {
   },

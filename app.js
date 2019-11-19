@@ -52,7 +52,9 @@ App({
         });
         wx.redirectTo({
           // url: '../ship/index'
-          url: '../good/index'
+          // url: '../good/index'
+          // url: '../good-edit/index'
+          url: '../user/index'
         })
       }
     })
@@ -81,5 +83,6 @@ App({
   globalData: {
     userInfo: {},
     isIpx: false, // 是否为iPhone X
+    isAlertGood: false,
   }
 })

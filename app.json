@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/index",
     "pages/index/index",
+    "pages/user/index",
     "pages/good/index",
     "pages/order/index",
     "pages/setting/index",

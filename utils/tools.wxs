@@ -45,16 +45,34 @@ var singleTitle = function(value, options) {
   var title;
   for (var i = 0; i < options.length; i ++) {
     var item = options[i];
-    if (item.id === value) {
+    if (item.id == value) {
       title = item.name;
     }
   }
   return title;
 }
 
+/**
+ * 多选
+ */
+var multipleTitle = function(value, options) {
+  var title = [];
+  var typeList = value.split(',');
+  for (var i = 0; i < typeList.length; i ++) {
+    var item = typeList[i];
+    for(var j = 0; j < options.length; j ++) {
+      var todu = options[j];
+      if (item == todu.code) {
+        title.push(todu.name);
+      }
+    }
+  }
+  return title;
+}
 
 module.exports = {
   setSingle: setSingle,
   setAll: setAll,
-  singleTitle: singleTitle
+  singleTitle: singleTitle,
+  multipleTitle: multipleTitle
 };
