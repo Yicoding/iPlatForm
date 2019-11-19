@@ -1,8 +1,7 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
-    "wux-select": "/miniprogram_npm/wux-weapp/select/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
     "van-field": "/miniprogram_npm/vant-weapp/field/index"
   }
 }

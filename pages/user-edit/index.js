@@ -9,24 +9,16 @@ import { $wuxSelect } from '../../miniprogram_npm/wux-weapp/index';
 Page({
   data: {
     isIpx: app.globalData.isIpx,
-    id: 0,
+    sexOption: [
+      { value: '', text: '' },
+      { value: 'man', text: '' },
+      { value: 'woman', text: '女' }
+    ],
+    sexIndex: 0,
     userInfo: {},
-    unitList: [],
-    typeList: [],
-    name: '',
-    coverImg: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
-    unitSingle: '',
-    unitAll: '',
-    typeName: '',
-    buySingle: '',
-    buyAll: '',
-    midSingle: '',
-    midAll: '',
-    sellSingle: '',
-    sellAll: '',
-    num: '',
-    desc: '',
-    origin: '',
+    id: 0,
+    avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
+    
   },
   onLoad(options) {
     this.setData({ userInfo: app.globalData.userInfo });

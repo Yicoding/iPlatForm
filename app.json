@@ -11,6 +11,7 @@
     "pages/order-detail/index",
     "pages/good-detail/index",
     "pages/good-edit/index",
+    "pages/user-edit/index",
     "pages/order-confirm/index",
     "pages/mine/index"
   ],

@@ -124,12 +124,13 @@ Page({
         data: { id }
       });
       console.log('removeGoods', data);
-      const list = JSON.parse(JSON.stringify(this.data.list));
-      list[index].children.splice(i, 1);
-      this.setData({
-        list,
-        load: true
-      })
+      // const list = JSON.parse(JSON.stringify(this.data.list));
+      // list[index].children.splice(i, 1);
+      // this.setData({
+      //   list,
+      //   load: true
+      // })
+      this.getGoodsByCompany();
     } catch (e) {
       console.log('removeGoods报错', e);
     } finally{

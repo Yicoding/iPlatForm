@@ -44,7 +44,7 @@
     input-align="right"
     clearable
     type="digit"
-    label="批发单价((元)"
+    label="批发单价(元)"
     placeholder="请输入批发单价"
     bind:input="fieldChange"
     data-key="midSingle"
@@ -113,7 +113,7 @@
     data-key="origin"
   />
   
-  <view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="save">保存</view>
+  <cover-view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="save">保存</cover-view>
 </view>
 <wux-select id="wux-select1" />
 <wux-select id="wux-select2" />

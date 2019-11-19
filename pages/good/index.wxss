@@ -131,6 +131,7 @@
   position: fixed;
   bottom: 150rpx;
   right: 30rpx;
+  z-index: 999;
 }
 
 .remove{

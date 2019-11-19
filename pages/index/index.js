@@ -42,10 +42,12 @@ Page({
   },
   // 按公司查找所有商品类型+类型下的商品列表
   async getGoodsByCompany() {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    this.timee = setTimeout(() => {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      });
+    }, 350);
     try {
       const { data } = await ajax({
         url: config.service.getGoodsByCompany,
@@ -60,12 +62,13 @@ Page({
         listCur: data[0],
         load: true
       })
-      wx.hideLoading();
-      wx.stopPullDownRefresh()
     } catch (e) {
-      wx.hideLoading();
       console.log('getGoodsByCompany报错', e);
-      wx.stopPullDownRefresh()
+    }finally{
+      wx.stopPullDownRefresh();
+      this.timee && clearTimeout(this.timee);
+      this.timee = null;
+      wx.hideLoading();
     }
   },
   // 查询购物车列表
