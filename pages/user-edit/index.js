@@ -4,32 +4,39 @@ const app = getApp()
 const config = require('../../config');
 var { uploadFile } = require('../../utils/upload');
 const { ajax } = require('../../utils/ajax');
-import { $wuxSelect } from '../../miniprogram_npm/wux-weapp/index';
 
 Page({
   data: {
     isIpx: app.globalData.isIpx,
     sexOption: [
-      { value: '', text: '' },
-      { value: 'man', text: '' },
+      { value: 'man', text: '男' },
       { value: 'woman', text: '女' }
     ],
     sexIndex: 0,
+    roleOption: [],
+    roleIndex: 1,
     userInfo: {},
     id: 0,
+    name: '',
+    phone: '',
+    password: '',
+    age: '',
+    role_id: null,
+    sex: 'man',
     avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
-    
+    sign: '',
+    company_id: null
   },
   onLoad(options) {
     this.setData({ userInfo: app.globalData.userInfo });
     console.log(options);
     const { id = 1 } = options;
     if (id) {
-      this.getGoodsDetailById(id);
+      this.getUserDetail(id);
       this.setData({ id: Number(id) });
+    } else {
+      this.getRoleList();
     }
-    this.getUnitList();
-    this.getGoodsTypeList();
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
@@ -41,10 +48,9 @@ Page({
     })
     wx.stopPullDownRefresh()
   },
-  // 查看单个商品详情
-  async getGoodsDetailById(id) {
+  // 查看用户详情
+  async getUserDetail(id) {
     try {
-      const { company_id } = this.data.userInfo;
       this.timee = setTimeout(() => {
         wx.showLoading({
           title: '加载中...',
@@ -52,17 +58,41 @@ Page({
         });
       }, 300);
       const { data } = await ajax({
-        url: config.service.getGoodsDetailById,
-        data: {
-          id,
-          company_id
-        }
+        url: config.service.getUserDetail,
+        data: { id }
       });
-      console.log('getGoodsDetailById', data);
-      const { name, coverImg, unitSingle, unitAll, typeName, buySingle, buyAll, midSingle, midAll, sellSingle, sellAll, num, desc, origin } = data;
-      this.setData({ name, coverImg, unitSingle, unitAll, typeName, buySingle, buyAll, midSingle, midAll, sellSingle, sellAll, num, desc, origin });
+      console.log('getUserDetail', data);
+      const { name, phone, password, age, role_id, sex, avatar, sign, company_id } = data;
+      this.setData({ name, phone, password, age, role_id, sex, sign, company_id });
+      if (avatar) {
+        this.setData({ avatar });
+      }
+      const { sexOption } = this.data;
+      const sexIndex = sexOption.findIndex(item => item.value === sex);
+      console.log('sexIndex', sexIndex);
+      if (sexIndex > -1) {
+        this.setData({ sexIndex });
+      }
+      // 角色
+      const res = await ajax({
+        url: config.service.getRoleList,
+        data: { company_id: this.data.userInfo.company_id }
+      });
+      console.log('getRoleList', res.data);
+      const roleOption = res.data.map(item => {
+        return {
+          id: item.id,
+          text: item.fullName
+        }
+      })
+      this.setData({ roleOption });
+      const roleIndex = roleOption.findIndex(item => item.id === role_id);
+      console.log('roleIndex', roleIndex);
+      if (roleIndex > -1) {
+        this.setData({ roleIndex });
+      }
     } catch (e) {
-      console.log('getGoodsDetailById报错', e);
+      console.log('getUserDetail报错', e);
     } finally {
       if (this.timee) {
         clearTimeout(this.timee);
@@ -71,112 +101,42 @@ Page({
       wx.hideLoading();
     }
   },
-  // 查看单位
-  async getUnitList() {
+  // 查看角色
+  async getRoleList() {
     try {
       const { company_id } = this.data.userInfo;
       const { data } = await ajax({
-        url: config.service.getUnitList,
+        url: config.service.getRoleList,
         data: { company_id }
       });
-      console.log('getUnitList', data);
-      this.setData({ unitList: data });
+      console.log('getRoleList', data);
+      const roleOption = data.map(item => {
+        return {
+          id: item.id,
+          text: item.fullName
+        }
+      })
+      this.setData({ roleOption });
     } catch (e) {
       console.log('getUnitList报错', e);
     }
   },
-  // 查看类型
-  async getGoodsTypeList() {
-    try {
-      const { company_id } = this.data.userInfo;
-      const { data } = await ajax({
-        url: config.service.getGoodsTypeList,
-        data: { company_id }
-      });
-      console.log('getGoodsTypeList', data);
-      this.setData({ typeList: data });
-    } catch (e) {
-      console.log('getGoodsTypeList报错', e);
-    }
+  // 角色选择
+  bindPickerChangeRole(e) {
+    console.log(e);
+    const { roleOption } = this.data;
+    const { value } = e.detail;
+    this.setData({ role_id: roleOption[value].id });
   },
-  // 单价单位
-  onClick1() {
-    const { unitList, unitSingle } = this.data;
-    const options = unitList.map(item => {
-      return {
-        title: item.name,
-        value: String(item.id)
-      }
-    });
-    $wuxSelect('#wux-select1').open({
-      value: String(unitSingle),
-      options,
-      onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
-        if (index !== -1) {
-          this.setData({
-            unitSingle: value
-          })
-        }
-      },
-    })
-  },
-  // 总单位
-  onClick2() {
-    const { unitList, unitAll } = this.data;
-    const options = unitList.map(item => {
-      return {
-        title: item.name,
-        value: String(item.id)
-      }
-    });
-    $wuxSelect('#wux-select1').open({
-      value: String(unitAll),
-      options,
-      onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
-        if (index !== -1) {
-          this.setData({
-            unitAll: value
-          })
-        }
-      },
-    })
-  },
-  // 商品类型
-  onClick3() {
-    const { typeList, typeName } = this.data;
-    const options = typeList.map(item => {
-      return {
-        title: item.name,
-        value: item.code
-      }
-    });
-    const value = typeName.split(',');
-    $wuxSelect('#wux-select2').open({
-      value,
-      options,
-      multiple: true,
-      max: 3,
-      toolbar: {
-        title: '请选择(最多3个)',
-        confirmText: '确定',
-        cancelText: '取消'
-      },
-      onConfirm: (value, index, options) => {
-        console.log('click3', value, index);
-        if (index.length > 0) {
-          this.setData({
-            typeName: String(value)
-          });
-        } else {
-          wx.showToast({
-            title: '请至少选择一个选项',
-            icon: 'none'
-          });
-        }
-      },
-    })
+  // 性别选择时
+  bindPickerChange(e) {
+    console.log(e);
+    const { value } = e.detail;
+    const sexConfig = {
+      '0': 'man',
+      '1': 'woman'
+    };
+    this.setData({ sex: sexConfig[value] });
   },
   // 输入框变化时
   fieldChange(e) {
@@ -187,31 +147,23 @@ Page({
   },
   // 保存按钮
   save() {
-    const { name, coverImg, unitSingle, unitAll, typeName, buySingle, buyAll, midSingle, midAll, sellSingle, sellAll, num } = this.data;
+    const { name, phone, password, role_id, sex } = this.data;
+    const patten = /^1\d{10}$/;
     if (!name.trim()) {
-      this.saveToast('商品名');
-    } else if (!coverImg.trim()) {
-      this.saveToast('商品图片');
-    } else if (!unitSingle) {
-      this.saveToast('单价单位');
-    } else if (!unitAll) {
-      this.saveToast('总单位');
-    } else if (!typeName) {
-      this.saveToast('商品类别');
-    } else if (!buySingle) {
-      this.saveToast('进货单价');
-    } else if (!buyAll) {
-      this.saveToast('进货总价');
-    } else if (!midSingle) {
-      this.saveToast('批发单价');
-    } else if (!midAll) {
-      this.saveToast('批发总价');
-    } else if (!sellSingle) {
-      this.saveToast('零售单价');
-    } else if (!sellAll) {
-      this.saveToast('零售总价');
-    } else if (!num) {
-      this.saveToast('商品数量');
+      this.saveToast('用户名');
+    } else if (!phone) {
+      this.saveToast('手机号');
+    } else if (!patten.test(phone)) {
+      wx.showToast({
+        title: '请输入正确的手机号！',
+        icon: 'none'
+      })
+    } else if (!password.trim()) {
+      this.saveToast('密码');
+    } else if (!role_id) {
+      this.saveToast('用户角色');
+    } else if (!sex) {
+      this.saveToast('性别');
     } else {
       this.saveFun();
     }
@@ -222,7 +174,7 @@ Page({
       icon: 'none'
     });
   },
-  // 保存商品
+  // 保存用户
   async saveFun() {
     console.log('saveFun')
     wx.showLoading({
@@ -230,33 +182,17 @@ Page({
       mask: true
     });
     try {
-      const { company_id } = this.data.userInfo;
-      const { id, name, coverImg, unitSingle, unitAll, typeName, buySingle, buyAll, midSingle, midAll, sellSingle, sellAll, num, desc, origin } = this.data;
+      const { id, name, phone, password, age, role_id, sex, avatar, sign, company_id, userInfo } = this.data;
       const method = id ? 'PUT' : 'POST';
-      const url = id ? 'updateGoods' : 'addGoods';
+      const url = id ? 'updateUser' : 'addUser';
       const { data } = await ajax({
         url: config.service[url],
         method,
         data: {
-          id,
-          company_id,
-          name,
-          coverImg,
-          unitOne_id: unitSingle,
-          unitDouble_id: unitAll,
-          typeName,
-          buySingle,
-          buyAll,
-          midSingle,
-          midAll,
-          sellSingle,
-          sellAll,
-          num,
-          desc,
-          origin
+          id, name, phone, password, age, role_id, sex, avatar, sign, company_id: company_id || userInfo.company_id
         }
       });
-      console.log('getUnitList', data);
+      console.log(url, data);
       app.globalData.isAlertGood = true;
       setTimeout(() => {
         wx.showToast({
@@ -268,7 +204,7 @@ Page({
         wx.navigateBack();
       }, 1500);
     } catch (e) {
-      console.log('getUnitList报错', e);
+      console.log(`${url}报错`, e);
     } finally {
       wx.hideLoading();
     }

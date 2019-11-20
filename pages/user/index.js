@@ -21,6 +21,10 @@ Page({
   },
   // 页面出现
   onShow() {
+    if (app.globalData.isAlertGood) {
+      this.getUserList();
+      app.globalData.isAlertGood = false;
+    }
   },
   // 监听用户下拉动作
   onPullDownRefresh() {

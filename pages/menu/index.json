@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "菜单管理",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "l-grid": "/miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+    "van-swipe-cell": "/miniprogram_npm/vant-weapp/swipe-cell/index",
+    "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-field": "/miniprogram_npm/vant-weapp/field/index",
+    "water-card": "/components/water-card/index",
+    "water-flow": "/miniprogram_npm/lin-ui/water-flow/index"
+  }
+}

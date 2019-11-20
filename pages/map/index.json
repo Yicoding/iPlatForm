@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "字典管理",
+  "usingComponents": {
+    "l-grid": "/miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "water-card": "/components/water-card/index",
+    "water-flow": "/miniprogram_npm/lin-ui/water-flow/index"
+  }
+}

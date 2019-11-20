@@ -74,11 +74,12 @@ var multipleTitle = function(value, options) {
  * 
  */
 var sexTitle = function(value, options) {
+  // console.log('sexTitle', JSON.stringify(value), JSON.stringify(options));
   var title;
   for (var i = 0; i < options.length; i ++) {
     var item = options[i];
-    if (item.value == value) {
-      title = item.name;
+    if (item.value == value || item.id == value) {
+      title = item.text;
     }
   }
   return title;

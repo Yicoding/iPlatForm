@@ -1,0 +1,62 @@
+page{
+  padding: 40rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.card{
+  padding: 40rpx;
+  border-radius: 10rpx;
+}
+
+.menu{
+  background: linear-gradient(to right, #F1776A, #F85F68);
+}
+
+.unit{
+  background: linear-gradient(to right, #488ED2, #3F64C2);
+}
+
+.title{
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.icon{
+  width: 100rpx;
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.icon-content,
+.icon-content-unit{
+  width: 80rpx;
+  height: 80rpx;
+  background: #F1776A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.icon-content-unit{
+  background: #488ED2 !important;
+}
+
+.name{
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-left: 30rpx;
+  flex: 1;
+}
+
+.txt{
+  color: #ffff;
+  font-size: 30rpx;
+  text-align: right;
+  margin-top: 100rpx;
+}

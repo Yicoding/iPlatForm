@@ -54,7 +54,10 @@ App({
           // url: '../ship/index'
           // url: '../good/index'
           // url: '../good-edit/index'
-          url: '../user/index'
+          // url: '../user/index'
+          // url: '../map/index'
+          // url: '../menu/index'
+          url: '../unit/index'
         })
       }
     })

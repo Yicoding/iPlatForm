@@ -20,8 +20,8 @@
   top: 470rpx;
 }
 .saveBtn{
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 80rpx;
+  line-height: 80rpx;
   text-align: center;
   font-size: 32rpx;
   position: fixed;

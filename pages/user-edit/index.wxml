@@ -1,7 +1,7 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 <view class="food {{isIpx ? 'foodX' : ''}}">
-  <image class="coverImg" mode="aspectFill" src="{{coverImg}}" />
+  <image class="coverImg" mode="aspectFill" src="{{avatar}}" />
   <view class="editBtn" catchtap="uploadCover">修改头像</view>
   <van-field
     value="{{ name }}"
@@ -14,48 +14,52 @@
     data-key="name"
   />
   <van-field
-    value="{{ buySingle }}"
+    value="{{ phone }}"
     required
     clearable
     input-align="right"
-    type="digit"
+    type="number"
     label="手机号"
+    maxlength="{{11}}"
     placeholder="请输入手机号"
     bind:input="fieldChange"
-    data-key="buySingle"
+    data-key="phone"
   />
   <van-field
-    value="{{ buyAll }}"
+    value="{{ password }}"
     required
     clearable
     input-align="right"
     label="密码"
     placeholder="请输入密码"
     bind:input="fieldChange"
-    data-key="buyAll"
+    data-key="password"
   />
+  <picker bindchange="bindPickerChangeRole" value="{{roleIndex}}" range="{{roleOption}}" range-key="text">
+    <van-cell title="用户角色" value="{{tools.sexTitle(role_id, roleOption) || '请选择'}}" is-link />
+  </picker>
   <picker bindchange="bindPickerChange" value="{{sexIndex}}" range="{{sexOption}}" range-key="text">
-    <van-cell title="性别" value="{{tools.sexTitle(sex, sexOption)}}" />
+    <van-cell title="性别" value="{{tools.sexTitle(sex, sexOption) || '请选择'}}" is-link />
   </picker>
   <van-field
-    value="{{ midSingle }}"
+    value="{{ age }}"
     input-align="right"
     clearable
-    type="digit"
+    type="number"
     label="年龄"
     placeholder="请输入年龄"
     bind:input="fieldChange"
-    data-key="midSingle"
+    data-key="age"
   />
   <van-field
-    value="{{ desc }}"
+    value="{{ sign }}"
     label="个性签名"
     type="textarea"
     placeholder="请输入个性签名"
     autosize
     border="{{ false }}"
     bind:input="fieldChange"
-    data-key="desc"
+    data-key="sign"
   />
   
   <cover-view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="save">保存</cover-view>

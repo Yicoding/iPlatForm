@@ -1,0 +1,25 @@
+<view class="card menu" bindtap="linkMenu" data-url="menu">
+  <view class="title">
+    <view class="icon">
+      <view class="icon-content">
+        <van-icon name="apps-o" color="#fff" size="25px" />
+      </view>
+    </view>
+    <view class="name">菜单大全</view>
+    <van-icon name="eye-o" color="#fff" size="40px" />
+  </view>
+  <view class="txt">点我查看公司菜单列表</view>
+</view>
+<wux-white-space size="large" />
+<view class="card unit" bindtap="linkMenu" data-url="unit">
+  <view class="title">
+    <view class="icon">
+      <view class="icon-content-unit">
+        <van-icon name="cluster-o" color="#fff" size="25px" />
+      </view>
+    </view>
+    <view class="name">规格大全</view>
+    <van-icon name="eye-o" color="#fff" size="40px" />
+  </view>
+  <view class="txt">点我查看公司规格列表</view>
+</view>

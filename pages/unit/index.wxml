@@ -1,0 +1,66 @@
+<view class="thead">
+  <view class="num">编号</view>
+  <view class="cell">名称</view>
+  <view class="cell-s">操作</view>
+</view>
+<van-swipe-cell right-width="{{ 65 }}" wx:for="{{dataList}}" wx:key>
+  <view class="line">
+    <view class="num">{{index+1}}</view>
+    <view class="cell">
+      <block wx:if="{{item.edit}}">
+        <van-field
+          value="{{ item.name }}"
+          placeholder="请输入名称"
+          focus
+          input-align="center"
+          border="{{ false }}"
+          bind:change="onChange"
+          data-index="{{index}}"
+        />
+      </block>
+      <block wx:else>{{item.name}}</block>
+    </view>
+    <view class="cell-s">
+      <block wx:if="{{item.edit}}">
+        <van-icon name="close" color="#f44" size="30px" bindtap="closeBtn" data-index="{{index}}" />
+        <text class="split"></text>
+        <van-icon name="passed" color="#34BFA3" size="30px" bindtap="saveBtn" data-index="{{index}}" data-id="{{item.id}}" />
+      </block>
+      <block wx:else>
+        <van-icon name="edit" color="#3963bc" size="30px" bindtap="editBtn" data-id="{{item.id}}" data-index="{{index}}" />
+      </block>
+    </view>
+  </view>
+  <view slot="right" class="remove" bindtap="remove" data-item="{{item}}" data-index="{{index}}">删除</view>
+</van-swipe-cell>
+
+<loadmore
+  wx:if="{{dataList.length > 0}}"
+  show="{{true}}"
+  line
+  type="end"
+  end-text="我是有底线的"
+/>
+
+<view class="add-box">
+  <van-icon name="add" size="70px" color="#34BFA3" bindtap="addBtn" />
+</view>
+
+<van-dialog
+  use-slot
+  close-on-click-overlay
+  title="新增"
+  show="{{ isShow }}"
+  show-cancel-button
+  bind:confirm="addType"
+  bind:cancel="onClose"
+>
+  <van-field
+    value="{{ name }}"
+    input-align="center"
+    focus="{{focus}}"
+    placeholder="请输入名称"
+    border="{{ false }}"
+    bind:input="onChangeName"
+  />
+</van-dialog>

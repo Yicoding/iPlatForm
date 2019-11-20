@@ -113,7 +113,7 @@
     data-key="origin"
   />
   
-  <cover-view class="saveBtn {{isIpx ? 'footX' : ''}}" bindtap="save">保存</cover-view>
+  <cover-view class="saveBtn" bindtap="save">保存</cover-view>
 </view>
 <wux-select id="wux-select1" />
 <wux-select id="wux-select2" />

@@ -1,0 +1,55 @@
+page{
+  padding: 30rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.thead{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+  padding: 10rpx 0;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.line{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #666;
+  font-size: 30rpx;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+
+.num{
+  width: 100rpx;
+}
+
+.cell{
+  flex: 1;
+}
+
+.remove{
+  width: 64px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f44;
+  color: #fff;
+}
+
+.add-box{
+  position: fixed;
+  bottom: 150rpx;
+  right: 110rpx;
+  z-index: 999;
+}
+
+.split{
+  margin-right: 16rpx;
+}
