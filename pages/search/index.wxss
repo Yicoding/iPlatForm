@@ -1,0 +1,41 @@
+page{
+  background: #fff;
+}
+
+.title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history{
+  padding: 0 30rpx;
+  color: #222;
+  font-size: 32rpx;
+}
+
+.his-item{
+  display: inline-block;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}
+
+.btn-label{
+  color: #666 !important;
+}
+
+.arrow{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  position: relative;
+  border: 1rpx solid #333;
+  border-radius: 50%;
+}
+
+.arrow-icon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

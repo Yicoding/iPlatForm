@@ -24,6 +24,7 @@ Page({
     userInfo: {},
     shopNum: 0,
     totalPrice: 0,
+    avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
   },
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
@@ -584,6 +585,12 @@ Page({
   onSubmit() {
     wx.switchTab({
       url: '../shop/index'
+    });
+  },
+  // 跳转到搜索页面
+  linkSearch() {
+    wx.navigateTo({
+      url: '../search/index'
     });
   }
 })

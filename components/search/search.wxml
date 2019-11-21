@@ -1,0 +1,16 @@
+<view class="container">
+  <image class="icon-search" src="../../images/icon/search.png" />
+  <input
+    type="text"
+    value="{{text}}"
+    placeholder="我要找..."
+    confirm-type="done"
+    focus="{{focus}}"
+    disabled="{{disabled}}"
+    bindinput="textChange" />
+  <text hidden="{{!text}}" class="cancel" bindtap="cancel">取消</text>
+  <!-- <image class="icon-user" src="{{avatar}}" bindtap="switchEdit" /> -->
+  <view class="btn">
+    <van-button type="primary" round size="small" bindtap="goSearch">搜索</van-button>
+  </view>
+</view>

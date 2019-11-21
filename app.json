@@ -5,6 +5,7 @@
     "pages/user/index",
     "pages/map/index",
     "pages/menu/index",
+    "pages/search/index",
     "pages/unit/index",
     "pages/good/index",
     "pages/order/index",

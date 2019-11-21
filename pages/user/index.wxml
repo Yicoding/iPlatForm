@@ -1,14 +1,14 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 <view class="good-box">
-  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{userList}}" wx:key>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{userList}}" wx:key disabled="{{ userInfo.role_name !== 'admin' }}">
     <view class="good-item">
       <image src="{{item.avatar || avatar}}" mode="aspectFill" />
       <view class="good-info">
         <view class="good-name">{{item.name}}({{item.sex === 'man' ? '男士' : '女士'}})</view>
         <view class="good-tip">{{item.phone}}</view>
         <view class="space-info">{{item.role_fullName}}</view>
-        <view class="edit">
+        <view class="edit" wx:if="{{ userInfo.role_name === 'admin' }}">
           <van-icon name="edit" size="30px" color="#3963bc" bindtap="editUser" data-id="{{item.id}}" />
         </view>
       </view>
@@ -31,7 +31,7 @@
   title="{{ msg.title }}"
 />
 
-<view class="add-box">
+<view class="add-box" wx:if="{{ userInfo.role_name === 'admin' }}">
   <van-icon name="add" size="70px" color="#34BFA3" bindtap="editUser" data-id="" />
 </view>
 

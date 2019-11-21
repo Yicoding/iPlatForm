@@ -53,11 +53,12 @@ App({
         wx.redirectTo({
           // url: '../ship/index'
           // url: '../good/index'
+          url: '../search/index'
           // url: '../good-edit/index'
           // url: '../user/index'
           // url: '../map/index'
           // url: '../menu/index'
-          url: '../unit/index'
+          // url: '../unit/index'
         })
       }
     })

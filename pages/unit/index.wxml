@@ -1,9 +1,9 @@
 <view class="thead">
   <view class="num">编号</view>
   <view class="cell">名称</view>
-  <view class="cell-s">操作</view>
+  <view class="cell-s" wx:if="{{ userInfo.role_name === 'admin' }}">操作</view>
 </view>
-<van-swipe-cell right-width="{{ 65 }}" wx:for="{{dataList}}" wx:key>
+<van-swipe-cell right-width="{{ 65 }}" wx:for="{{dataList}}" wx:key disabled="{{ userInfo.role_name !== 'admin' }}">
   <view class="line">
     <view class="num">{{index+1}}</view>
     <view class="cell">
@@ -21,7 +21,7 @@
       </block>
       <block wx:else>{{item.name}}</block>
     </view>
-    <view class="cell-s">
+    <view class="cell-s" wx:if="{{ userInfo.role_name === 'admin' }}">
       <block wx:if="{{item.edit}}">
         <van-icon name="close" color="#f44" size="30px" />
         <text class="split"></text>
@@ -43,7 +43,7 @@
   end-text="我是有底线的"
 />
 
-<view class="add-box">
+<view class="add-box" wx:if="{{ userInfo.role_name === 'admin' }}">
   <van-icon name="add" size="70px" color="#34BFA3" bindtap="addBtn" />
 </view>
 
