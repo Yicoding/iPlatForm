@@ -56,6 +56,9 @@ Page({
           role: this.data.userInfo.role_name
         }
       });
+      if (JSON.parse(JSON.stringify(data)) == JSON.parse(JSON.stringify(this.data.list))) {
+        return console.log('不需要重新渲染list')
+      }
       console.log('getGoodsByCompany', data);
       this.setData({
         list: data,

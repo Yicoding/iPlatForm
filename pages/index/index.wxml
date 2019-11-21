@@ -144,6 +144,7 @@
         controlled
         bind:change="changePrice"
         focus
+        type="digit"
         value="{{writePrice}}" />
     </wux-cell>
     <wux-white-space size="large" />

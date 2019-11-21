@@ -16,13 +16,14 @@
           border="{{ false }}"
           bind:change="onChange"
           data-index="{{index}}"
+          bind:blur="onBlur"
         />
       </block>
       <block wx:else>{{item.name}}</block>
     </view>
     <view class="cell-s">
       <block wx:if="{{item.edit}}">
-        <van-icon name="close" color="#f44" size="30px" bindtap="closeBtn" data-index="{{index}}" />
+        <van-icon name="close" color="#f44" size="30px" />
         <text class="split"></text>
         <van-icon name="passed" color="#34BFA3" size="30px" bindtap="saveBtn" data-index="{{index}}" data-id="{{item.id}}" />
       </block>

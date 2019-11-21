@@ -58,13 +58,6 @@ Page({
     dataList[index].edit = true;
     this.setData({ dataList });
   },
-  // 取消
-  closeBtn(e) {
-    const { index } = e.currentTarget.dataset;
-    const dataList = JSON.parse(JSON.stringify(this.data.dataList));
-    dataList[index].edit = false;
-    this.setData({ dataList });
-  },
   // 输入框
   onChange(e) {
     console.log(e)
@@ -74,11 +67,24 @@ Page({
     nameList[index].name = detail.trim();
     this.setData({ nameList });
   },
+  // 失去焦点
+  onBlur(e) {
+    const { index } = e.currentTarget.dataset;
+    const dataList = JSON.parse(JSON.stringify(this.data.dataList));
+    dataList[index].edit = false;
+    this.setData({ dataList });
+  },
   // 保存
   async saveBtn(e) {
     const { id, index } = e.currentTarget.dataset;
     const { nameList } = this.data;
     const name = nameList[index].name;
+    if (name === this.data.dataList[index].name) {
+      const dataList = JSON.parse(JSON.stringify(this.data.dataList));
+      dataList[index].edit = false;
+      this.setData({ dataList });
+      return;
+    }
     try {
       wx.showLoading({
         title: '加载中...',
