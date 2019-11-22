@@ -1,4 +1,4 @@
-<view class="empty-show" wx:if="{{ visible }}">
+<view class="{{ rootClass ? 'my-class' : 'empty-show' }}" wx:if="{{ visible }}">
   <image src="{{ icon }}" />
   <text>{{title}}</text>
   <block wx:if="{{ buttons.length }}">

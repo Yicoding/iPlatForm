@@ -11,13 +11,13 @@
     z-index: 2000;
 }
 
-.empty-show image{
+image{
     width: 300rpx;
     height: 241.16rpx;
     display: block;
     margin: 0 auto 20rpx;
 }
 
-.empty-show text{
+/* text{
     margin-bottom: 20rpx;
-}
+} */

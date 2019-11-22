@@ -11,6 +11,30 @@ Page({
     isLogin: false
   },
   onLoad: function () {
+    // 获取本地用户信息
+    wx.getStorage({
+      key: 'userInfo',
+      success: ({ data }) => {
+        console.log('userInfo', data);
+        app.globalData.userInfo = data;
+        return wx.switchTab({
+          url: '../index/index'
+          // url: '../mine/index'
+          // url: '../order/index'
+          // url: '../shop/index'
+        });
+        wx.redirectTo({
+          // url: '../ship/index'
+          // url: '../good/index'
+          url: '../search/index'
+          // url: '../good-edit/index'
+          // url: '../user/index'
+          // url: '../map/index'
+          // url: '../menu/index'
+          // url: '../unit/index'
+        })
+      }
+    })
   },
   // 键盘输入时
   changeVal(e) {

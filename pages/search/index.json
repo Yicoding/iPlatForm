@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "商品",
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "search": "/components/search/search",
     "wux-badge": "/miniprogram_npm/wux-weapp/badge/index",
@@ -10,6 +9,7 @@
     "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
     "wux-input": "/miniprogram_npm/wux-weapp/input/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "empty-show": "/components/empty-show/index",
     "van-stepper": "/miniprogram_npm/vant-weapp/stepper/index",
     "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index"

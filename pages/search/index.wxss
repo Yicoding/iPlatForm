@@ -1,5 +1,12 @@
 page{
   background: #fff;
+  padding-bottom: 60rpx;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.space{
+  height: 100%;
 }
 
 .title{
@@ -8,20 +15,69 @@ page{
   align-items: center;
 }
 
+.remove-box{
+  font-size: 24rpx;
+  color: #999;
+}
+
+.remove-box text:nth-of-type(2){
+  color: #d8d8d8;
+  margin: 0 16rpx;
+}
+
+.remove-box text:last-of-type{  
+  color: red;
+}
+
 .history{
   padding: 0 30rpx;
   color: #222;
   font-size: 32rpx;
 }
 
-.his-item{
-  display: inline-block;
-  margin-top: 20rpx;
-  margin-right: 20rpx;
+.btn-group{
+  font-size: 0;
 }
 
-.btn-label{
-  color: #666 !important;
+.btn-gray{
+  border-color: #f5f5f5;
+  color: #fff;
+  background-color: #f5f5f5;
+  margin-top: 20rpx;
+  margin-right: 15rpx;
+  border-radius: 10em;
+  height: 30px;
+  min-width: 45px;
+  padding: 0 8px;
+  font-size: 12px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: #666;
+}
+
+.btn-txt{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.split-line{
+  margin: 0 10rpx 0 15rpx;
+}
+
+.close{
+  position: relative;
+  width: 20rpx;
+}
+
+.close-icon{
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .arrow{
@@ -31,11 +87,77 @@ page{
   position: relative;
   border: 1rpx solid #333;
   border-radius: 50%;
+  vertical-align: middle;
+  margin-top: 20rpx;
 }
 
 .arrow-icon{
-  position: absolute;
+  position: absolute !important;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: #333;
+}
+
+.empty-show{
+  color: #999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100rpx;
+}
+
+/*搜索列表*/
+.container{
+  padding: 10rpx 0;
+}
+
+.good-box{
+  display: flex;
+  padding: 30rpx;
+}
+
+.good-box .cu-avatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+}
+
+.good-content{
+  flex: 1;
+  padding-left: 20rpx;
+}
+
+.good-name{
+  color: #333;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: -5rpx;
+}
+
+.good-desc{
+  color: #999;
+  font-size: 20rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 220rpx;
+  margin-top: 5rpx;
+}
+
+.good-num{
+  color: #999;
+  font-size: 20rpx;
+  margin-top: 5rpx;
+}
+
+.good-price{
+  color: #e4393c;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+
+.good-price text{
+  font-size: 20rpx;
 }

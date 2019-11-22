@@ -1,26 +1,68 @@
 <!-- 搜索 -->
-<search
-  id="search"
-  class="search"
-  focus="{{true}}"
-  bind:callback="search"
-  bind:switchEdit="switchEdit"
-/>
-<wux-white-space />
-<!-- 搜索历史 -->
-<view class="history" wx:if="{{ keyword.length > 0 }}">
-  <view class="title">
-    <text>搜索历史</text>
-    <van-icon name="delete" color="#999" size="20px" bindtap="remove" />
+<view class="space" bindtap="backRemove">
+  <search
+    id="search"
+    class="search"
+    focus="{{true}}"
+    bind:callback="search"
+    bind:switchEdit="switchEdit"
+  />
+  <wux-white-space />
+  <!-- 搜索历史 -->
+  <view class="history" wx:if="{{ keyword.length > 0 }}">
+    <view class="title">
+      <text>搜索历史</text>
+      <block wx:if="{{ !isDelete }}">
+        <van-icon name="delete" color="#999" size="20px" catchtap="delete" />
+      </block>
+      <view wx:else class="remove-box">
+        <text catchtap="removeAll">全部清空</text>
+        <text>|</text>
+        <text>完成</text>
+      </view>
+    </view>
+    <view class="btn-group">
+      <view class="btn-gray" wx:for="{{ keyword }}" wx:key wx:if="{{index < num}}" catchtap="btnSearch" data-value="{{ item }}">
+        <view class="btn-txt">
+          <text>{{item}}</text>
+          <block wx:if="{{ isDelete }}">
+            <text class="split-line">|</text>
+            <view class="close" catchtap="remove" data-index="{{ index }}">
+              <van-icon name="cross" custom-class="close-icon" />
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="arrow" wx:if="{{ num === min && keyword.length > min }}">
+        <van-icon size="16px" name="arrow-down" custom-class="arrow-icon" catchtap="setNum" data-num="{{ max }}" />
+      </view>
+      <view class="arrow" wx:if="{{ num === max }}">
+        <van-icon name="arrow-up" size="16px" color="#666" custom-class="arrow-icon" catchtap="setNum" data-num="{{ min }}" />
+      </view>
+    </view>
   </view>
-  <view class="his-item" wx:for="{{ keyword }}" wx:key wx:if="{{index < num}}">
-    <van-button color="#f5f5f5" round size="small" custom-class="btn-label">{{item}}</van-button>
-  </view>
-  <view class="arrow" wx:if="{{ num === min && keyword.length > min }}">
-    <van-icon name="arrow-down" custom-class="arrow-icon" bindtap="setNum" data-num="{{ max }}" />
-  </view>
-  <view class="arrow" wx:if="{{ num === max }}">
-    <van-icon name="arrow-up" custom-class="arrow-icon" bindtap="setNum" data-num="{{ min }}" />
+
+  <!-- 搜索结果为空 -->
+  <empty-show
+    visible="{{ goodList.length === 0 && value && !loading }}"
+    icon="{{ msg.icon }}"
+    title="{{ msg.title }}"
+    my-class="empty-show"
+    rootClass="{{true}}"
+  />
+
+  <view class="container">
+    <view class="good-box" wx:for="{{ goodList }}" wx:key data-id="{{item.id}}">
+      <view class="cu-avatar round lg" style="background-image:url({{item.coverImg}});"></view>
+      <view class="good-content">
+        <view class="good-name">{{item.name}}</view>
+        <view class="good-desc">{{item.desc}}</view>
+        <view class="good-num">总销售 {{item.saleNum}} 次</view>
+        <view class="good-price">
+          <text>￥</text>{{item.sellSingle}}
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 

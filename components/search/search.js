@@ -27,15 +27,27 @@ Component({
         // 键盘输入时触发
         textChange(e) {
             this.setData({ text: e.detail.value.trim() });
+            if (!e.detail.value.trim()) {
+                this.triggerEvent('callback', '');
+            }
         },
         // 清空
         cancel() {
             this.setData({ text: '' });
+            this.triggerEvent('callback', '');
         },
         // 去搜索
-        goSearch(e) {
+        goSearch() {
             console.log('goSearch');
             this.triggerEvent('callback', this.data.text);
+        },
+        // 填充值
+        setText(text) {
+            if (text === this.data.text) {
+                return;
+            }
+            this.setData({ text });
+            this.triggerEvent('callback', text);
         }
     },
 })

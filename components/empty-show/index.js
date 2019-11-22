@@ -5,6 +5,7 @@ Component({
     /**
      * 组件的属性列表
      */
+    externalClasses: [ 'my-class' ],
     properties: {
         visible: {
             type: Boolean,
@@ -21,6 +22,10 @@ Component({
         buttons: {
             type: Array,
             default: []
+        },
+        rootClass: {
+            type: Boolean,
+            default: false
         }
     },
     /**
