@@ -49,10 +49,10 @@
       <view class="space-item-title">
         <text>规格</text>
       </view>
-      <wux-white-space size="small" />
+      <wux-white-space />
       <view>
-        <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{good.unitOne.name}}</van-button>
-        <van-button type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{good.unitDouble.name}}</van-button>
+        <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{good.unitOne.name}}</van-button>
+        <van-button type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{good.unitDouble.name}}</van-button>
       </view>
       <wux-white-space size="large" />
       <wux-white-space size="small" />
@@ -60,14 +60,15 @@
         <text>价格</text>
         <switch checked="{{showPrice}}" bindchange="switchChange" />
       </view>
+      <wux-white-space size="small" />
       <view>
-        <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售({{
+        <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售({{
           goodUnitType === 1 ? good.sellSingle : good.sellAll
         }})</van-button>
-        <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="mini" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
+        <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
           goodUnitType === 1 ? good.midSingle : good.midAll
         }})</van-button>
-        <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="mini" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{
+        <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{
           todu.writePrice ? '(' + todu.writePrice + ')' : ''
         }}</van-button>
       </view>
@@ -105,7 +106,7 @@
         }}
       </view>
       <block wx:if="{{ goodNum === 0 }}">
-        <van-button bindtap="shopChangeAdd" round size="mini" icon="plus" type="warning">加入购物车</van-button>
+        <van-button bindtap="shopChangeAdd" round size="small" icon="plus" type="warning">加入购物车</van-button>
       </block>
       <block wx:else>
         <van-stepper

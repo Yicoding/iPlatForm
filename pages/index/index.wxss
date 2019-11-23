@@ -88,13 +88,13 @@
 
 .good-btn{
   color: #35bfa3;
-  font-size: 20rpx;
+  font-size: 24rpx;
   background: #e0fffd;
   align-self: flex-end;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100rpx;
+  width: 120rpx;
   height: 50rpx;
   border-radius: 50rpx;
   position: relative;
