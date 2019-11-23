@@ -38,7 +38,7 @@ Page({
       if (keyword.includes(detail)) {
         return;
       }
-      keyword.push(detail);
+      keyword.unshift(detail);
       this.setData({ keyword });
       wx.setStorage({
         key: 'keyword',

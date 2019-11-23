@@ -16,13 +16,13 @@ Page({
     grids: [
       { image: 'user', text: '成员管理', url: 'user' },
       { image: 'cart', text: '商品管理', url: 'good', color: '#34BFA3' },
-      { image: 'order', text: '字典管理', url: 'map' },
+      { image: 'order', text: '系统管理', url: 'map' },
       { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
     ],
     gridsStaff: [
       { image: 'user', text: '成员列表', url: 'user' },
       { image: 'cart', text: '商品列表', url: 'good', color: '#34BFA3' },
-      { image: 'order', text: '字典列表', url: 'map' },
+      { image: 'order', text: '系统列表', url: 'map' },
       { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
     ]
   },
