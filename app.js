@@ -32,10 +32,10 @@ App({
         }
       }
     })
-    // 打开调试11
-    wx.setEnableDebug({
-      enableDebug: true
-    });
+    // // 打开调试11
+    // wx.setEnableDebug({
+    //   enableDebug: true
+    // });
     // 获取设备信息
     this.getSystemInfo();
     // 获取本地用户信息
