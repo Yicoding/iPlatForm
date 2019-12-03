@@ -103,7 +103,9 @@ Page({
         desc: item.desc,
         unitType: item.unitType,
         unitDecimal: item.unitDecimal,
-        summary: 1 / item.unitDecimal
+        summary: 1 / item.unitDecimal,
+        writePrice: item.writePrice,
+        priceType: item.priceType
       }
     });
     console.log('orderList', orderList);
@@ -142,7 +144,7 @@ Page({
       }, 2000);
     } catch (e) {
       console.log('addOrder接口报错', e);
-    } finally{
+    } finally {
       this.setData({ loading: false });
     }
   },

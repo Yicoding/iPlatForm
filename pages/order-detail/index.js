@@ -15,7 +15,7 @@ Page({
   },
   // 页面出现
   onLoad(options) {
-    const { id = 22 } = options;
+    const { id = 85 } = options;
     this.setData({
       id,
       userInfo: app.globalData.userInfo
@@ -26,6 +26,39 @@ Page({
   onShow() {
     const { id } = this.data;
     this.getOrderDetail(id);
+  },
+  // 去打印
+  goPrint(e) {
+    const { id } = e.currentTarget.dataset;
+    console.log('id', id);
+    wx.showModal({
+      title: '要打印订单吗？',
+      success: (res) => {
+        console.log(res);
+        const { confirm } = res;
+        if (confirm) { // 确定
+          this.printOrderById(id);
+        }
+      }
+    })
+  },
+  async printOrderById(id) {
+    try {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      });
+      const { data } = await ajax({
+        url: config.service.printOrderById,
+        method: 'POST',
+        data: { id }
+      });
+      console.log('printOrderById', data);
+    } catch (e) {
+      console.log('printOrderById报错', e);
+    } finally {
+      wx.hideLoading();
+    }
   },
   // 获取订单信息
   async getOrderDetail(id) {
@@ -41,21 +74,25 @@ Page({
         data: { id }
       });
       console.log('getOrderDetail', data);
-      const steps = [
-        {
-          text: `已创建(${data.createUser.name})`,
-          desc: data.createTime.slice(0, -3)
-        },
-        {
-          text: data.state === 1 ? '待付款' : `已付款(${data.payUser.name})`,
-          desc: data.payTime && data.payTime.slice(0, -3) || ''
-        },
-        {
-          text: data.state === 3 ? `已发货(${data.finishUser.name})` : '待发货',
-          desc: data.finishTime && data.finishTime.slice(0, -3) || ''
-        }
-      ];
-      const active = data.state - 1;
+      let steps = [];
+      let active;
+      if (data.state !== 4) {
+        steps = [
+          {
+            text: `已创建(${data.createUser.name})`,
+            desc: data.createTime.slice(0, -3)
+          },
+          {
+            text: data.state === 1 ? '待付款' : `已付款(${data.payUser.name})`,
+            desc: data.payTime && data.payTime.slice(0, -3) || ''
+          },
+          {
+            text: data.state === 3 ? `已发货(${data.finishUser.name})` : '待发货',
+            desc: data.finishTime && data.finishTime.slice(0, -3) || ''
+          }
+        ];
+        active = data.state - 1;
+      }
       this.setData({
         orderInfo: data,
         steps,
@@ -116,7 +153,6 @@ Page({
       });
       console.log('updateOrder', data);
       this.getOrderDetail(orderInfo.id);
-      this.getOrderDetailList(orderInfo.id);
     } catch (e) {
       console.log('updateOrder报错', e);
     } finally {
@@ -129,5 +165,105 @@ Page({
     wx.navigateTo({
       url: `../ship/index?id=${orderInfo.id}&total=${orderInfo.total}`
     })
+  },
+  // 重新下单
+  resetOrder() {
+    wx.showModal({
+      title: '确定要取消该订单，重新下单吗？',
+      success: (res) => {
+        console.log(res);
+        const { confirm } = res;
+        if (confirm) { // 确定
+          this.cancelOrder();
+          this.onceOrderFun();
+        }
+      }
+    })
+  },
+  // 再来一单
+  onceOrder() {
+    wx.showModal({
+      title: '确定要再来一单吗？',
+      success: (res) => {
+        console.log(res);
+        const { confirm } = res;
+        if (confirm) { // 确定
+          this.onceOrderFun();
+        }
+      }
+    })
+  },
+  // 点击取消订单
+  goCancel() {
+    wx.showModal({
+      title: '确定要取消该订单吗？',
+      success: (res) => {
+        console.log(res);
+        const { confirm } = res;
+        if (confirm) { // 确定
+          this.cancelOrder();
+        }
+      }
+    })
+  },
+  // 取消订单
+  async cancelOrder() {
+    try {
+      const { id, userInfo, orderInfo } = this.data;
+      await ajax({
+        url: config.service.updateOrder,
+        method: 'PUT',
+        data: {
+          id,
+          state: 4,
+          user_id: userInfo.id
+        }
+      });
+      console.log('updateOrder取消订单成功');
+      this.getOrderDetail(orderInfo.id);
+    } catch (e) {
+      console.log('updateOrder报错', e);
+    }
+  },
+  async onceOrderFun() {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    try {
+      const shopList = this.data.orderList.map(item => {
+        const { good_id, unitType, priceType, num, writePrice } = item;
+        return {
+          user_id: this.data.userInfo.id,
+          good_id,
+          unitType,
+          priceType,
+          num,
+          writePrice
+        }
+      });
+      await ajax({
+        url: config.service.removeShopByUser,
+        method: 'DELETE',
+        data: {
+          user_id: this.data.userInfo.id
+        }
+      });
+      const { data } = await ajax({
+        url: config.service.addShopMultiple,
+        method: 'POST',
+        data: {
+          shopList
+        }
+      });
+      console.log('addShopMultiple', data);
+      wx.switchTab({
+        url: '../shop/index'
+      });
+    } catch (e) {
+      console.log('addShopMultiple报错', e);
+    } finally {
+      wx.hideLoading();
+    }
   }
 })

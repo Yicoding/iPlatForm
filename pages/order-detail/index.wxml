@@ -1,5 +1,17 @@
 <van-cell>
-    <view slot="title" class="order-line">
+  <view slot="title" class="order-line">
+    <text>订单打印</text>
+    <van-button size="small" type="info" bindtap="goPrint" data-id="{{orderInfo.id}}">去打印</van-button>
+  </view>  
+</van-cell>
+<van-cell wx:if="{{orderInfo.state !== 4}}">
+  <view slot="title" class="order-line">
+    <text>操作</text>
+    <van-button size="small" type="warning" bindtap="goCancel">取消订单</van-button>
+  </view>  
+</van-cell>
+<van-cell>
+  <view slot="title" class="order-line">
     <text>订单编号</text>
     <l-tag shape="square" bg-color="orange">{{orderInfo.id}}</l-tag>
   </view>  
@@ -13,7 +25,7 @@
 <van-cell>
   <view slot="title" class="order-line">
     <text>订单状态</text>
-    <text class="red">{{orderInfo.state === 1 ? '待付款' : orderInfo.state === 2 ? '待发货' : '已完成'}}</text>
+    <text class="red">{{orderInfo.state === 1 ? '待付款' : orderInfo.state === 2 ? '待发货' : orderInfo.state === 3 ? '已完成' : '已取消'}}</text>
   </view>
 </van-cell>
 <van-cell wx:if="{{orderInfo.state !== 3}}">
@@ -36,12 +48,14 @@
 </van-cell>
 <van-cell wx:if="{{orderInfo.customerSite}}" title="客户地址" label="{{orderInfo.customerSite}}" border="{{ false }}">
 </van-cell>
-<wux-white-space />
-<van-steps
-  steps="{{ steps }}"
-  active="{{ active }}"
-/>
-<view class="good-box {{isIpx && 'good-box-iphonex'}}">
+<block wx:if="{{orderInfo.state !== 4}}">
+  <wux-white-space />
+  <van-steps
+    steps="{{ steps }}"
+    active="{{ active }}"
+  />
+</block>
+<view class="good-box {{isIpx && orderInfo.state !== 4 && 'good-box-iphonex'}}">
   <view class="good-item" wx:for="{{orderList}}" wx:key>
     <image src="{{item.coverImg}}" mode="aspectFill" />
     <view class="good-info">
@@ -63,4 +77,8 @@
     type="end"
     end-text="我是有底线的"
   />
+</view>
+<view class="btn-group" wx:if="{{orderInfo.state !== 4}}">
+  <view class="btn-left {{ isIpx && orderInfo.state !== 4 && 'btn-group-iphoneX' }}" bindtap="resetOrder">重新下单</view>
+  <view class="btn-right {{ isIpx && 'btn-group-iphoneX' }}" bindtap="onceOrder">再来一单</view>
 </view>

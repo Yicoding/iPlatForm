@@ -77,21 +77,23 @@ Page({
       const orderList = data.data;
       console.log('getOrderList', data);
       orderList.forEach(item => {
-        item.steps = [
-          {
-            text: `已创建(${item.createUser.name})`,
-            desc: item.createTime.slice(0, -3)
-          },
-          {
-            text: item.state === 1 ? '待付款' : `已付款(${item.payUser.name})`,
-            desc: item.payTime && item.payTime.slice(0, -3) || ''
-          },
-          {
-            text: item.state === 3 ? `已发货(${item.finishUser.name})` : '待发货',
-            desc: item.finishTime && item.finishTime.slice(0, -3) || ''
-          }
-        ];
-        item.active = item.state - 1;
+        if (item.state !== 4) {
+          item.steps = [
+            {
+              text: `已创建(${item.createUser.name})`,
+              desc: item.createTime.slice(0, -3)
+            },
+            {
+              text: item.state === 1 ? '待付款' : `已付款(${item.payUser.name})`,
+              desc: item.payTime && item.payTime.slice(0, -3) || ''
+            },
+            {
+              text: item.state === 3 ? `已发货(${item.finishUser.name})` : '待发货',
+              desc: item.finishTime && item.finishTime.slice(0, -3) || ''
+            }
+          ];
+          item.active = item.state - 1;
+        }
       });
       if (this.pageIndex === 0) { // 初始化请求
         this.setData({ orderList: orderList });
@@ -113,7 +115,7 @@ Page({
   changeTabs(e) {
     console.log(e)
     const { index } = e.detail;
-    if (index === 3) {
+    if (index === 4) {
       this.setData({ state: '' });
     } else {
       this.setData({ state: index + 1 });

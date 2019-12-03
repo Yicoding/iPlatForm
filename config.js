@@ -130,10 +130,12 @@ var config = {
         getShoplistInValid: `${host}/getShoplistInValid`, // 获取购物车列表
         getShoplistEasy: `${host}/getShoplistEasy`, // 获取购物车列表easy版
         addShop: `${host}/addShop`, // 获取购物车列表easy版
+        addShopMultiple: `${host}/addShopMultiple`, // 获取购物车列表easy版
         updateShop: `${host}/updateShop`, // 获取购物车列表easy版
         removeShop: `${host}/removeShop`, // 获取购物车列表easy版
         removeShopById: `${host}/removeShopById`, // 获取购物车列表easy版
         removeShopByUser: `${host}/removeShopByUser`, // 获取购物车列表easy版
+        printOrderById: 'https://ilovelyplat.com:3002/printOrderById', // 打印
     }
 };
 

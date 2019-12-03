@@ -16,11 +16,12 @@
     <van-tab title="待付款"></van-tab>
     <van-tab title="待发货"></van-tab>
     <van-tab title="已完成"></van-tab>
+    <van-tab title="已取消"></van-tab>
     <van-tab title="全部"></van-tab>
   </van-tabs>
 </view>
 <view wx:for="{{orderList}}" wx:key class="order-item" bindtap="linkDetail" data-id="{{item.id}}">
-  <view wx:if="{{active === 3}}">
+  <view wx:if="{{active === 4}}">
     <state-box state="{{item.state}}" />
   </view>
   <van-cell>
@@ -39,7 +40,7 @@
   <van-cell>
     <view slot="title" class="order-line">
       <text>订单状态</text>
-      <text class="red">{{item.state === 1 ? '待付款' : item.state === 2 ? '待发货' : '已完成'}}</text>
+      <text class="red">{{item.state === 1 ? '待付款' : item.state === 2 ? '待发货' : item.state === 3 ? '已完成' : '已取消'}}</text>
     </view>
   </van-cell>
   <van-cell wx:if="{{item.customerName}}">
@@ -58,6 +59,7 @@
   </van-cell>
   <wux-white-space />
   <van-steps
+    wx:if="{{item.state !== 4}}"
     steps="{{ item.steps }}"
     active="{{ item.active }}"
   />
