@@ -39,6 +39,7 @@
   use-slot
   show="{{ visible }}"
   bind:close="onClose"
+  showConfirmButton="{{ false }}"
   confirm-button-text="关闭"
 >
   <view class="space-box">
@@ -121,6 +122,9 @@
         <!-- <wux-input-number value="{{goodNum}}" shape="circle" color="balanced" slot="footer" min="{{0}}" max="{{9999}}" controlled bindchange="shopChange" disabled="{{false}}" /> -->
       </block>
     </view>
+  </view>
+  <view class="icon-close">
+    <van-icon bindtap="onClose" name="close" color="#fff" size="40px" />
   </view>
 </van-dialog>
 <!-- 自定义价格输入框 -->

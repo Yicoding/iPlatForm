@@ -87,9 +87,9 @@
 
 
 .good-btn{
-  color: #35bfa3;
+  color: #fff;
   font-size: 24rpx;
-  background: #e0fffd;
+  background: #ff976a;
   align-self: flex-end;
   display: flex;
   justify-content: center;
@@ -144,6 +144,10 @@
 }
 
 /* 弹窗 */
+.van-dialog, .van-popup{
+  background: transparent !important;
+}
+
 .space-box{
   background: #fff;
   border-radius: 10rpx;
@@ -226,6 +230,12 @@
   width: auto !important;
   min-width: 50px;
   padding: 0 10rpx !important;
+}
+
+.icon-close{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
 }
 
 .price-mask{

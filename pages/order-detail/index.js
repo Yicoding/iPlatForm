@@ -15,7 +15,7 @@ Page({
   },
   // 页面出现
   onLoad(options) {
-    const { id = 85 } = options;
+    const { id = 87 } = options;
     this.setData({
       id,
       userInfo: app.globalData.userInfo

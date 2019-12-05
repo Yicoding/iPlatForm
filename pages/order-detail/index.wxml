@@ -1,3 +1,21 @@
+<view class="order-flex">
+  <view class="order-flex-item">
+    <view>订单编号</view>
+    <view>
+      <l-tag shape="square" bg-color="orange">{{orderInfo.id}}</l-tag>
+    </view>
+  </view>
+  <view class="order-flex-item">
+    <view>订单金额</view>
+    <view><text class="red txt-bg">{{orderInfo.total}}</text></view>
+  </view>
+  <view class="order-flex-item">
+    <view>订单状态</view>
+    <view>
+      <text class="red">{{orderInfo.state === 1 ? '待付款' : orderInfo.state === 2 ? '待发货' : orderInfo.state === 3 ? '已完成' : '已取消'}}</text>
+    </view>
+  </view>
+</view>
 <van-cell>
   <view slot="title" class="order-line">
     <text>订单打印</text>
@@ -9,24 +27,6 @@
     <text>操作</text>
     <van-button size="small" type="warning" bindtap="goCancel">取消订单</van-button>
   </view>  
-</van-cell>
-<van-cell>
-  <view slot="title" class="order-line">
-    <text>订单编号</text>
-    <l-tag shape="square" bg-color="orange">{{orderInfo.id}}</l-tag>
-  </view>  
-</van-cell>
-<van-cell>
-  <view slot="title" class="order-line">
-    <text>订单金额</text>
-    <text class="red txt-bg">{{orderInfo.total}}</text>
-  </view>
-</van-cell>
-<van-cell>
-  <view slot="title" class="order-line">
-    <text>订单状态</text>
-    <text class="red">{{orderInfo.state === 1 ? '待付款' : orderInfo.state === 2 ? '待发货' : orderInfo.state === 3 ? '已完成' : '已取消'}}</text>
-  </view>
 </van-cell>
 <van-cell wx:if="{{orderInfo.state !== 3}}">
   <view slot="title" class="order-btn-box">
@@ -78,7 +78,7 @@
     end-text="我是有底线的"
   />
 </view>
-<view class="btn-group" wx:if="{{orderInfo.state !== 4}}">
-  <view class="btn-left {{ isIpx && orderInfo.state !== 4 && 'btn-group-iphoneX' }}" bindtap="resetOrder">重新下单</view>
+<view class="btn-group">
+  <view class="btn-left {{ isIpx && orderInfo.state !== 4 && 'btn-group-iphoneX' }}" bindtap="resetOrder" wx:if="{{orderInfo.state !== 4}}">重新下单</view>
   <view class="btn-right {{ isIpx && 'btn-group-iphoneX' }}" bindtap="onceOrder">再来一单</view>
 </view>
