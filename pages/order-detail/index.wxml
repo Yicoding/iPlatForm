@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class="order-flex">
   <view class="order-flex-item">
     <view>订单编号</view>
@@ -28,7 +30,7 @@
     <van-button size="small" type="warning" bindtap="goCancel">取消订单</van-button>
   </view>  
 </van-cell>
-<van-cell wx:if="{{orderInfo.state !== 3}}">
+<van-cell wx:if="{{orderInfo.state === 1 || orderInfo.state === 2}}">
   <view slot="title" class="order-btn-box">
     <van-button wx:if="{{orderInfo.state === 1}}" type="primary" size="small" bindtap="changeState">确认付款</van-button>
     <van-button wx:if="{{orderInfo.state === 2}}" type="primary" size="small" bindtap="linkShip">去发货</van-button>
@@ -48,6 +50,10 @@
 </van-cell>
 <van-cell wx:if="{{orderInfo.customerSite}}" title="客户地址" label="{{orderInfo.customerSite}}" border="{{ false }}">
 </van-cell>
+<van-cell wx:if="{{orderInfo.state === 4}}" title="创建时间" value="{{orderInfo.createUser.name + ' ' + tools.toTimeFormat(orderInfo.createTime)}}" />
+<van-cell wx:if="{{orderInfo.state === 4 && orderInfo.payTime}}" title="付款时间" value="{{orderInfo.payUser.name + ' ' + tools.toTimeFormat(orderInfo.payTime)}}" />
+<van-cell wx:if="{{orderInfo.state === 4 && orderInfo.finishTime}}" title="发货时间" value="{{orderInfo.finishUser.name + ' ' + tools.toTimeFormat(orderInfo.finishTime)}}" />
+<van-cell wx:if="{{orderInfo.state === 4}}" title="取消状态说明" value="{{tools.stateInfo(orderInfo)}}" border="{{false}}" />
 <block wx:if="{{orderInfo.state !== 4}}">
   <wux-white-space />
   <van-steps

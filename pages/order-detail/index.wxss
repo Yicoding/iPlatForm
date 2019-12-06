@@ -151,9 +151,9 @@
 }
 
 .btn-left{
-  background: crimson;
+  background: #ff976a;
 }
 
 .btn-right{
-  background: darkcyan;
+  background: #1989fa;
 }

@@ -85,10 +85,28 @@ var sexTitle = function(value, options) {
   return title;
 }
 
+// 时间取到HH:MM
+var toTimeFormat = function(value) {
+  return value.slice(0, -3);
+}
+
+// 状态说明
+var stateInfo = function(info) {
+  if (info.finishTime) {
+    return '已发货后取消';
+  }
+  if (info.payTime) {
+    return '已付款后取消';
+  }
+  return '已创建后取消';
+}
+
 module.exports = {
   setSingle: setSingle,
   setAll: setAll,
   singleTitle: singleTitle,
   multipleTitle: multipleTitle,
-  sexTitle: sexTitle
+  sexTitle: sexTitle,
+  toTimeFormat: toTimeFormat,
+  stateInfo: stateInfo
 };
