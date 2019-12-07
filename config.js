@@ -5,6 +5,7 @@
 // 此处主机域名修改成腾讯云解决方案分配的域名
 // var host = 'https://0az3korx.qcloud.la/weapp'; // 开发
 var host = 'https://ilovelyplat.com:3000'; // 生产
+var hostServer = 'https://ilovelyplat.com:3002'; // 生产
 
 var config = {
 
@@ -135,7 +136,9 @@ var config = {
         removeShop: `${host}/removeShop`, // 获取购物车列表easy版
         removeShopById: `${host}/removeShopById`, // 获取购物车列表easy版
         removeShopByUser: `${host}/removeShopByUser`, // 获取购物车列表easy版
-        printOrderById: 'https://ilovelyplat.com:3002/printOrderById', // 打印
+        printOrderById: `${hostServer}/printOrderById`, // 打印
+        putObject: `${hostServer}/putObject`, // 打印
+        // putObject: `http://localhost:3003/putObject`, // 打印
     }
 };
 
