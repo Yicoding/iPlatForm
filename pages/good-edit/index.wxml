@@ -17,6 +17,17 @@
   <wux-cell title="总单位" is-link extra="{{ tools.singleTitle(unitAll, unitList) }}" bind:click="onClick2"></wux-cell>
   <wux-cell title="商品类别" is-link extra="{{ tools.multipleTitle(typeName, typeList) }}" bind:click="onClick3"></wux-cell>
   <van-field
+    value="{{ num }}"
+    required
+    input-align="right"
+    clearable
+    type="number"
+    label="商品数量"
+    placeholder="请输入商品数量"
+    bind:input="fieldChange"
+    data-key="num"
+  />
+  <van-field
     value="{{ buySingle }}"
     required
     clearable
@@ -27,7 +38,7 @@
     bind:input="fieldChange"
     data-key="buySingle"
   />
-  <van-field
+  <!-- <van-field
     value="{{ buyAll }}"
     required
     clearable
@@ -37,7 +48,7 @@
     placeholder="请输入进货总价"
     bind:input="fieldChange"
     data-key="buyAll"
-  />
+  /> -->
   <van-field
     value="{{ midSingle }}"
     required
@@ -49,7 +60,7 @@
     bind:input="fieldChange"
     data-key="midSingle"
   />
-  <van-field
+  <!-- <van-field
     value="{{ midAll }}"
     required
     input-align="right"
@@ -59,7 +70,7 @@
     placeholder="请输入批发总价"
     bind:input="fieldChange"
     data-key="midAll"
-  />
+  /> -->
   <van-field
     value="{{ sellSingle }}"
     required
@@ -71,7 +82,7 @@
     bind:input="fieldChange"
     data-key="sellSingle"
   />
-  <van-field
+  <!-- <van-field
     value="{{ sellAll }}"
     required
     input-align="right"
@@ -81,24 +92,11 @@
     placeholder="请输入零售总价"
     bind:input="fieldChange"
     data-key="sellAll"
-  />
-  <van-field
-    value="{{ num }}"
-    required
-    input-align="right"
-    clearable
-    type="number"
-    label="商品数量(元)"
-    placeholder="请输入商品数量"
-    bind:input="fieldChange"
-    data-key="num"
-  />
+  /> -->
   <van-field
     value="{{ desc }}"
     label="商品描述"
-    type="textarea"
     placeholder="请输入商品描述"
-    autosize
     border="{{ false }}"
     bind:input="fieldChange"
     data-key="desc"
@@ -113,7 +111,8 @@
     data-key="origin"
   />
   
-  <cover-view class="saveBtn" bindtap="save">保存</cover-view>
+  <!-- <cover-view class="saveBtn" bindtap="save">保存</cover-view> -->
+  <view class="saveBtn" bindtap="save">保存</view>
 </view>
 <wux-select id="wux-select1" />
 <wux-select id="wux-select2" />

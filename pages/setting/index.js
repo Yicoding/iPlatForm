@@ -26,5 +26,18 @@ Page({
         }
       }
     })
+  },
+  // 修改个人信息
+  linkEdit() {
+    wx.getStorage({
+      key: 'userInfo',
+      success: ({ data }) => {
+        console.log('userInfo', data);
+        const { id } = data;
+        wx.navigateTo({
+          url: `../user-edit/index?id=${id}&self=true`
+        });
+      }
+    })
   }
 })

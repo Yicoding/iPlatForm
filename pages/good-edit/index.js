@@ -195,7 +195,7 @@ Page({
   },
   // 保存按钮
   save() {
-    const { name, coverImg, unitSingle, unitAll, typeName, buySingle, buyAll, midSingle, midAll, sellSingle, sellAll, num } = this.data;
+    const { name, coverImg, unitSingle, unitAll, typeName, num, buySingle, midSingle, sellSingle  } = this.data;
     if (!name.trim()) {
       this.saveToast('商品名');
     } else if (!coverImg.trim()) {
@@ -206,20 +206,14 @@ Page({
       this.saveToast('总单位');
     } else if (!typeName) {
       this.saveToast('商品类别');
-    } else if (!buySingle) {
-      this.saveToast('进货单价');
-    } else if (!buyAll) {
-      this.saveToast('进货总价');
-    } else if (!midSingle) {
-      this.saveToast('批发单价');
-    } else if (!midAll) {
-      this.saveToast('批发总价');
-    } else if (!sellSingle) {
-      this.saveToast('零售单价');
-    } else if (!sellAll) {
-      this.saveToast('零售总价');
     } else if (!num) {
       this.saveToast('商品数量');
+    } else if (!buySingle) {
+      this.saveToast('进货单价');
+    } else if (!midSingle) {
+      this.saveToast('批发单价');
+    } else if (!sellSingle) {
+      this.saveToast('零售单价');
     } else {
       this.saveFun();
     }
@@ -239,7 +233,7 @@ Page({
     });
     try {
       const { company_id } = this.data.userInfo;
-      const { id, name, coverImg, unitSingle, unitAll, typeName, buySingle, buyAll, midSingle, midAll, sellSingle, sellAll, num, desc, origin } = this.data;
+      const { id, name, coverImg, unitSingle, unitAll, typeName, buySingle, midSingle, sellSingle, num, desc, origin } = this.data;
       const method = id ? 'PUT' : 'POST';
       const url = id ? 'updateGoods' : 'addGoods';
       const { data } = await ajax({
@@ -253,13 +247,13 @@ Page({
           unitOne_id: unitSingle,
           unitDouble_id: unitAll,
           typeName,
-          buySingle,
-          buyAll,
-          midSingle,
-          midAll,
-          sellSingle,
-          sellAll,
           num,
+          buySingle,
+          buyAll: buySingle * num,
+          midSingle,
+          midAll: midSingle * num,
+          sellSingle,
+          sellAll: sellSingle * num,
           desc,
           origin
         }

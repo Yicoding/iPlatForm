@@ -25,17 +25,21 @@ Page({
     sex: 'man',
     avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
     sign: '',
-    company_id: null
+    company_id: null,
+    editBySelf: false
   },
   onLoad(options) {
     this.setData({ userInfo: app.globalData.userInfo });
     console.log(options);
-    const { id = 1 } = options;
+    const { id = 1, self } = options;
     if (id) {
       this.getUserDetail(id);
       this.setData({ id: Number(id) });
     } else {
       this.getRoleList();
+    }
+    if (self) {
+      this.setData({ editBySelf: true });
     }
   },
   // 监听用户下拉动作
@@ -182,7 +186,7 @@ Page({
       mask: true
     });
     try {
-      const { id, name, phone, password, age, role_id, sex, avatar, sign, company_id, userInfo } = this.data;
+      const { id, name, phone, password, age, role_id, sex, avatar, sign, company_id, userInfo, editBySelf } = this.data;
       const method = id ? 'PUT' : 'POST';
       const url = id ? 'updateUser' : 'addUser';
       const { data } = await ajax({
@@ -194,6 +198,18 @@ Page({
       });
       console.log(url, data);
       app.globalData.isAlertGood = true;
+      if (editBySelf) {
+        const { data } = await ajax({
+          url: config.service.getUserDetail,
+          data: { id }
+        });
+        wx.setStorage({
+          key: 'userInfo',
+          data
+        });
+        app.globalData.userInfo = data;
+      }
+      app.globalData.editBySelf = true;
       setTimeout(() => {
         wx.showToast({
           title: '保存成功',

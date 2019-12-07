@@ -14,6 +14,7 @@
     data-key="name"
   />
   <van-field
+    wx:if="{{!editBySelf}}"
     value="{{ phone }}"
     required
     clearable
@@ -35,7 +36,7 @@
     bind:input="fieldChange"
     data-key="password"
   />
-  <picker bindchange="bindPickerChangeRole" value="{{roleIndex}}" range="{{roleOption}}" range-key="text">
+  <picker wx:if="{{!editBySelf}}" bindchange="bindPickerChangeRole" value="{{roleIndex}}" range="{{roleOption}}" range-key="text">
     <van-cell title="用户角色" value="{{tools.sexTitle(role_id, roleOption) || '请选择'}}" is-link />
   </picker>
   <picker bindchange="bindPickerChange" value="{{sexIndex}}" range="{{sexOption}}" range-key="text">

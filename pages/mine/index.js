@@ -35,6 +35,16 @@ Page({
     });
     this.getGoodsList();
   },
+  onShow() {
+    if (app.globalData.editBySelf) {
+      console.log('app.globalData.userInfo', app.globalData.userInfo)
+      app.globalData.editBySelf = false;
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        avatar: app.globalData.userInfo.sex === 'man' ? man : woman
+    });
+    }
+  },
   // 监听用户下拉动作
   onPullDownRefresh() {
     this.pageIndex = 0;

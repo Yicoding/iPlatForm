@@ -1,4 +1,4 @@
-<van-cell title="修改个人信息" is-link />
+<van-cell title="修改个人信息" is-link bind:click="linkEdit" />
 <wux-white-space />
 <van-cell title="使用说明" is-link />
 <wux-white-space />
