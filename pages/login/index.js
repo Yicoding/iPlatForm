@@ -15,25 +15,27 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: ({ data }) => {
-        console.log('userInfo', data);
-        app.globalData.userInfo = data;
-        return wx.switchTab({
-          url: '../index/index'
-          // url: '../mine/index'
-          // url: '../order/index'
-          // url: '../shop/index'
-        });
-        wx.redirectTo({
-          url: '../order-detail/index'
-          // url: '../ship/index'
-          // url: '../good/index'
-          // url: '../search/index'
-          // url: '../good-edit/index'
-          // url: '../user/index'
-          // url: '../map/index'
-          // url: '../menu/index'
-          // url: '../unit/index'
-        })
+        const { phone, password } = data;
+        this.loginByWx(phone, password);
+      //   console.log('userInfo', data);
+      //   app.globalData.userInfo = data;
+      //   return wx.switchTab({
+      //     url: '../index/index'
+      //     // url: '../mine/index'
+      //     // url: '../order/index'
+      //     // url: '../shop/index'
+      //   });
+      //   wx.redirectTo({
+      //     url: '../order-detail/index'
+      //     // url: '../ship/index'
+      //     // url: '../good/index'
+      //     // url: '../search/index'
+      //     // url: '../good-edit/index'
+      //     // url: '../user/index'
+      //     // url: '../map/index'
+      //     // url: '../menu/index'
+      //     // url: '../unit/index'
+      //   })
       }
     })
   },
@@ -74,19 +76,18 @@ Page({
     this.loginByWx();
   },
   // 去登录
-  async loginByWx() {
+  async loginByWx(phone, password) {
     try {
       this.setData({ isLogin: true });
       wx.showLoading({
         title: '加载中',
       });
-      const { phone, password } = this.data;
       const { data } = await ajax({
         url: config.service.loginByWx,
         method: 'POST',
         data: {
-          phone,
-          password
+          phone: phone || this.data.phone,
+          password: password || this.data.password
         }
       });
       console.log('loginByWx', data);
@@ -99,6 +100,9 @@ Page({
         url: '../index/index'
       });
     } catch (e) {
+      wx.removeStorage({
+        key: 'userInfo'
+      });
       this.setData({ isLogin: false });
       console.log('loginByWx接口报错', e);
     } finally {

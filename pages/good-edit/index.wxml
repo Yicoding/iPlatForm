@@ -77,7 +77,7 @@
     input-align="right"
     clearable
     type="digit"
-    label="零售单价((元)"
+    label="零售单价(元)"
     placeholder="请输入零售单价"
     bind:input="fieldChange"
     data-key="sellSingle"

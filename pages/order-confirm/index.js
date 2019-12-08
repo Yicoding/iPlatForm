@@ -115,12 +115,12 @@ Page({
   async addOrder(orderList) {
     this.setData({ loading: true });
     try {
-      const { spendAll, totalPrice, name, phone, address } = this.data;
+      const { spendAll, totalPrice, name, phone, address, userInfo } = this.data;
       const { data, code } = await ajax({
         url: config.service.addOrder,
         method: 'POST',
         data: {
-          company_id: 1,
+          company_id: userInfo.company_id,
           spend: spendAll,
           total: totalPrice,
           gain: totalPrice - spendAll,
