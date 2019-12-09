@@ -1,25 +1,62 @@
-<van-goods-action class="van-goods-actio">
-  <van-goods-action-icon
-    icon="like-o"
-    text="收藏"
-    bind:click="onClickIcon"
-  />
-  <view class="goods-collect" hover-class="goods-collect-click" hover-stay-time="{{100}}">
-    <text class="cuIcon-likefill lg text-pink"></text>
-    <text>收藏</text>
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<view class="food">
+  <image class="coverImg" mode="aspectFill" src="{{coverImg}}" />
+  <view class="title">商品信息</view>
+  <view class="container">
+    <view class="line">
+      <view class="item">
+        <view>商品名</view>
+        <view>{{name}}</view>
+      </view>
+      <view class="item">
+        <view>商品类别</view>
+        <view>{{tools.matchVal(typeName, typeList, 'code')}}</view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="item">
+        <view>单价单位</view>
+        <view>{{tools.matchVal(unitSingle, unitList, 'id')}}</view>
+      </view>
+      <view class="item">
+        <view>总单位</view>
+        <view>{{tools.matchVal(unitAll, unitList, 'id')}}</view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="item">
+        <view>商品数量</view>
+        <view>1{{tools.matchVal(unitAll, unitList, 'id')}} = {{num}}{{tools.matchVal(unitSingle, unitList, 'id')}}</view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="item" wx:if="{{ userInfo.role_name === 'admin' && !out }}">
+        <view>进货单价</view>
+        <view>{{buySingle}}</view>
+      </view>
+      <view class="item" wx:if="{{!out}}">
+        <view>批发单价</view>
+        <view>{{midSingle}}</view>
+      </view>
+      <view class="item">
+        <view>零售单价</view>
+        <view>{{sellSingle}}</view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="item" wx:if="{{ userInfo.role_name === 'admin' && !out }}">
+        <view>进货总价</view>
+        <view>{{buyAll}}</view>
+      </view>
+      <view class="item" wx:if="{{!out}}">
+        <view>批发总价</view>
+        <view>{{midAll}}</view>
+      </view>
+      <view class="item">
+        <view>零售总价</view>
+        <view>{{sellAll}}</view>
+      </view>
+    </view>
   </view>
-  <van-goods-action-icon
-    icon="cart-o"
-    text="购物车"
-    bind:click="onClickIcon"
-  />
-  <van-goods-action-button
-    text="加入购物车"
-    type="warning"
-    bind:click="onClickButton"
-  />
-  <van-goods-action-button
-    text="立即购买"
-    bind:click="onClickButton"
-  />
-</van-goods-action>
+</view>

@@ -67,8 +67,8 @@ Page({
     nameList[index].name = detail.trim();
     this.setData({ nameList });
   },
-  // 失去焦点
-  onBlur(e) {
+  // 关闭
+  closeBtn(e) {
     const { index } = e.currentTarget.dataset;
     const dataList = JSON.parse(JSON.stringify(this.data.dataList));
     dataList[index].edit = false;
@@ -79,7 +79,7 @@ Page({
     const { id, index } = e.currentTarget.dataset;
     const { nameList } = this.data;
     const name = nameList[index].name;
-    if (name === this.data.dataList[index].name) {
+    if (name === this.data.dataList[index].name || !name) {
       const dataList = JSON.parse(JSON.stringify(this.data.dataList));
       dataList[index].edit = false;
       this.setData({ dataList });
@@ -135,8 +135,14 @@ Page({
   },
   // 确认
   async addType() {
+    const { name } = this.data;
+    if (!name) {
+      return wx.showToast({
+        title: '不能为空',
+        icon: 'none'
+      })
+    }
     try {
-      const { name } = this.data;
       wx.showLoading({
         title: '加载中...',
         mask: true

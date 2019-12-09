@@ -19,7 +19,7 @@
           {{item.name}}
         </view>
         <view class="good-box" wx:for="{{item.children}}" wx:for-item="todu" wx:key data-id="{{todu.id}}">
-          <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});"></view>
+          <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
           <view class="good-content">
             <view class="good-name">{{todu.name}}</view>
             <view class="good-desc">{{todu.desc}}</view>

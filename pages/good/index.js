@@ -144,5 +144,22 @@ Page({
     wx.navigateTo({
       url: `../good-edit/index?id=${id}`
     });
+  },
+  // 跳转到详情页面
+  linkDetail(e) {
+    console.log(e);
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../good-detail/index?id=${id}`
+    });
+  },
+  // 查看图片
+  viewImg(e) {
+    const { item } = e.currentTarget.dataset;
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
   }
 })

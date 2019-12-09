@@ -11,11 +11,12 @@
   background-color: #fff;
   margin: 0;
   border: none;
-  height: 50px;
+  height: 100rpx;
   position: relative;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 28rpx;
 }
 
 .VerticalNav.nav .cu-item.cur {
@@ -68,11 +69,18 @@
 .VerticalMain .last-view{
   min-height: 100%;
   margin-bottom: 0;
+  padding-bottom: 130rpx;
 }
 
 .good-box{
   display: flex;
-  padding: 30rpx;
+  padding: 30rpx 30rpx 30rpx 0;
+  margin-left: 30rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.type-box .good-box:last-of-type{
+  border: 0;
 }
 
 .good-box .cu-avatar{

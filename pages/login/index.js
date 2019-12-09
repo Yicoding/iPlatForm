@@ -17,25 +17,6 @@ Page({
       success: ({ data }) => {
         const { phone, password } = data;
         this.loginByWx(phone, password);
-      //   console.log('userInfo', data);
-      //   app.globalData.userInfo = data;
-      //   return wx.switchTab({
-      //     url: '../index/index'
-      //     // url: '../mine/index'
-      //     // url: '../order/index'
-      //     // url: '../shop/index'
-      //   });
-      //   wx.redirectTo({
-      //     url: '../order-detail/index'
-      //     // url: '../ship/index'
-      //     // url: '../good/index'
-      //     // url: '../search/index'
-      //     // url: '../good-edit/index'
-      //     // url: '../user/index'
-      //     // url: '../map/index'
-      //     // url: '../menu/index'
-      //     // url: '../unit/index'
-      //   })
       }
     })
   },
@@ -96,9 +77,24 @@ Page({
         key: 'userInfo',
         data
       });
-      wx.switchTab({
+      return wx.switchTab({
         url: '../index/index'
+        // url: '../mine/index'
+        // url: '../order/index'
+        // url: '../shop/index'
       });
+      wx.redirectTo({
+        // url: '../order-detail/index'
+        // url: '../ship/index'
+        // url: '../good/index'
+        url: '../good-detail/index'
+        // url: '../search/index'
+        // url: '../good-edit/index'
+        // url: '../user/index'
+        // url: '../map/index'
+        // url: '../menu/index'
+        // url: '../unit/index'
+      })
     } catch (e) {
       wx.removeStorage({
         key: 'userInfo'

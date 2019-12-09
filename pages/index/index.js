@@ -25,12 +25,17 @@ Page({
     shopNum: 0,
     totalPrice: 0,
     avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
+    isprvent: false,
   },
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
     this.setData({ userInfo: app.globalData.userInfo });
   },
   onShow() {
+    if (this.data.isprvent) {
+      this.setData({ isprvent: false });
+      return;
+    }
     this.getGoodsByCompany();
     this.getShoplist();
   },
@@ -592,5 +597,15 @@ Page({
     wx.navigateTo({
       url: '../search/index'
     });
+  },
+  // 查看图片
+  viewImg(e) {
+    const { item } = e.currentTarget.dataset;
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
+    this.setData({ isprvent: true });
   }
 })

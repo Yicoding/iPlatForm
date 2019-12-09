@@ -1,0 +1,25 @@
+<van-goods-action class="van-goods-actio">
+  <van-goods-action-icon
+    icon="like-o"
+    text="收藏"
+    bind:click="onClickIcon"
+  />
+  <view class="goods-collect" hover-class="goods-collect-click" hover-stay-time="{{100}}">
+    <text class="cuIcon-likefill lg text-pink"></text>
+    <text>收藏</text>
+  </view>
+  <van-goods-action-icon
+    icon="cart-o"
+    text="购物车"
+    bind:click="onClickIcon"
+  />
+  <van-goods-action-button
+    text="加入购物车"
+    type="warning"
+    bind:click="onClickButton"
+  />
+  <van-goods-action-button
+    text="立即购买"
+    bind:click="onClickButton"
+  />
+</van-goods-action>

@@ -20,6 +20,11 @@ Component({
      * 组件的方法列表
      */
     methods: {
-
+        onProduct() {
+            const { id } = this.data.data;
+            wx.navigateTo({
+                url: `../good-detail/index?id=${id}&out=${true}`
+            });
+        }
     }
 })

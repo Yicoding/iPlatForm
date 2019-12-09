@@ -101,6 +101,20 @@ var stateInfo = function(info) {
   return '已创建后取消';
 }
 
+// 匹配
+var matchVal = function(val, arr, name) {
+  if (arr.length === 0 || !name) {
+    return '--';
+  }
+  var todu;
+  arr.forEach(function(item) {
+    if (item[name] == val) {
+      todu = item;
+    }
+  })
+  return todu.name;
+}
+
 module.exports = {
   setSingle: setSingle,
   setAll: setAll,
@@ -108,5 +122,6 @@ module.exports = {
   multipleTitle: multipleTitle,
   sexTitle: sexTitle,
   toTimeFormat: toTimeFormat,
-  stateInfo: stateInfo
+  stateInfo: stateInfo,
+  matchVal: matchVal
 };

@@ -77,6 +77,7 @@ Page({
       console.log('getGoodsList', data.data);
       const goodList = data.data.map(item => {
         return {
+          id: item.id,
           image: item.coverImg,
           title: item.name,
           describe: item.desc,
