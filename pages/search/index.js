@@ -162,5 +162,13 @@ Page({
     setTimeout(() => {
       wx.navigateBack();
     }, 200);
-  }
+  },
+  // 跳转到详情页面
+  linkDetail(e) {
+    console.log(e);
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../good-detail/index?id=${id}`
+    });
+  },
 })
