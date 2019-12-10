@@ -4,8 +4,8 @@
   <van-cell-group>
     <van-field
       value="{{name}}"
-      label="客户名"
-      placeholder="请输入客户名"
+      label="客户姓名"
+      placeholder="请输入客户姓名"
       left-icon="contact"
       bind:input="changeVal"
       data-type="name"
@@ -14,7 +14,7 @@
       value="{{phone}}"
       label="客户手机"
       type="number"
-      placeholder="请输入客户手机号"
+      placeholder="请输入客户手机"
       left-icon="phone-o"
       bind:input="changeVal"
       data-type="phone"

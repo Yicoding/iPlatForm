@@ -14,6 +14,17 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+/**
+ * 数字格式化
+ */
+const AmtFormat = (val, fixed = 2) => {
+  if (!!!val) {
+    return '0.00';
+  }
+  return Number(val).toFixed(fixed);
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  AmtFormat: AmtFormat
 }

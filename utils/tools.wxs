@@ -31,11 +31,12 @@ var setAll = function (item) {
   if (!goodNum) {
     return 0;
   }
-  return unitType === 1 ? (
+  var total = unitType === 1 ? (
     priceType === 1 ? goodNum * sellSingle : priceType === 2 ? goodNum * midSingle : goodNum * writePrice
   ) : (
     priceType === 1 ? goodNum * sellAll : priceType === 2 ? goodNum * midAll : goodNum * writePrice
   );
+  return total.toFixed(2);
 }
 
 /**

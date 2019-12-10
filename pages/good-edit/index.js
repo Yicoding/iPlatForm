@@ -249,11 +249,11 @@ Page({
           typeName,
           num,
           buySingle,
-          buyAll: buySingle * num,
+          buyAll: (buySingle * num).toFixed(2),
           midSingle,
-          midAll: midSingle * num,
+          midAll: (midSingle * num).toFixed(2),
           sellSingle,
-          sellAll: sellSingle * num,
+          sellAll: (sellSingle * num).toFixed(2),
           desc,
           origin
         }

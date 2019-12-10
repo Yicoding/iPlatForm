@@ -48,6 +48,7 @@ Page({
       console.log('getShoplist', data);
       this.setData({ shopList: data });
       if (data.length === 0) {
+        this.setData({ totalPrice: 0 });
         return;
       }
       const totalPrice = data.reduce((total, item) => {
