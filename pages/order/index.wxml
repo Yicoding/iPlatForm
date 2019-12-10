@@ -43,9 +43,9 @@
       <text class="red">{{item.state === 1 ? '待付款' : item.state === 2 ? '待发货' : item.state === 3 ? '已完成' : '已取消'}}</text>
     </view>
   </van-cell>
-  <van-cell wx:if="{{item.customerName}}" title="客户姓名" value="{{item.customerName}}"></van-cell>
-  <van-cell wx:if="{{item.customerPhone}}" title="客户手机" value="{{item.customerPhone}}"></van-cell>
-  <van-cell wx:if="{{item.customerSite}}" title="客户地址" value="{{item.customerSite}}" border="{{ false }}"></van-cell>
+  <van-cell wx:if="{{item.customerName}}" title="客户姓名" value="{{item.customerName}}" />
+  <van-cell wx:if="{{item.customerPhone}}" title="客户手机" value="{{item.customerPhone}}" />
+  <van-cell wx:if="{{item.customerSite}}" title="客户地址" value="{{item.customerSite}}" border="{{ false }}" />
   <wux-white-space />
   <van-steps
     wx:if="{{item.state !== 4}}"

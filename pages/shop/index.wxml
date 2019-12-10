@@ -25,7 +25,7 @@
   </van-swipe-cell>
   <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopList}}" wx:key>
     <view class="good-item">
-      <image src="{{item.coverImg}}" mode="aspectFill" />
+      <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
       <view class="good-info">
         <view class="good-name">{{item.name}}</view>
         <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName}}、{{

@@ -12,6 +12,7 @@ Page({
     active: 0,
     isIpx: app.globalData.isIpx,
     userInfo: {},
+    isprvent: false,
   },
   // 页面出现
   onLoad(options) {
@@ -24,6 +25,10 @@ Page({
     this.getOrderDetailList(id);
   },
   onShow() {
+    if (this.data.isprvent) {
+      this.setData({ isprvent: false });
+      return;
+    }
     const { id } = this.data;
     this.getOrderDetail(id);
   },
@@ -265,5 +270,15 @@ Page({
     } finally {
       wx.hideLoading();
     }
+  },
+  // 查看图片
+  viewImg(e) {
+    const { item } = e.currentTarget.dataset;
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
+    this.setData({ isprvent: true });
   }
 })

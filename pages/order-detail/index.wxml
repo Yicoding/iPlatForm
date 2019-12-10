@@ -36,19 +36,9 @@
     <van-button wx:if="{{orderInfo.state === 2}}" type="primary" size="small" bindtap="linkShip">去发货</van-button>
   </view>
 </van-cell>
-<van-cell wx:if="{{orderInfo.customerName}}">
-  <view slot="title" class="order-line">
-    <text>客户名称</text>
-    <text class="red">{{orderInfo.customerName}}</text>
-  </view>
-</van-cell>
-<van-cell wx:if="{{orderInfo.customerPhone}}" title="客户手机号" value="{{orderInfo.customerPhone}}">
-  <view slot="title" class="order-line">
-    <text>客户手机号</text>
-    <text>{{orderInfo.customerPhone}}</text>
-  </view>
-</van-cell>
-<van-cell wx:if="{{orderInfo.customerSite}}" title="客户地址" label="{{orderInfo.customerSite}}" border="{{ false }}">
+<van-cell wx:if="{{orderInfo.customerName}}" title="客户姓名" value="{{orderInfo.customerName}}" />
+<van-cell wx:if="{{orderInfo.customerPhone}}" title="客户手机" value="{{orderInfo.customerPhone}}" />
+<van-cell wx:if="{{orderInfo.customerSite}}" title="客户地址" value="{{orderInfo.customerSite}}" border="{{ false }}">
 </van-cell>
 <van-cell wx:if="{{orderInfo.state === 4}}" title="创建时间" value="{{orderInfo.createUser.name + ' ' + tools.toTimeFormat(orderInfo.createTime)}}" />
 <van-cell wx:if="{{orderInfo.state === 4 && orderInfo.payTime}}" title="付款时间" value="{{orderInfo.payUser.name + ' ' + tools.toTimeFormat(orderInfo.payTime)}}" />
@@ -63,7 +53,7 @@
 </block>
 <view class="good-box {{isIpx && orderInfo.state !== 4 && 'good-box-iphonex'}}">
   <view class="good-item" wx:for="{{orderList}}" wx:key>
-    <image src="{{item.coverImg}}" mode="aspectFill" />
+    <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
     <view class="good-info">
       <view class="good-name">{{item.name}}</view>
       <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll}}、单价：{{item.sale}}</view>

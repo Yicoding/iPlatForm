@@ -17,13 +17,18 @@ Page({
       }],
     },
     loading: true,
-    userInfo: {}
+    userInfo: {},
+    isprvent: false,
   },
   onLoad() {
     this.setData({ userInfo: app.globalData.userInfo });
   },
   // 页面出现
   onShow() {
+    if (this.data.isprvent) {
+      this.setData({ isprvent: false });
+      return;
+    }
     this.getShoplist();
     this.getShoplistInValid();
   },
@@ -264,5 +269,15 @@ Page({
     wx.switchTab({
       url: '../index/index'
     })
+  },
+  // 查看图片
+  viewImg(e) {
+    const { item } = e.currentTarget.dataset;
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
+    this.setData({ isprvent: true });
   }
 })
