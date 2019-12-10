@@ -88,5 +88,7 @@ App({
     userInfo: {},
     isIpx: false, // 是否为iPhone X
     isAlertGood: false,
+    goodItem: {},
+    showItem: false,
   }
 })

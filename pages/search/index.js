@@ -144,5 +144,23 @@ Page({
     console.log('labelSearch', e);
     const { value } = e.currentTarget.dataset;
     this.selectComponent("#search").setText(value);
+  },
+  // 查看图片
+  viewImg(e) {
+    const { item } = e.currentTarget.dataset;
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
+  },
+  // 去选规格
+  showSpace(e) {
+    const { item } = e.currentTarget.dataset;
+    app.globalData.goodItem = item;
+    app.globalData.showItem = true;
+    setTimeout(() => {
+      wx.navigateBack();
+    }, 200);
   }
 })

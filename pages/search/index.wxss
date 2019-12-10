@@ -161,3 +161,17 @@ page{
 .good-price text{
   font-size: 20rpx;
 }
+
+.good-btn{
+  color: #fff;
+  font-size: 24rpx;
+  background: #ff976a;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  position: relative;
+}

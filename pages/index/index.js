@@ -36,6 +36,23 @@ Page({
       this.setData({ isprvent: false });
       return;
     }
+    if (app.globalData.showItem) {
+      app.globalData.showItem = false;
+      console.log('goodItem', {
+        currentTarget: {
+          dataset: {
+            data: app.globalData.goodItem
+          }
+        }
+      })
+      this.showSpace({
+        currentTarget: {
+          dataset: {
+            item: app.globalData.goodItem
+          }
+        }
+      });
+    }
     this.getGoodsByCompany();
     this.getShoplist();
   },
@@ -315,8 +332,7 @@ Page({
   },
   // 打开弹窗
   showSpace(e) {
-    const data = e.currentTarget.dataset;
-    const { item } = data;
+    const { item } = e.currentTarget.dataset;
     console.log(item);
     const { id } = item;
     const todu = this.data.shopList.find(item => (item.good_id === id && Number(item.unitType) === 1));

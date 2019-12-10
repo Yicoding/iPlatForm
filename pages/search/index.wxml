@@ -62,6 +62,7 @@
           <text>￥</text>{{item.sellSingle}}
         </view>
       </view>
+      <view class="good-btn" bindtap="showSpace" data-item="{{item}}">选规格</view>
     </view>
   </view>
 </view>
