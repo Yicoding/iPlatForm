@@ -56,7 +56,8 @@
       <view class="cu-avatar round lg" style="background-image:url({{item.coverImg}});" bindtap="viewImg" data-item="{{item.coverImg}}"></view>
       <view class="good-content" bindtap="linkDetail"  data-id="{{item.id}}">
         <view class="good-name">{{item.name}}</view>
-        <view class="good-desc">{{item.desc}}</view>
+        <!-- <view class="good-desc">{{item.desc}}</view> -->
+        <view wx:if="{{item.num != '1'}}" class="good-num">1{{item.unitDouble.name}}有{{item.num}}{{item.unitOne.name}}</view>
         <view class="good-num">总销售 {{item.saleNum}} 次</view>
         <view class="good-price">
           <text>￥</text>{{item.sellSingle}}

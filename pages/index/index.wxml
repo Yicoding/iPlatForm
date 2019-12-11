@@ -22,7 +22,8 @@
           <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
           <view class="good-content" bindtap="onProduct" data-id="{{todu.id}}">
             <view class="good-name">{{todu.name}}</view>
-            <view class="good-desc">{{todu.desc}}</view>
+            <!-- <view class="good-desc">{{todu.desc}}</view> -->
+            <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
             <view class="good-num">总销售 {{todu.saleNum}} 次</view>
             <view class="good-price">
               <text>￥</text>{{todu.sellSingle}}
@@ -53,7 +54,7 @@
       <wux-white-space />
       <view>
         <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{good.unitOne.name}}</van-button>
-        <van-button type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{good.unitDouble.name}}</van-button>
+        <van-button wx:if="{{good.unitOne.id !== good.unitDouble.id}}" type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{good.unitDouble.name}}({{good.num}}{{good.unitOne.name}})</van-button>
       </view>
       <wux-white-space size="large" />
       <wux-white-space size="small" />
@@ -78,7 +79,7 @@
     <wux-white-space size="large" />
     <view class="space-txt">
       <text>已选规格：</text>
-      {{goodNum}}{{goodUnitType === 1 ? good.unitOne.name : good.unitDouble.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{tools.setSingle({
+      {{goodNum}}{{goodUnitType === 1 ? good.unitOne.name : good.unitDouble.name + ' x ' + good.num + good.unitOne.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{tools.setSingle({
         unitType: goodUnitType,
         priceType: goodPriceType,
         sellSingle: good.sellSingle,

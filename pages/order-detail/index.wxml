@@ -56,7 +56,7 @@
     <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
     <view class="good-info">
       <view class="good-name">{{item.name}}</view>
-      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll}}、单价：{{item.sale}}</view>
+      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingle : item.unitAll + ' x ' + item.unitDecimal + item.unitSingle}}、单价：{{item.sale}}</view>
       <view class="space-info">
         <view class="space-price">
           <text>总价：</text>

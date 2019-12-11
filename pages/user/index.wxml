@@ -9,7 +9,7 @@
         <view class="good-tip">{{item.phone}}</view>
         <view class="space-info">{{item.role_fullName}}</view>
         <view class="edit" wx:if="{{ userInfo.role_name === 'admin' }}">
-          <van-icon name="edit" size="30px" color="#3963bc" bindtap="editUser" data-id="{{item.id}}" />
+          <van-icon name="edit" size="30px" color="#3963bc" catchtap="editUser" data-id="{{item.id}}" />
         </view>
       </view>
     </view>

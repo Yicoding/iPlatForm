@@ -35,7 +35,7 @@
     <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
     <view class="good-info">
       <view class="good-name">{{item.name}}</view>
-      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName}}、{{
+      <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName + ' x ' + item.unitDecimal + item.unitSingleName}}、{{
           item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''
         }}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{tools.setSingle(item)}}</text></view>
       <view class="space-info">
