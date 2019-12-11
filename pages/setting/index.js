@@ -46,10 +46,19 @@ Page({
       success: (res) => {
         console.log('res', res);
         const { result } = res;
-        const id = result.match(/D(.+)#/)[1];
-        wx.navigateTo({
-          url: `../order-detail/index?id=${id}`
-        });
+        const arr = result.match(/D(.+)#/);
+        if (arr && arr.length > 0 && arr[1]) {
+          const id = arr[1];
+          wx.navigateTo({
+            url: `../order-detail/index?id=${id}`
+          });
+        } else {
+          wx.showToast({
+            title: '无效的二维码，请更换',
+            duration: 2500,
+            icon: 'none'
+          })
+        }
       },
       fail: (err) => {
         console.log('err', err);
