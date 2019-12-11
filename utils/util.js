@@ -24,7 +24,16 @@ const AmtFormat = (val, fixed = 2) => {
   return Number(val).toFixed(fixed);
 }
 
+function AmtFixed(val) {
+  var n = val.toString();
+  if (/\./.test(n) && n.split('.')[1].length > 2) {
+    return val.toFixed(2);
+  }
+  return val;
+}
+
 module.exports = {
   formatTime: formatTime,
-  AmtFormat: AmtFormat
+  AmtFormat: AmtFormat,
+  AmtFixed: AmtFixed
 }

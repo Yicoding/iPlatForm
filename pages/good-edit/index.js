@@ -5,6 +5,7 @@ const config = require('../../config');
 var { uploadFile } = require('../../utils/upload');
 const { ajax } = require('../../utils/ajax');
 import { $wuxSelect } from '../../miniprogram_npm/wux-weapp/index';
+import { AmtFixed } from '../../utils/util';
 
 Page({
   data: {
@@ -249,11 +250,11 @@ Page({
           typeName,
           num,
           buySingle,
-          buyAll: (buySingle * num).toFixed(2),
+          buyAll: AmtFixed(buySingle * num),
           midSingle,
-          midAll: (midSingle * num).toFixed(2),
+          midAll: AmtFixed(midSingle * num),
           sellSingle,
-          sellAll: (sellSingle * num).toFixed(2),
+          sellAll: AmtFixed(sellSingle * num),
           desc,
           origin
         }
