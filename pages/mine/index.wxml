@@ -6,6 +6,7 @@
   </view>
   <van-icon name="arrow" size="24px" color="#999" />
 </view>
+
 <wux-white-space />
 <block wx:if="{{userInfo.role_name === 'admin'}}">
   <view class="grid-box">

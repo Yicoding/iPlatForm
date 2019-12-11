@@ -122,5 +122,5 @@ Page({
     wx.navigateTo({
       url: `../user-detail/index?id=${id}`
     });
-  }
+  },
 })

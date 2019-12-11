@@ -39,5 +39,21 @@ Page({
         });
       }
     })
+  },
+  // 打开相机
+  showCamare() {
+    wx.scanCode({
+      success: (res) => {
+        console.log('res', res);
+        const { result } = res;
+        const id = result.match(/D(.+)#/)[1];
+        wx.navigateTo({
+          url: `../order-detail/index?id=${id}`
+        });
+      },
+      fail: (err) => {
+        console.log('err', err);
+      }
+    })
   }
 })
