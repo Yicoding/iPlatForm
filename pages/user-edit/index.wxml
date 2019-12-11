@@ -1,7 +1,7 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 <view class="food {{isIpx ? 'foodX' : ''}}">
-  <image class="coverImg" mode="aspectFill" src="{{avatar}}" />
+  <image class="coverImg" mode="aspectFill" src="{{avatar || coverImg}}" />
   <view class="editBtn" catchtap="uploadCover">修改头像</view>
   <van-field
     value="{{ name }}"

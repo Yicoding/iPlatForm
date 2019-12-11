@@ -23,7 +23,8 @@ Page({
     age: '',
     role_id: null,
     sex: 'man',
-    avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
+    coverImg: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
+    avatar: '',
     sign: '',
     company_id: null,
     editBySelf: false
@@ -44,7 +45,7 @@ Page({
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
-    let item = this.data.coverImg
+    let item = this.data.avatar
     let urls = [item]
     wx.previewImage({
       current: item, // 当前显示图片的http链接
@@ -244,7 +245,7 @@ Page({
           return uploadFile(item)
         })
         Promise.all(promises).then((args) => {
-          this.setData({ coverImg: args[0] })
+          this.setData({ avatar: args[0] })
           wx.hideLoading()
         }).catch(err => {
           wx.hideLoading()

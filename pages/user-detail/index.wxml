@@ -1,0 +1,38 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<view class="food">
+  <image class="coverImg" mode="aspectFill" src="{{avatar || coverImg}}" />
+  <view class="title">用户信息</view>
+  <view class="container">
+    <view class="line">
+      <view class="item">
+        <view>昵称</view>
+        <view>{{name}}</view>
+      </view>
+      <view class="item">
+        <view>手机号</view>
+        <view>{{phone}}</view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="item">
+        <view>性别</view>
+        <view>{{sex === 'man' ? '男士' : '女士'}}</view>
+      </view>
+      <view class="item">
+        <view>年龄</view>
+        <view>{{age}}</view>
+      </view>
+      <view class="item">
+        <view>用户角色</view>
+        <view>{{role_name === 'admin' ? '公司管理员' : '主力员工'}}</view>
+      </view>
+    </view>
+    <view class="line">
+      <view class="item">
+        <view>个性签名</view>
+        <view>{{sign}}</view>
+      </view>
+    </view>
+  </view>
+</view>

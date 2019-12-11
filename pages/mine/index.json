@@ -8,6 +8,7 @@
     "loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
     "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
     "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
     "water-card": "/components/water-card/index",
     "water-flow": "/miniprogram_npm/lin-ui/water-flow/index"
   }

@@ -1,9 +1,10 @@
-<view class="user-box">
-  <image src="{{ avatar }}" mode="aspectFill" />
+<view class="user-box" bindtap="linkUser">
+  <image src="{{ avatar }}" mode="aspectFill" catchtap="viewImg" />
   <view class="user-info">
     <view>{{ userInfo.name }}</view>
     <view>所属公司：{{ userInfo.companyName }}</view>
   </view>
+  <van-icon name="arrow" size="24px" color="#999" />
 </view>
 <wux-white-space />
 <block wx:if="{{userInfo.role_name === 'admin'}}">

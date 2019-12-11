@@ -90,7 +90,7 @@ Page({
       })
     } catch (e) {
       console.log('getGoodsByCompany报错', e);
-    }finally{
+    } finally {
       wx.stopPullDownRefresh();
       this.timee && clearTimeout(this.timee);
       this.timee = null;
@@ -230,7 +230,7 @@ Page({
         shopList[index].priceType = value;
         this.setData({ shopList });
         const todu = this.data.todu;
-        
+
         if (num - this.data.goodNum) { // 数量变化
           this.setData({
             totalPrice: Number(this.data.totalPrice) + Number((num - this.data.goodNum) * (this.data.goodUnitType === 1 ? (
@@ -623,5 +623,12 @@ Page({
       urls: urls // 需要预览的图片http链接列表
     });
     this.setData({ isprvent: true });
+  },
+  // 查看商品详情
+  onProduct(e) {
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../good-detail/index?id=${id}&out=${true}`
+    });
   }
 })

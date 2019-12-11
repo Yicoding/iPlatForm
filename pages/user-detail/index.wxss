@@ -1,0 +1,64 @@
+page{
+  background: #fff;
+  color: #333;
+}
+.food{
+  padding-bottom: 70rpx;
+}
+.coverImg{
+  width: 100%;
+  height: 550rpx;
+}
+
+.title{
+  color: #000;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+  padding: 50rpx;
+  position: relative;
+  margin-bottom: 60rpx;
+}
+
+.title:after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  border-radius: 2rpx;
+  background: darkred;
+}
+
+.container{
+  padding: 0 40rpx;
+}
+
+.line{
+  display: flex;
+  border-bottom: 1rpx solid #ededed;
+  margin-bottom: 50rpx;
+}
+
+.item{
+  flex: 1;
+  padding-bottom: 30rpx;
+}
+
+.line .item:first-of-type{
+  margin-right: 20rpx;
+}
+
+.item view:first-of-type{
+  color: #666;
+  font-size: 24rpx;
+}
+.item view:last-of-type{
+  color: #55464d;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 10rpx;
+}
+

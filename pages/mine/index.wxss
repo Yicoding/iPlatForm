@@ -3,11 +3,12 @@
   padding: 30rpx;
   display: flex;
   justify-items: center;
+  align-items: center;
 }
 
 .user-box image{
   width: 138rpx;
-  height: 120rpx;
+  height: 138rpx;
   border-radius: 50%;
 }
 

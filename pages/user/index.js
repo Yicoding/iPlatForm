@@ -104,5 +104,21 @@ Page({
     wx.navigateTo({
       url: `../user-edit/index?id=${id}`
     });
+  },
+  // 查看图片
+  viewImg(e) {
+    const { item } = e.currentTarget.dataset;
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
+  },
+  // 跳转到用户详情
+  linkUser(e) {
+    const { id } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `../user-detail/index?id=${id}`
+    });
   }
 })

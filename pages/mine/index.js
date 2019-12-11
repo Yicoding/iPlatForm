@@ -31,7 +31,7 @@ Page({
   onLoad() {
     this.setData({
       userInfo: app.globalData.userInfo,
-      avatar: app.globalData.userInfo.sex === 'man' ? man : woman
+      avatar: app.globalData.userInfo.avatar || (app.globalData.userInfo.sex === 'man' ? man : woman)
     });
     this.getGoodsList();
   },
@@ -41,8 +41,8 @@ Page({
       app.globalData.editBySelf = false;
       this.setData({
         userInfo: app.globalData.userInfo,
-        avatar: app.globalData.userInfo.sex === 'man' ? man : woman
-    });
+        avatar: app.globalData.userInfo.avatar || (app.globalData.userInfo.sex === 'man' ? man : woman)
+      });
     }
   },
   // 监听用户下拉动作
@@ -102,6 +102,25 @@ Page({
     const { url } = e.currentTarget.dataset;
     wx.navigateTo({
       url: `../${url}/index`
+    });
+  },
+  // 查看图片
+  viewImg(e) {
+    const item = app.globalData.userInfo.avatar;
+    if (!item) {
+      return;
+    }
+    const urls = [item]
+    wx.previewImage({
+      current: item, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    });
+  },
+  // 跳转到用户详情
+  linkUser() {
+    const { id } = this.data.userInfo;
+    wx.navigateTo({
+      url: `../user-detail/index?id=${id}`
     });
   }
 })

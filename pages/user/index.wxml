@@ -3,8 +3,8 @@
 <view class="good-box">
   <van-swipe-cell right-width="{{ 65 }}" wx:for="{{userList}}" wx:key disabled="{{ userInfo.role_name !== 'admin' }}">
     <view class="good-item">
-      <image src="{{item.avatar || avatar}}" mode="aspectFill" />
-      <view class="good-info">
+      <image src="{{item.avatar || avatar}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.avatar || avatar}}" />
+      <view class="good-info" bindtap="linkUser" data-id="{{item.id}}">
         <view class="good-name">{{item.name}}({{item.sex === 'man' ? '男士' : '女士'}})</view>
         <view class="good-tip">{{item.phone}}</view>
         <view class="space-info">{{item.role_fullName}}</view>
