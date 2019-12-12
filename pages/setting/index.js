@@ -46,7 +46,9 @@ Page({
       success: (res) => {
         console.log('res', res);
         const { result } = res;
-        const arr = result.match(/D(.+)#/);
+        // const arr = result.match(/D(.+)#/);
+        const arr = result.match(/([0-9]+)#/);
+        console.log('arr', arr);
         if (arr && arr.length > 0 && arr[1]) {
           const id = arr[1];
           wx.navigateTo({
