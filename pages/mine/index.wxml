@@ -52,3 +52,7 @@
   type="end"
   end-text="我是有底线的"
 />
+
+<view class="to-top" bindtap="toTop" hidden="{{!showTop}}">
+  <image src="/images/icon/top.png" mode="aspectFill" />
+</view>

@@ -24,7 +24,8 @@ Page({
       { image: 'cart', text: '商品列表', url: 'good', color: '#34BFA3' },
       { image: 'order', text: '系统列表', url: 'map' },
       { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
-    ]
+    ],
+    showTop: false,
   },
   pageIndex: 0,
   pageSize: 10,
@@ -123,4 +124,17 @@ Page({
       url: `../user-detail/index?id=${id}`
     });
   },
+  // 回到顶部
+  toTop() {
+    wx.pageScrollTo({ scrollTop: 0, duration: 500 });
+  },
+  // 监听页面滚动距离
+  onPageScroll: function (e) {
+    console.log(e.scrollTop);
+    if (e.scrollTop > 1000) {
+      this.setData({ showTop: true });
+    } else {
+      this.setData({ showTop: false });
+    }
+  }
 })

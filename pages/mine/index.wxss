@@ -37,3 +37,14 @@
   margin-top: 10rpx;
 }
 
+.to-top{
+  position: fixed;
+  bottom: 100rpx;
+  right: 50rpx;
+  z-index: 999;
+}
+
+.to-top image{
+  width: 100rpx;
+  height: 100rpx;
+}
