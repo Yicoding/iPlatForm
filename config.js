@@ -136,9 +136,8 @@ var config = {
         removeShop: `${host}/removeShop`, // 获取购物车列表easy版
         removeShopById: `${host}/removeShopById`, // 获取购物车列表easy版
         removeShopByUser: `${host}/removeShopByUser`, // 获取购物车列表easy版
-        printOrderById: `${hostServer}/printOrderById`, // 打印
-        putObject: `${hostServer}/putObject`, // 打印
-        // putObject: `http://localhost:3003/putObject`, // 打印
+        printOrderById: `${host}/printOrderById`, // 打印
+        putObject: `${host}/putObject`, // 打印
     }
 };
 
