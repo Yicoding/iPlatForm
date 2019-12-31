@@ -199,7 +199,7 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.removeGoodsType,
-        method: 'DELETE',
+        method: 'PUT',
         data: {
           id
         }

@@ -153,7 +153,7 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.removeShopByUser,
-        method: 'DELETE',
+        method: 'PUT',
         data: {
           user_id: this.data.userInfo.id
         }

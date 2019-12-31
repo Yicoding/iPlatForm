@@ -275,7 +275,7 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.removeShop,
-        method: 'DELETE',
+        method: 'PUT',
         data: {
           good_id: this.data.good.id,
           unitType: this.data.goodUnitType,

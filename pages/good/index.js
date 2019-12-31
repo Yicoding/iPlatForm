@@ -120,7 +120,7 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.removeGoods,
-        method: 'DELETE',
+        method: 'PUT',
         data: { id }
       });
       console.log('removeGoods', data);

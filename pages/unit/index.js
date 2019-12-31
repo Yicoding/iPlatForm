@@ -198,7 +198,7 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.removeUnit,
-        method: 'DELETE',
+        method: 'PUT',
         data: {
           id
         }

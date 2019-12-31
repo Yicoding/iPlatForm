@@ -82,7 +82,7 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.removeUser,
-        method: 'DELETE',
+        method: 'PUT',
         data: {
           id
         }
