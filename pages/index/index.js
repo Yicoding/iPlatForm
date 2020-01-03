@@ -65,6 +65,7 @@ Page({
   },
   // 按公司查找所有商品类型+类型下的商品列表
   async getGoodsByCompany() {
+    this.timee && clearTimeout(this.timee);
     this.timee = setTimeout(() => {
       wx.showLoading({
         title: '加载中...',
@@ -92,9 +93,9 @@ Page({
       console.log('getGoodsByCompany报错', e);
     } finally {
       wx.stopPullDownRefresh();
+      wx.hideLoading();
       this.timee && clearTimeout(this.timee);
       this.timee = null;
-      wx.hideLoading();
     }
   },
   // 查询购物车列表
