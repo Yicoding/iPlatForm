@@ -39,7 +39,6 @@
         "pagePath": "pages/shop/index",
         "text": "宝箱",
         "iconPath": "images/icon/gift-box.png",
-        
         "selectedIconPath": "images/icon/gift-box.png"
       },
       {
@@ -58,6 +57,9 @@
     "color": "#c2c4d0",
     "selectedColor": "#ffcd32",
     "backgroundColor": "#252934"
+  },
+  "networkTimeout": {
+    "request": 10000
   },
   "sitemapLocation": "sitemap.json"
 }
