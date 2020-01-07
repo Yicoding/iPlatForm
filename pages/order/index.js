@@ -120,7 +120,7 @@ Page({
     } else {
       this.setData({ state: index });
     }
-    this.setData({active: index});
+    this.setData({ active: index });
     wx.pageScrollTo({
       scrollTop: 0,
       success: () => {
@@ -131,8 +131,11 @@ Page({
   },
   // 打开日历
   openCalendar() {
+    const now = new Date();
+    const maxDate = now.getTime();
     $wuxCalendar().open({
       value: this.data.value,
+      maxDate,
       onChange: (values, displayValues) => {
         if (displayValues[0] === this.data.value[0]) {
           return;
