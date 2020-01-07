@@ -13,15 +13,15 @@
     active="{{ active }}"
     bind:change="changeTabs"
   >
+    <van-tab title="全部"></van-tab>
     <van-tab title="待付款"></van-tab>
     <van-tab title="待发货"></van-tab>
     <van-tab title="已完成"></van-tab>
     <van-tab title="已取消"></van-tab>
-    <van-tab title="全部"></van-tab>
   </van-tabs>
 </view>
 <view wx:for="{{orderList}}" wx:key class="order-item" bindtap="linkDetail" data-id="{{item.id}}">
-  <view wx:if="{{active === 4}}">
+  <view wx:if="{{active === 0}}">
     <state-box state="{{item.state}}" />
   </view>
   <van-cell>
