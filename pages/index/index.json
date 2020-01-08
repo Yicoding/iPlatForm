@@ -12,6 +12,8 @@
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-stepper": "/miniprogram_npm/vant-weapp/stepper/index",
     "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
-    "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "i-index": "/miniprogram_npm/iview/index/index",
+    "i-index-item": "/miniprogram_npm/iview/index-item/index"
   }
 }
