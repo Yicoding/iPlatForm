@@ -10,7 +10,7 @@ Page({
   data: {
     active: 0,
     userInfo: {},
-    state: '1',
+    state: '',
     orderList: [],
     value: [],
     hasMore: false,
@@ -115,12 +115,12 @@ Page({
   changeTabs(e) {
     console.log(e)
     const { index } = e.detail;
-    if (index === 4) {
+    if (index === 0) {
       this.setData({ state: '' });
     } else {
-      this.setData({ state: index + 1 });
+      this.setData({ state: index });
     }
-    this.setData({active: index});
+    this.setData({ active: index });
     wx.pageScrollTo({
       scrollTop: 0,
       success: () => {
@@ -131,8 +131,11 @@ Page({
   },
   // 打开日历
   openCalendar() {
+    const now = new Date();
+    const maxDate = now.getTime();
     $wuxCalendar().open({
       value: this.data.value,
+      maxDate,
       onChange: (values, displayValues) => {
         if (displayValues[0] === this.data.value[0]) {
           return;
