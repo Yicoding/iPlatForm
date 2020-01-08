@@ -104,7 +104,7 @@ Component({
           offsetX = 0,
           offsetY = 0,
           iconSize = '60',
-          iconColor = '#fff'
+          iconColor = ''
         } = options;
         this.setData({
           title,
@@ -124,7 +124,7 @@ Component({
         this.changeStatus();
         return this;
       };
-      wx.lin.hideMessage = () => {
+      wx.lin.hideToast = () => {
         this.setData({
           status: false
         });

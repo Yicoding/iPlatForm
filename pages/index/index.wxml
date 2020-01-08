@@ -4,7 +4,36 @@
 <view bindtap="linkSearch">
   <search disabled="{{true}}" />
 </view>
-<view class="VerticalBox">
+<view class="index-box" wx:if="{{checked}}">
+  <van-index-bar
+    index-list="{{ words }}"
+    scroll-top="{{ scrollTop }}"
+  >
+    <view
+      wx:for="{{ cities }}"
+      wx:for-item="item"
+      wx:key="item"
+      wx:if="{{item.list.length > 0}}"
+    >
+      <view class="line-bottom">
+        <van-index-anchor index="{{ item.key }}" />
+      </view>
+      <view class="good-box" wx:for="{{item.list}}" wx:for-item="todu" wx:key data-id="{{todu.id}}">
+        <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
+        <view class="good-content" bindtap="onProduct" data-id="{{todu.id}}">
+          <view class="good-name">{{todu.name}}</view>
+          <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
+          <view class="good-num">总销售 {{todu.saleNum}} 次</view>
+          <view class="good-price">
+            <text>￥</text>{{todu.sellSingle}}
+          </view>
+        </view>
+        <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
+      </view>
+    </view>
+  </van-index-bar>
+</view>
+<view class="VerticalBox" wx:else>
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
     <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
       {{item.name}}
@@ -22,7 +51,6 @@
           <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
           <view class="good-content" bindtap="onProduct" data-id="{{todu.id}}">
             <view class="good-name">{{todu.name}}</view>
-            <!-- <view class="good-desc">{{todu.desc}}</view> -->
             <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
             <view class="good-num">总销售 {{todu.saleNum}} 次</view>
             <view class="good-price">
@@ -159,5 +187,20 @@
   bind:submit="onSubmit"
   safe-area-inset-bottom="{{false}}"
 >
-  <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
+  <view class="sub-bar">
+    <wux-icon type="ios-log-in" bindtap="onClose" />
+    <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
+  </view>
 </van-submit-bar>
+<!-- 左侧弹出层 -->
+<van-popup
+  show="{{ showPop }}"
+  position="left"
+  custom-style="height: 100%;"
+  bind:close="onClose"
+>
+  <view class="pop-box">
+    <van-cell title="切换页面" border="{{false}}" />
+    <van-switch custom-class="switch" size="20px" checked="{{ checked }}" bind:change="onChangeSwitch" />
+  </view>
+</van-popup>

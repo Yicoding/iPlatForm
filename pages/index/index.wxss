@@ -79,7 +79,7 @@
   border-bottom: 1rpx solid #efefef;
 }
 
-.type-box .good-box:last-of-type{
+.good-box:last-of-type{
   border: 0;
 }
 
@@ -281,7 +281,28 @@
 
 .shop-num{
   font-size: 60rpx;
-  margin-left: 120rpx;
+  margin-left: 60rpx;
+  position: relative;
+  top: 8rpx;
 }
 
-
+/*首字母布局*/
+.index-box{
+  padding-bottom: 110rpx;
+  background: #fff;
+}
+.line-bottom{
+  background: #f8f8f8;
+}
+.sub-bar{
+  display: flex;
+  align-items: center;
+  padding-left: 5rpx;
+}
+.pop-box{
+  background: #fff;
+  height: 100%;
+}
+.switch{
+  margin-left: 15px;
+}

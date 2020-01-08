@@ -1,5 +1,6 @@
 const app = getApp();
 const config = require('../../config');
+const { convertAll } = require('../../utils/util')
 
 const { ajax } = require('../../utils/ajax');
 
@@ -26,10 +27,22 @@ Page({
     totalPrice: 0,
     avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
     isprvent: false,
+    words: [],
+    cities: [],
+    scrollTop: 0,
+    showPop: false,
+    checked: false
   },
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
     this.setData({ userInfo: app.globalData.userInfo });
+    wx.getStorage({
+      key: 'checked',
+      success: ({ data }) => {
+        console.log('checked', data)
+        this.setData({ checked: data });
+      }
+    })
   },
   onShow() {
     if (this.data.isprvent) {
@@ -53,15 +66,23 @@ Page({
         }
       });
     }
-    this.getGoodsByCompany();
     this.getShoplist();
-  },
-  onReady() {
+    setTimeout(() => {
+      if (this.data.checked) {
+        this.getGoodsList();
+      } else {
+        this.getGoodsByCompany();
+      }
+    }, 10);
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
-    this.getGoodsByCompany();
     this.getShoplist();
+    if (this.data.checked) {
+      this.getGoodsList();
+    } else {
+      this.getGoodsByCompany();
+    }
   },
   // 按公司查找所有商品类型+类型下的商品列表
   async getGoodsByCompany() {
@@ -91,6 +112,62 @@ Page({
       })
     } catch (e) {
       console.log('getGoodsByCompany报错', e);
+    } finally {
+      wx.stopPullDownRefresh();
+      wx.hideLoading();
+      this.timee && clearTimeout(this.timee);
+      this.timee = null;
+    }
+  },
+  // 按公司查找所有商品
+  async getGoodsList() {
+    this.timee && clearTimeout(this.timee);
+    this.timee = setTimeout(() => {
+      wx.showLoading({
+        title: '加载中...',
+        mask: true
+      });
+    }, 350);
+    try {
+      const { data } = await ajax({
+        url: config.service.getGoodsList,
+        data: {
+          company_id: this.data.userInfo.company_id,
+          pageSize: 99999
+        }
+      });
+      console.log('getGoodsList', data.data);
+      const storeCity = new Array();
+      const words = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      words.forEach((item, index) => {
+        storeCity[index] = {
+          key: item,
+          list: []
+        }
+      });
+      const cities = data.data.map(item => {
+        return Object.assign({}, {
+          pinyin: convertAll(item.name)
+        }, item);
+      });
+      console.log('cities', cities);
+      cities.forEach(item => {
+        let firstName = item.pinyin.substring(0, 1);
+        let index = words.indexOf(firstName);
+        storeCity[index].list.push(Object.assign({}, {
+          key: firstName
+        }, item));
+      });
+      if (JSON.parse(JSON.stringify(storeCity)) == JSON.parse(JSON.stringify(this.data.cities))) {
+        return console.log('不需要重新渲染list')
+      }
+      console.log('storeCity', storeCity);
+      this.setData({
+        words,
+        cities: storeCity
+      });
+    } catch (e) {
+      console.log('getGoodsList报错', e);
     } finally {
       wx.stopPullDownRefresh();
       wx.hideLoading();
@@ -631,5 +708,28 @@ Page({
     wx.navigateTo({
       url: `../good-detail/index?id=${id}&out=${true}`
     });
+  },
+  onPageScroll(event) {
+    this.setData({
+      scrollTop: event.scrollTop
+    });
+  },
+  // 关闭左侧弹出层
+  onClose() {
+    this.setData({ showPop: !this.data.showPop });
+  },
+  // 开关
+  onChangeSwitch({ detail }) {
+    this.setData({ checked: detail });
+    // 存储
+    wx.setStorage({
+      key: 'checked',
+      data: detail
+    });
+    if (detail) {
+      this.getGoodsList();
+    } else {
+      this.getGoodsByCompany();
+    }
   }
 })

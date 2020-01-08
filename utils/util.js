@@ -1,3 +1,5 @@
+const convert = require('./pinyin');
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -32,8 +34,17 @@ function AmtFixed(val) {
   return val;
 }
 
+function convertAll(cn) {
+  return convert({
+    cn,
+    result: 'P',
+    remainSpecial: true
+  });
+}
+
 module.exports = {
   formatTime: formatTime,
   AmtFormat: AmtFormat,
-  AmtFixed: AmtFixed
+  AmtFixed: AmtFixed,
+  convertAll: convertAll
 }

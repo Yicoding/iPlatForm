@@ -24,19 +24,24 @@ Component({
     },
     activeIndex: {
       type: Number,
-      value: 1
+      value: 0
     },
-    activeColor: {
+    color: String,
+    stepMinHeight: {
       type: String,
-      value: '#3963bc'
+      value: '120'
     },
-    color: {
+    status: {
       type: String,
-      value: ''
+      value: 'process'
     },
-    type: {
-      type: String,
-      value: 'number'
+    dot: Boolean,
+    reverse: Boolean
+  },
+
+  observers: {
+    'activeIndex': function () {
+      this._initSteps();
     }
   },
 
@@ -52,20 +57,20 @@ Component({
    */
   methods: {
     _initSteps() {
-      let steps = this.getRelationNodes('../step/index');
-      let length = steps.length;
-      if (this.data.direction == 'row') this.setData({
-        length
-      });
-      if (length > 0) {
-        steps.forEach((step, index) => {
-          step.updateDataChange({
-            length,
-            index,
-            ...this.data
+      const query = wx.createSelectorQuery().in(this);
+      query.select('.steps-container').boundingClientRect().exec(res => {
+        let steps = this.getRelationNodes('../step/index');
+        this.data.length = steps.length;
+        if (this.data.length > 0) {
+          steps.forEach((step, index) => {
+            step.updateDataChange({
+              index,
+              ...this.data,
+              stepsWidth: res[0].width
+            });
           });
-        });
-      }
+        }
+      });
     }
   }
 });

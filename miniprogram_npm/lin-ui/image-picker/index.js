@@ -46,9 +46,14 @@ Component({
       value: false
     },
     // 是否可以预览
-    isPreview: {
+    preview: {
       type: Boolean,
       value: true
+    },
+    // 所选图片最大限制，单位字节
+    maxImageSize: {
+      type: Number,
+      value: 10000000,
     }
   },
 
@@ -78,22 +83,27 @@ Component({
    */
   methods: {
     handleClear() {
+      let urls = this.data.urls;
       this.setData({
         urls: [],
         clear: false,
         showBtn: true
       });
-      let detail = true;
+      let info = {
+        all: urls,
+        current: urls,
+      };
+
       let option = {};
-      this.triggerEvent('linclear', detail, option);
+      this.triggerEvent('linclear', info, option);
     },
 
     // 预览 preview
     onPreviewTap(e) {
       const index = e.currentTarget.dataset.index;
       const urls = this.data.urls;
-      var tempFilePath = '';
-      var previewImageList = [];
+      let tempFilePath = '';
+      let previewImageList = [];
       const newOrOld = this.data.newOrOld;
 
       if (newOrOld == 'old') {
@@ -102,7 +112,7 @@ Component({
 
       } else {
         tempFilePath = this.data.urls[index].url;
-        for (var i = 0; i < urls.length; i++) {
+        for (let i = 0; i < urls.length; i++) {
           previewImageList.push(urls[i].url);
         }
       }
@@ -114,7 +124,7 @@ Component({
         all: urls // 需要预览的图片http链接列表
       };
       let option = {};
-      if (this.data.isPreview === true) {
+      if (this.data.preview === true) {
         wx.previewImage({
           current: tempFilePath, // 当前显示图片的http链接
           urls: previewImageList // 需要预览的图片http链接列表
@@ -138,15 +148,21 @@ Component({
         sourceType: ['album', 'camera'],
         success(res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          var tempFilePath = [];
+          let tempFilePath = [];
           if (newOrOld == 'old') {
             tempFilePath = res.tempFilePaths;
           } else {
-            for (var i = 0; i < res.tempFilePaths.length; i++) {
+            for (let i = 0; i < res.tempFilePaths.length; i++) {
               tempFilePath.push({
                 url: res.tempFilePaths[i],
                 // key: null
+                imageSize: res.tempFiles[i].size
               });
+              if (res.tempFiles[i].size > that.data.maxImageSize) {
+                tempFilePath[i].overSize = true;
+              } else {
+                tempFilePath[i].overSize = false;
+              }
             }
           }
           const newtempFilePaths = that.data.urls.concat(tempFilePath);
@@ -168,6 +184,24 @@ Component({
           let option = {};
 
           that.triggerEvent('linchange', detail, option);
+          that.triggerEvent('linpush', detail, option);
+
+          // 超过大小的image集合
+          let overSizeList = [];
+          for (let n = 0; n < newtempFilePaths.length; n++) {
+            if (newtempFilePaths[n].overSize) {
+              overSizeList.push(newtempFilePaths[n]);
+            }
+          }
+
+          if (overSizeList.length > 0) {
+            let detail = {
+              current: tempFilePath,
+              all: newtempFilePaths,
+              overSizeList: overSizeList,
+            };
+            that.triggerEvent('linoversize', detail, option);
+          }
         }
       });
 

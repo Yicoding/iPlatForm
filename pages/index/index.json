@@ -8,12 +8,16 @@
     "wux-input-number": "/miniprogram_npm/wux-weapp/input-number/index",
     "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
     "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
+    "wux-icon": "/miniprogram_npm/wux-weapp/icon/index",
     "wux-input": "/miniprogram_npm/wux-weapp/input/index",
     "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-stepper": "/miniprogram_npm/vant-weapp/stepper/index",
     "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
-    "i-index": "/miniprogram_npm/iview/index/index",
-    "i-index-item": "/miniprogram_npm/iview/index-item/index"
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-index-bar": "/miniprogram_npm/vant/index-bar/index",
+    "van-index-anchor": "/miniprogram_npm/vant/index-anchor/index",
+    "van-popup": "/miniprogram_npm/vant/popup/index",
+    "van-switch": "/miniprogram_npm/vant/switch/index"
   }
 }
