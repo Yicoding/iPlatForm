@@ -715,7 +715,7 @@ Page({
     });
   },
   // 关闭左侧弹出层
-  onClose() {
+  onClosePop() {
     this.setData({ showPop: !this.data.showPop });
   },
   // 开关

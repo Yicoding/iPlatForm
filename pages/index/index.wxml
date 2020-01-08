@@ -13,7 +13,6 @@
       wx:for="{{ cities }}"
       wx:for-item="item"
       wx:key="item"
-      wx:if="{{item.list.length > 0}}"
     >
       <view class="line-bottom">
         <van-index-anchor index="{{ item.key }}" />
@@ -188,7 +187,7 @@
   safe-area-inset-bottom="{{false}}"
 >
   <view class="sub-bar">
-    <wux-icon type="ios-log-in" bindtap="onClose" />
+    <wux-icon type="ios-log-in" bindtap="onClosePop" />
     <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
   </view>
 </van-submit-bar>
@@ -197,7 +196,7 @@
   show="{{ showPop }}"
   position="left"
   custom-style="height: 100%;"
-  bind:close="onClose"
+  bind:close="onClosePop"
 >
   <view class="pop-box">
     <van-cell title="切换页面" border="{{false}}" />
