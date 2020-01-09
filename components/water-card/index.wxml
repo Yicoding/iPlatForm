@@ -5,6 +5,7 @@
       <view class='price-container'>
         <l-price unit="￥" value="{{data.count}}" value-color="#ad0e11" unit-color="#ad0e11" value-size="36"></l-price>
       </view>
+      <view class='art-sale'>总销售 {{data.saleNum}} 次</view>
     </view>
   </l-card>
 </view>

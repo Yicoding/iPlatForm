@@ -118,7 +118,8 @@ Page({
           image: item.coverImg,
           title: item.name,
           describe: item.desc,
-          count: item.sellSingle
+          count: item.sellSingle,
+          saleNum: item.saleNum
         }
       })
       this.setData({ goodList });

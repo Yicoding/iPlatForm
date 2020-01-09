@@ -31,11 +31,17 @@
 .art-content {
     font-size: 28rpx;
     color: #999;
-    margin-top: 15rpx;
+    margin: 15rpx 0 10rpx;
     display: flex;
     flex-wrap: wrap;
 }
 
 .card-box{
     margin: 30rpx 0;
+}
+
+.art-sale{
+    font-size: 20rpx;
+    color: #999;
+    margin-top: 5rpx;
 }
