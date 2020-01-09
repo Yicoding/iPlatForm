@@ -48,3 +48,18 @@
   width: 100rpx;
   height: 100rpx;
 }
+
+/* 排序 */
+.page-fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3000;
+}
+.space-top{
+  height: 20rpx;
+}
+.space-bottom{
+  height: 120rpx;
+}

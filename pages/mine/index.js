@@ -9,10 +9,13 @@ const woman = '/images/icon/user-woman.png';
 Page({
   data: {
     userInfo: {},
+    order: 'id',
+    sort: 'ASC',
     hasMore: false,
     loading: true,
     goodList: [],
     avatar: '',
+    isFixed: false,
     grids: [
       { image: 'user', text: '成员管理', url: 'user' },
       { image: 'cart', text: '商品管理', url: 'good', color: '#34BFA3' },
@@ -26,6 +29,37 @@ Page({
       { image: 'setting', text: '设置', color: '#34BFA3', url: 'setting' },
     ],
     showTop: false,
+    items: [
+      {
+        type: 'radio',
+        label: '综合',
+        value: 'updated',
+        checked: true,
+        children: [{
+          label: '默认',
+          value: 'ASC',
+          checked: true, // 默认选中
+        },
+        {
+          label: '最新',
+          value: 'DESC',
+        },
+        ],
+        groups: ['001'],
+      },
+      {
+        type: 'sort',
+        label: '销量',
+        value: 'saleNum',
+        groups: ['002'],
+      },
+      {
+        type: 'sort',
+        label: '价格',
+        value: 'sellSingle',
+        groups: ['003'],
+      },
+    ]
   },
   pageIndex: 0,
   pageSize: 10,
@@ -65,14 +99,16 @@ Page({
   async getGoodsList() {
     try {
       this.setData({ loading: true });
-      const { userInfo } = this.data;
+      const { userInfo, order, sort } = this.data;
       const { pageIndex, pageSize } = this;
       const { data } = await ajax({
         url: config.service.getGoodsList,
         data: {
           company_id: userInfo.company_id,
           pageIndex,
-          pageSize
+          pageSize,
+          order,
+          sort
         }
       });
       console.log('getGoodsList', data.data);
@@ -130,11 +166,44 @@ Page({
   },
   // 监听页面滚动距离
   onPageScroll: function (e) {
-    console.log(e.scrollTop);
+    // console.log(e.scrollTop);
     if (e.scrollTop > 1000) {
       this.setData({ showTop: true });
     } else {
       this.setData({ showTop: false });
     }
+    if (e.scrollTop > 205) {
+      this.setData({ isFixed: true });
+    } else {
+      this.setData({ isFixed: false });
+    }
+  },
+  // 排序筛选条件改变
+  onChangeFilter(e) {
+    this.pageIndex = 0;
+    const { checkedValues } = e.detail;
+    console.log(checkedValues);
+    if (checkedValues[0]) { // 按日期排序
+      return this.setData({
+        order: 'id',
+        sort: checkedValues[0]
+      }, () => {
+        this.getGoodsList();
+      });
+    }
+    if (checkedValues[1]) { // 按销量排序
+      return this.setData({
+        order: 'saleNum',
+        sort: checkedValues[1] === 1 ? 'ASC' : 'DESC'
+      }, () => {
+        this.getGoodsList();
+      });
+    }
+    this.setData({
+      order: 'sellSingle',
+      sort: checkedValues[2] === 1 ? 'ASC' : 'DESC'
+    }, () => {
+      this.getGoodsList();
+    });
   }
 })

@@ -42,8 +42,12 @@
     </l-grid>
   </view>
 </block>
-
-
+<view wx:if="{{!isFixed}}" class="space-top" />
+<!-- 排序 -->
+<view class="{{ isFixed && 'page-fixed' }}">
+  <wux-filterbar items="{{ items }}" bind:change="onChangeFilter" />
+</view>
+<view wx:if="{{isFixed}}" class="space-bottom" />
 <water-flow generic:l-water-flow-item="water-card"/>
 <loadmore
   wx:if="{{goodList.length > 0}}"
@@ -56,3 +60,4 @@
 <view class="to-top" bindtap="toTop" hidden="{{!showTop}}">
   <image src="/images/icon/top.png" mode="aspectFill" />
 </view>
+

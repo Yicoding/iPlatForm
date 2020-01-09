@@ -102,7 +102,7 @@ Page({
         }
       });
       if (JSON.stringify(data) === JSON.stringify(this.data.list)) {
-        return console.log('不需要重新渲染list')
+        return console.log('不需要重新渲染getGoodsByCompany')
       }
       console.log('getGoodsByCompany', data);
       this.setData({
@@ -158,12 +158,12 @@ Page({
           key: firstName
         }, item));
       });
-      if (JSON.stringify(storeCity) === JSON.stringify(this.data.cities)) {
-        return console.log('不需要重新渲染list')
-      }
       console.log('storeCity', storeCity);
       const wordList = words.filter((item, index) => storeCity[index].list.length > 0);
       const goodList = storeCity.filter(item => item.list.length > 0);
+      if (JSON.stringify(goodList) === JSON.stringify(this.data.cities)) {
+        return console.log('不需要重新渲染getGoodsList')
+      }
       this.setData({
         words: wordList,
         cities: goodList
