@@ -26,7 +26,6 @@ Page({
     shopNum: 0,
     totalPrice: 0,
     avatar: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
-    isprvent: false,
     words: [],
     cities: [],
     scrollTop: 0,
@@ -47,8 +46,8 @@ Page({
     }
   },
   onShow() {
-    if (this.data.isprvent) {
-      this.setData({ isprvent: false });
+    if (app.globalData.isprvent) {
+      app.globalData.isprvent = false;
       return;
     }
     if (app.globalData.showItem) {
@@ -690,6 +689,7 @@ Page({
   },
   // 跳转到搜索页面
   linkSearch() {
+    app.globalData.isprvent = true;
     wx.navigateTo({
       url: '../search/index'
     });
@@ -702,10 +702,11 @@ Page({
       current: item, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     });
-    this.setData({ isprvent: true });
+    app.globalData.isprvent = true;
   },
   // 查看商品详情
   onProduct(e) {
+    app.globalData.isprvent = true;
     const { id } = e.currentTarget.dataset;
     wx.navigateTo({
       url: `../good-detail/index?id=${id}&out=${true}`

@@ -90,5 +90,6 @@ App({
     isAlertGood: false,
     goodItem: {},
     showItem: false,
+    isprvent: false
   }
 })

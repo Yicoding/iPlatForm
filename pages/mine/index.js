@@ -125,7 +125,7 @@ Page({
       this.setData({ goodList });
       this.setData({ hasMore: goodList.length === this.pageSize });
       wx.lin.renderWaterFlow(this.data.goodList, pageIndex === 0, () => {
-        console.log('渲染成功')
+        console.log('渲染成功');
       })
     } catch (e) {
       console.log('getGoodsList报错', e);

@@ -53,7 +53,7 @@
   wx:if="{{goodList.length > 0}}"
   show="{{true}}"
   line
-  type="end"
+  type="{{loading ? 'loading' : 'end'}}"
   end-text="我是有底线的"
 />
 
