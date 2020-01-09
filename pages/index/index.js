@@ -36,13 +36,15 @@ Page({
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
     this.setData({ userInfo: app.globalData.userInfo });
-    wx.getStorage({
-      key: 'checked',
-      success: ({ data }) => {
-        console.log('checked', data)
+    try {
+      const data = wx.getStorageSync('checked');
+      console.log('checked', data);
+      if (data) {
         this.setData({ checked: data });
       }
-    })
+    } catch (e) {
+      console.log('checked报错', e);
+    }
   },
   onShow() {
     if (this.data.isprvent) {
@@ -67,13 +69,11 @@ Page({
       });
     }
     this.getShoplist();
-    setTimeout(() => {
-      if (this.data.checked) {
-        this.getGoodsList();
-      } else {
-        this.getGoodsByCompany();
-      }
-    }, 10);
+    if (this.data.checked) {
+      this.getGoodsList();
+    } else {
+      this.getGoodsByCompany();
+    }
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
@@ -101,7 +101,7 @@ Page({
           role: this.data.userInfo.role_name
         }
       });
-      if (JSON.parse(JSON.stringify(data)) == JSON.parse(JSON.stringify(this.data.list))) {
+      if (JSON.stringify(data) === JSON.stringify(this.data.list)) {
         return console.log('不需要重新渲染list')
       }
       console.log('getGoodsByCompany', data);
@@ -158,13 +158,15 @@ Page({
           key: firstName
         }, item));
       });
-      if (JSON.parse(JSON.stringify(storeCity)) == JSON.parse(JSON.stringify(this.data.cities))) {
+      if (JSON.stringify(storeCity) === JSON.stringify(this.data.cities)) {
         return console.log('不需要重新渲染list')
       }
       console.log('storeCity', storeCity);
+      const wordList = words.filter((item, index) => storeCity[index].list.length > 0);
+      const goodList = storeCity.filter(item => item.list.length > 0);
       this.setData({
-        words,
-        cities: storeCity
+        words: wordList,
+        cities: goodList
       });
     } catch (e) {
       console.log('getGoodsList报错', e);

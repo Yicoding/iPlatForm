@@ -108,10 +108,15 @@
   position: relative;
 }
 
+.good-btn-right{
+  margin-right: 50rpx;
+}
+
 .good-btn-badge{
   position: absolute;
   right: 10rpx;
   top: -25rpx;
+  z-index: 0;
 }
 
 .cu-avatar{
@@ -281,7 +286,7 @@
 
 .shop-num{
   font-size: 60rpx;
-  margin-left: 60rpx;
+  margin-left: 88rpx;
   position: relative;
   top: 8rpx;
 }
@@ -294,10 +299,9 @@
 .line-bottom{
   background: #f8f8f8;
 }
-.sub-bar{
-  display: flex;
-  align-items: center;
-  padding-left: 5rpx;
+.popup-box{
+  height: 100%;
+  min-width: 38%;
 }
 .pop-box{
   background: #fff;
@@ -305,4 +309,21 @@
 }
 .switch{
   margin-left: 15px;
+}
+.icon-transpage{
+  width: 80rpx;
+  height: 50rpx;
+  background: rgba(0,0,0,.5);
+  border-top-right-radius: 25rpx;
+  border-bottom-right-radius: 25rpx;
+  position: fixed;
+  bottom: 28rpx;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-play-left{
+  transform: rotateY(180deg);
 }

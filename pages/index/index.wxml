@@ -27,7 +27,7 @@
             <text>￥</text>{{todu.sellSingle}}
           </view>
         </view>
-        <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
+        <view class="good-btn {{checked && 'good-btn-right'}}" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
       </view>
     </view>
   </van-index-bar>
@@ -186,16 +186,16 @@
   bind:submit="onSubmit"
   safe-area-inset-bottom="{{false}}"
 >
-  <view class="sub-bar">
-    <wux-icon type="ios-log-in" bindtap="onClosePop" />
-    <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
-  </view>
+  <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
 </van-submit-bar>
+<view class="icon-transpage" bindtap="onClosePop">
+  <wux-icon type="ios-play" color="#fff" size="20" wux-class="{{ showPop && 'icon-play-left' }}" />
+</view>
 <!-- 左侧弹出层 -->
 <van-popup
+  custom-class="popup-box"
   show="{{ showPop }}"
   position="left"
-  custom-style="height: 100%;"
   bind:close="onClosePop"
 >
   <view class="pop-box">
