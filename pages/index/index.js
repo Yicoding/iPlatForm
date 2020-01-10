@@ -46,10 +46,6 @@ Page({
     }
   },
   onShow() {
-    if (app.globalData.isprvent) {
-      app.globalData.isprvent = false;
-      return;
-    }
     if (app.globalData.showItem) {
       app.globalData.showItem = false;
       console.log('goodItem', {
@@ -67,6 +63,11 @@ Page({
         }
       });
     }
+    if (app.globalData.isprvent) {
+      app.globalData.isprvent = false;
+      return;
+    }
+    
     this.getShoplist();
     if (this.data.checked) {
       this.getGoodsList();
