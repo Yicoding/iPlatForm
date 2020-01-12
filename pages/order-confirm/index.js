@@ -122,8 +122,8 @@ Page({
         method: 'POST',
         data: {
           company_id: userInfo.company_id,
-          spend: spendAll,
-          total: totalPrice,
+          spend: AmtFixed(spendAll),
+          total: AmtFixed(totalPrice),
           gain: totalPrice - spendAll,
           createUser: this.data.userInfo.id,
           customerName: name,
