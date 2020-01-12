@@ -3,6 +3,7 @@
 const app = getApp()
 const config = require('../../config');
 const { ajax } = require('../../utils/ajax');
+const { AmtFixed } = require('../../utils/util');
 
 Page({
   data: {
@@ -94,11 +95,11 @@ Page({
         name: item.name,
         unitSingle: item.unitSingleName,
         unitAll: item.unitAllName,
-        spend,
-        sale,
+        spend: AmtFixed(spend),
+        sale: AmtFixed(sale),
         num: item.num,
-        total,
-        gain: (sale - spend) * item.num,
+        total: AmtFixed(total),
+        gain: AmtFixed((sale - spend) * item.num),
         coverImg: item.coverImg,
         desc: item.desc,
         unitType: item.unitType,

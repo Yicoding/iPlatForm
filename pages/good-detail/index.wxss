@@ -42,6 +42,10 @@ page{
   margin-bottom: 50rpx;
 }
 
+.line-last{
+  border-bottom: 0;
+}
+
 .item{
   flex: 1;
   padding-bottom: 30rpx;

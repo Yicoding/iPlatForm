@@ -28,7 +28,7 @@
             <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
             <view class="good-content" bindtap="linkDetail"  data-id="{{todu.id}}">
               <view class="good-name">{{todu.name}}</view>
-              <view class="good-desc">{{todu.desc}}</view>
+              <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
               <view class="good-num">总销售 {{todu.saleNum}} 次</view>
               <view class="good-price">
                 <text>￥</text>{{todu.sellSingle}}

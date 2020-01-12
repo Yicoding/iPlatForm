@@ -58,7 +58,7 @@
         <view>{{sellAll}}</view>
       </view>
     </view>
-    <view class="line" wx:if="{{desc}}">
+    <view class="line line-last" wx:if="{{desc}}">
       <view class="item">
         <view>商品描述</view>
         <view>{{desc}}</view>
