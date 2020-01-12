@@ -31,6 +31,12 @@ Component({
                 this.triggerEvent('callback', '');
             }
         },
+        // 确认按钮
+        onConfim(e) {
+            console.log('onConfim', e);
+            const { value } = e.detail;
+            this.triggerEvent('callback', value);
+        },
         // 清空
         cancel() {
             this.setData({ text: '' });

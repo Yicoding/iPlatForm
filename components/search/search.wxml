@@ -7,7 +7,9 @@
     confirm-type="done"
     focus="{{focus}}"
     disabled="{{disabled}}"
-    bindinput="textChange" />
+    bindinput="textChange"
+    bindconfirm="onConfim"
+  />
   <text hidden="{{!text}}" class="cancel" bindtap="cancel">取消</text>
   <!-- <image class="icon-user" src="{{avatar}}" bindtap="switchEdit" /> -->
   <view class="btn">
