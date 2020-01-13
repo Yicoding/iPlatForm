@@ -22,8 +22,17 @@ Component({
     methods: {
         onProduct() {
             const { id } = this.data.data;
-            wx.navigateTo({
-                url: `../good-detail/index?id=${id}&out=${true}`
+            wx.setStorage({
+                key: "goodDetail",
+                data: this.data.data,
+                success: (res) => {
+                    wx.navigateTo({
+                        url: `../good-detail/index?id=${id}`
+                    });
+                },
+                fail: (err) => {
+                    console.log('我的页面跳转详情页设置缓存失败', err);
+                }
             });
         }
     }

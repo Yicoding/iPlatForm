@@ -100,7 +100,7 @@ Page({
       } else {
         this.setData({ orderList: [...this.data.orderList, ...orderList] });
       }
-      this.setData({ hasMore: orderList.length === this.pageSize });
+      this.setData({ hasMore: orderList.length >= this.pageSize - 1 });
     } catch (e) {
       console.log('getOrderList报错', e);
     } finally {

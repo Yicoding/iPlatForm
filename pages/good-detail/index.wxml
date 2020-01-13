@@ -9,10 +9,6 @@
         <view>商品名</view>
         <view>{{name}}</view>
       </view>
-      <view class="item">
-        <view>商品类别</view>
-        <view>{{tools.matchVal(typeName, typeList, 'code')}}</view>
-      </view>
     </view>
     <view class="line">
       <view class="item">
@@ -31,11 +27,11 @@
       </view>
     </view>
     <view class="line">
-      <view class="item" wx:if="{{ userInfo.role_name === 'admin' && !out }}">
+      <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
         <view>进货单价</view>
         <view>{{buySingle}}</view>
       </view>
-      <view class="item" wx:if="{{!out}}">
+      <view class="item">
         <view>批发单价</view>
         <view>{{midSingle}}</view>
       </view>
@@ -45,11 +41,11 @@
       </view>
     </view>
     <view class="line">
-      <view class="item" wx:if="{{ userInfo.role_name === 'admin' && !out }}">
+      <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
         <view>进货总价</view>
         <view>{{buyAll}}</view>
       </view>
-      <view class="item" wx:if="{{!out}}">
+      <view class="item">
         <view>批发总价</view>
         <view>{{midAll}}</view>
       </view>
@@ -58,7 +54,7 @@
         <view>{{sellAll}}</view>
       </view>
     </view>
-    <view class="line line-last" wx:if="{{desc}}">
+    <view class="line" wx:if="{{desc}}">
       <view class="item">
         <view>商品描述</view>
         <view>{{desc}}</view>

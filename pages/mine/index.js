@@ -112,18 +112,8 @@ Page({
         }
       });
       console.log('getGoodsList', data.data);
-      const goodList = data.data.map(item => {
-        return {
-          id: item.id,
-          image: item.coverImg,
-          title: item.name,
-          describe: item.desc,
-          count: item.sellSingle,
-          saleNum: item.saleNum
-        }
-      })
-      this.setData({ goodList });
-      this.setData({ hasMore: goodList.length === this.pageSize });
+      this.setData({ goodList: data.data });
+      this.setData({ hasMore: data.data.length >= this.pageSize - 1 });
       wx.lin.renderWaterFlow(this.data.goodList, pageIndex === 0, () => {
         console.log('渲染成功');
       })

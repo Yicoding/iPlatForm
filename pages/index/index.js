@@ -67,7 +67,7 @@ Page({
       app.globalData.isprvent = false;
       return;
     }
-    
+
     this.getShoplist();
     if (this.data.checked) {
       this.getGoodsList();
@@ -98,7 +98,8 @@ Page({
         url: config.service.getGoodsByCompany,
         data: {
           company_id: this.data.userInfo.company_id,
-          role: this.data.userInfo.role_name
+          role: this.data.userInfo.role_name,
+          order: 'name'
         }
       });
       if (JSON.stringify(data) === JSON.stringify(this.data.list)) {
@@ -133,7 +134,8 @@ Page({
         url: config.service.getGoodsList,
         data: {
           company_id: this.data.userInfo.company_id,
-          pageSize: 99999
+          pageSize: 99999,
+          order: 'name'
         }
       });
       console.log('getGoodsList', data.data);
@@ -708,9 +710,18 @@ Page({
   // 查看商品详情
   onProduct(e) {
     app.globalData.isprvent = true;
-    const { id } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: `../good-detail/index?id=${id}&out=${true}`
+    const { id, item } = e.currentTarget.dataset;
+    wx.setStorage({
+      key: "goodDetail",
+      data: item,
+      success: (res)=> {
+        wx.navigateTo({
+          url: `../good-detail/index?id=${id}`
+        });
+      },
+      fail: (err) => {
+        console.log('首页跳转详情页设置缓存失败', err);
+      }
     });
   },
   onPageScroll(event) {

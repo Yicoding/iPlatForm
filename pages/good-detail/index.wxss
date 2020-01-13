@@ -42,7 +42,7 @@ page{
   margin-bottom: 50rpx;
 }
 
-.line-last{
+.line:last-of-type{
   border-bottom: 0;
 }
 

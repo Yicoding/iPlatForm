@@ -148,9 +148,18 @@ Page({
   // 跳转到详情页面
   linkDetail(e) {
     console.log(e);
-    const { id } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: `../good-detail/index?id=${id}`
+    const { id, item } = e.currentTarget.dataset;
+    wx.setStorage({
+      key: "goodDetail",
+      data: item,
+      success: (res)=> {
+        wx.navigateTo({
+          url: `../good-detail/index?id=${id}`
+        });
+      },
+      fail: (err) => {
+        console.log('首页跳转详情页设置缓存失败', err);
+      }
     });
   },
   // 查看图片

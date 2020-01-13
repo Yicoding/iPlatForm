@@ -124,7 +124,7 @@ Page({
           company_id: userInfo.company_id,
           spend: AmtFixed(spendAll),
           total: AmtFixed(totalPrice),
-          gain: totalPrice - spendAll,
+          gain: AmtFixed(totalPrice - spendAll),
           createUser: this.data.userInfo.id,
           customerName: name,
           customerPhone: phone,
