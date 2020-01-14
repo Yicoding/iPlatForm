@@ -19,9 +19,43 @@ Page({
     userInfo: {}
   },
   // 页面加载
-  onLoad() {
+  onLoad(options) {
+    const { buyNow = false } = options;
     this.setData({ userInfo: app.globalData.userInfo });
-    this.getShoplist();
+    if (buyNow) {
+      this.getShopByLocal();
+    } else {
+      this.getShoplist();
+    }
+  },
+  // 立即购买
+  getShopByLocal() {
+    try {
+      const data = wx.getStorageSync('buyList');
+      this.setData({ shopList: data });
+      if (data.length === 0) {
+        return;
+      }
+      const totalPrice = data.reduce((total, item) => {
+        const currentPrice = item.unitType === 1 ? (
+          item.priceType === 1 ? item.num * item.sellSingle : item.priceType === 2 ? item.num * item.midSingle : item.num * item.writePrice
+        ) : (
+            item.priceType === 1 ? item.num * item.sellAll : item.priceType === 2 ? item.num * item.midAll : item.num * item.writePrice
+          );
+        return total + currentPrice;
+      }, 0);
+      const spendAll = data.reduce((total, item) => {
+        const currentPrice = item.num * (item.unitType === 1 ? item.buySingle : item.buyAll);
+        return total + currentPrice;
+      }, 0);
+      console.log('totalPrice', totalPrice);
+      this.setData({
+        totalPrice,
+        spendAll
+      });
+    } catch (e) {
+      console.log('获取缓存失败', e);
+    }
   },
   // 获取购物车列表
   async getShoplist() {

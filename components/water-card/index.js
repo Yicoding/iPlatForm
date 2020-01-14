@@ -21,13 +21,12 @@ Component({
      */
     methods: {
         onProduct() {
-            const { id } = this.data.data;
             wx.setStorage({
                 key: "goodDetail",
                 data: this.data.data,
                 success: (res) => {
                     wx.navigateTo({
-                        url: `../good-detail/index?id=${id}`
+                        url: `../good-detail/index`
                     });
                 },
                 fail: (err) => {

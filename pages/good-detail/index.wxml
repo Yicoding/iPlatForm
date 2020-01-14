@@ -62,3 +62,132 @@
     </view>
   </view>
 </view>
+<view class="foot-bar">
+  <van-goods-action class="van-goods-actio">
+    <van-goods-action-icon
+      icon="cart-o"
+      text="购物车"
+      bind:click="onClickIcon"
+    />
+    <van-goods-action-button
+      text="加入购物车"
+      type="warning"
+      bind:click="onClickButton"
+      data-type="addShop"
+    />
+    <van-goods-action-button
+      text="立即购买"
+      bind:click="onClickButton"
+      data-type="confirm"
+    />
+  </van-goods-action>
+  <view class="iphone-bottom" wx:if="{{isIpx}}" />
+</view>
+<van-popup
+  show="{{ show }}"
+  closeable
+  close-icon="close"
+  position="bottom"
+  bind:close="onClose"
+>
+  <view class="space-box">
+    <view class="space-container">
+      <view class="space-title">{{name}}</view>
+      <wux-white-space size="large" />
+      <wux-white-space size="small" />
+      <view class="space-item-title">
+        <text>规格</text>
+      </view>
+      <wux-white-space />
+      <view>
+        <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{unitOne.name}}</van-button>
+        <van-button wx:if="{{unitOne.id !== unitDouble.id}}" type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{unitDouble.name}}({{num}}{{unitOne.name}})</van-button>
+      </view>
+      <wux-white-space size="large" />
+      <wux-white-space size="small" />
+      <view class="space-item-title">
+        <text>价格</text>
+        <switch checked="{{showPrice}}" bindchange="switchChange" />
+      </view>
+      <wux-white-space size="small" />
+      <view>
+        <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售({{
+          goodUnitType === 1 ? sellSingle : sellAll
+        }})</van-button>
+        <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
+          goodUnitType === 1 ? midSingle : midAll
+        }})</van-button>
+        <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{
+          writePrice ? '(' + writePrice + ')' : ''
+        }}</van-button>
+      </view>
+    </view>
+    <wux-white-space size="large" />
+    <wux-white-space size="large" />
+    <view class="space-txt">
+      <text>已选规格：</text>
+      {{goodNum}}{{goodUnitType === 1 ? unitOne.name : unitDouble.name + ' x ' + num + unitOne.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{tools.setSingle({
+        unitType: goodUnitType,
+        priceType: goodPriceType,
+        sellSingle: sellSingle,
+        midSingle: midSingle,
+        sellAll: sellAll,
+        midAll: midAll,
+        writePrice: writePrice
+      })}}元
+    </view>
+    <wux-white-space size="large" />
+    <view class="space-info">
+      <view class="space-price">
+        <text>总价：</text>
+        <text>￥</text>
+        {{
+          tools.setAll({
+            unitType: goodUnitType,
+            priceType: goodPriceType,
+            sellSingle: sellSingle,
+            midSingle: midSingle,
+            sellAll: sellAll,
+            midAll: midAll,
+            writePrice: writePrice,
+            goodNum: goodNum
+          })
+        }}
+      </view>
+      <van-stepper
+        min="{{ 1 }}"
+        max="{{99999}}"
+        integer
+        value="{{ goodNum }}"
+        bind:change="shopChange"
+      />
+    </view>
+    <view class="btn">
+      <van-button round type="danger" block bind:click="onConfirm">确定</van-button>
+    </view>
+  </view>
+</van-popup>
+<!-- 自定义价格输入框 -->
+<view wx:if="{{visible}}">
+  <view class="price-mask" bindtap="onClose2"></view>
+  <view class="price-container">
+    <view class="price-title">
+      <text bindtap="onClose2">取消</text>
+      <text>请输入自定义价格</text>
+      <text bindtap="onOk">确定</text>
+    </view>
+    <wux-white-space size="large" />
+    <wux-cell hover-class="none">
+      <wux-input
+        label="价格"
+        placeholder="请输入价格"
+        controlled
+        bind:change="changePrice"
+        focus
+        type="digit"
+        value="{{writePrice}}" />
+    </wux-cell>
+    <wux-white-space size="large" />
+    <wux-white-space size="large" />
+  </view>
+</view>

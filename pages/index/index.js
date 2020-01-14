@@ -710,13 +710,13 @@ Page({
   // 查看商品详情
   onProduct(e) {
     app.globalData.isprvent = true;
-    const { id, item } = e.currentTarget.dataset;
+    const { item } = e.currentTarget.dataset;
     wx.setStorage({
       key: "goodDetail",
       data: item,
       success: (res)=> {
         wx.navigateTo({
-          url: `../good-detail/index?id=${id}`
+          url: `../good-detail/index`
         });
       },
       fail: (err) => {

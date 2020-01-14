@@ -3,7 +3,7 @@ page{
   color: #333;
 }
 .food{
-  padding-bottom: 70rpx;
+  padding-bottom: 100rpx;
 }
 .coverImg{
   width: 100%;
@@ -64,5 +64,180 @@ page{
   font-size: 30rpx;
   font-weight: bold;
   margin-top: 10rpx;
+}
+
+/*底部*/
+.van-goods-actio{
+  display: flex;
+}
+
+.goods-collect{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #7d7e80;
+  background: #fff;
+  border-right: 1rpx solid #eee;
+  font-size: 10px;
+}
+
+.goods-collect-click{
+  background: #eee;
+}
+
+.goods-collect .cuIcon-likefill{
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.foot-bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+}
+
+.iphone-bottom{
+  height: 40rpx;
+  background: #fff;
+}
+
+/*选规格*/
+.space-box{
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 25rpx 0;
+  text-align: justify;
+}
+
+.space-container{
+  padding: 0 40rpx;
+}
+
+.space-title{
+  color: #222;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.space-item-title{
+  color: #999;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-check-item{
+  margin-right: 20rpx;
+}
+
+.space-txt{
+  background: #fafafa;
+  padding: 10rpx 40rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.space-txt text{
+  color: #999;
+}
+
+.space-info{
+  padding: 0 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.space-price{
+  color: #e4393c;
+  font-size: 32rpx;
+}
+
+.space-price text:first-of-type{
+  font-size: 22rpx;
+  color: #333;
+}
+
+.space-price text:last-of-type{
+  font-size: 20rpx;
+}
+
+.space-btn{
+  color: #35bfa3;
+  font-size: 20rpx;
+  background: #e0fffd;
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+}
+
+.space-btn .space-plus{
+  line-height: 1;
+  margin-right: 10rpx;
+}
+
+.van-button--mini{
+  width: auto !important;
+  min-width: 50px;
+  padding: 0 10rpx !important;
+}
+
+.icon-close{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.price-mask{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, .3);
+}
+.price-container{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3001;
+  background: #fff;
+}
+.price-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+  background: #f8f8f8;
+  color: #333;
+  padding: 0 30rpx;
+}
+.price-title text:first-of-type{
+  color: #999;
+}
+.price-title text:last-of-type{
+  color: #6c6;
+}
+
+.shop-num{
+  font-size: 60rpx;
+  margin-left: 88rpx;
+  position: relative;
+  top: 8rpx;
+}
+
+.btn{
+  margin: 120rpx 40rpx 0;
 }
 

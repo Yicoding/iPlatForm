@@ -124,12 +124,6 @@ Page({
         data: { id }
       });
       console.log('removeGoods', data);
-      // const list = JSON.parse(JSON.stringify(this.data.list));
-      // list[index].children.splice(i, 1);
-      // this.setData({
-      //   list,
-      //   load: true
-      // })
       this.getGoodsByCompany();
     } catch (e) {
       console.log('removeGoods报错', e);
@@ -148,13 +142,13 @@ Page({
   // 跳转到详情页面
   linkDetail(e) {
     console.log(e);
-    const { id, item } = e.currentTarget.dataset;
+    const { item } = e.currentTarget.dataset;
     wx.setStorage({
       key: "goodDetail",
       data: item,
       success: (res)=> {
         wx.navigateTo({
-          url: `../good-detail/index?id=${id}`
+          url: `../good-detail/index`
         });
       },
       fail: (err) => {

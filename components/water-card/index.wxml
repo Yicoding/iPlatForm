@@ -1,5 +1,5 @@
 <view class="card-box">
-  <l-card full type="cover" image="{{data.coverImg}}" title="{{data.title}}" l-class="life-container" l-img-class="life-img" l-title-class="life-title" bindtap="onProduct">
+  <l-card full type="cover" image="{{data.coverImg}}" title="{{data.name}}" l-class="life-container" l-img-class="life-img" l-title-class="life-title" bindtap="onProduct">
     <view class='life-product-contianer'>
       <view class='art-content'>{{data.desc}}</view>
       <view class='price-container'>

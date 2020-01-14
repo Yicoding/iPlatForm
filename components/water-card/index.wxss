@@ -31,7 +31,7 @@
 .art-content {
     font-size: 28rpx;
     color: #999;
-    margin: 15rpx 0 10rpx;
+    /* margin: 15rpx 0 10rpx; */
     display: flex;
     flex-wrap: wrap;
 }
@@ -44,4 +44,8 @@
     font-size: 20rpx;
     color: #999;
     margin-top: 5rpx;
+}
+
+.price-container{
+    margin: 5px 0;
 }

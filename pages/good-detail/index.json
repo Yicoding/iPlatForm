@@ -1,5 +1,15 @@
 {
   "navigationBarTitleText": "商品信息",
   "enablePullDownRefresh": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-stepper": "/miniprogram_npm/vant-weapp/stepper/index",
+    "wux-cell": "/miniprogram_npm/wux-weapp/cell/index",
+    "wux-input": "/miniprogram_npm/wux-weapp/input/index",
+    "vant-goods-action": "/miniprogram_npm/vant-weapp/goods-action/index",
+    "van-goods-action-icon": "/miniprogram_npm/vant-weapp/goods-action-icon/index",
+    "van-goods-action-button": "/miniprogram_npm/vant-weapp/goods-action-button/index",
+    "van-popup": "/miniprogram_npm/vant/popup/index"
+  }
 }

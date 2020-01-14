@@ -19,7 +19,7 @@
       </view>
       <view class="good-box" wx:for="{{item.list}}" wx:for-item="todu" wx:for-index="i" wx:key="i" data-id="{{todu.id}}">
         <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
-        <view class="good-content" bindtap="onProduct" data-id="{{todu.id}}">
+        <view class="good-content" bindtap="onProduct" data-item="{{todu}}">
           <view class="good-name">{{todu.name}}</view>
           <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
           <view class="good-num">总销售 {{todu.saleNum}} 次</view>
@@ -48,7 +48,7 @@
         </view>
         <view class="good-box" wx:for="{{item.children}}" wx:for-item="todu" wx:for-index="i" wx:key="i" data-id="{{todu.id}}">
           <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
-          <view class="good-content" bindtap="onProduct" data-item="{{todu}}" data-id="{{todu.id}}">
+          <view class="good-content" bindtap="onProduct" data-item="{{todu}}">
             <view class="good-name">{{todu.name}}</view>
             <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
             <view class="good-num">总销售 {{todu.saleNum}} 次</view>
@@ -147,7 +147,6 @@
           bind:minus="shopChange"
           bind:blur="shopBlur"
         />
-        <!-- <wux-input-number value="{{goodNum}}" shape="circle" color="balanced" slot="footer" min="{{0}}" max="{{9999}}" controlled bindchange="shopChange" disabled="{{false}}" /> -->
       </block>
     </view>
   </view>
