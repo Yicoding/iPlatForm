@@ -1,17 +1,12 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
-<view class="cu-bar bg-white search">
-  <view class="search-form round">
-    <text class="cuIcon-search"></text>
-    <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
-  </view>
-  <view class="action">
-    <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
-  </view>
+<!-- 搜索 -->
+<view bindtap="linkSearch">
+  <search disabled="{{true}}" />
 </view>
 <view class="VerticalBox">
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
       {{item.name}}
     </view>
     <view style="height: 120rpx"></view>
@@ -20,12 +15,12 @@
     <view class="type-container {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key id="main-{{index}}">
       <view class="type-box">
         <view class="type-name">
-          <text class="cuIcon-title text-green"></text>
+          <text class="cuIcon-title"></text>
           {{item.name}}
         </view>
         <van-swipe-cell right-width="{{ 65 }}" wx:for="{{item.children}}" wx:for-item="todu" wx:for-index="i" wx:key data-id="{{todu.id}}" disabled="{{ userInfo.role_name !== 'admin'}}">
           <view class="good-box">
-            <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
+            <image class="cu-avatar" src="{{todu.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{todu.coverImg}}" />
             <view class="good-content" bindtap="linkDetail" data-item="{{todu}}">
               <view class="good-name">{{todu.name}}</view>
               <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>

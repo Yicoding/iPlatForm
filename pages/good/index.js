@@ -139,6 +139,14 @@ Page({
       url: `../good-edit/index?id=${id}`
     });
   },
+
+  // 跳转到搜索页面
+  linkSearch() {
+    app.globalData.isprvent = true;
+    wx.navigateTo({
+      url: '../search/index'
+    });
+  },
   // 跳转到详情页面
   linkDetail(e) {
     console.log(e);

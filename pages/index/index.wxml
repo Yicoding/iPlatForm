@@ -18,7 +18,7 @@
         <van-index-anchor index="{{ item.key }}" />
       </view>
       <view class="good-box" wx:for="{{item.list}}" wx:for-item="todu" wx:for-index="i" wx:key="i" data-id="{{todu.id}}">
-        <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
+        <image class="cu-avatar" src="{{todu.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{todu.coverImg}}" />
         <view class="good-content" bindtap="onProduct" data-item="{{todu}}">
           <view class="good-name">{{todu.name}}</view>
           <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
@@ -34,7 +34,7 @@
 </view>
 <view class="VerticalBox" wx:else>
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
       {{item.name}}
     </view>
     <view style="height: 120rpx"></view>
@@ -43,11 +43,11 @@
     <view class="type-container {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key id="main-{{index}}">
       <view class="type-box">
         <view class="type-name">
-          <text class="cuIcon-title text-green"></text>
+          <text class="cuIcon-title"></text>
           {{item.name}}
         </view>
         <view class="good-box" wx:for="{{item.children}}" wx:for-item="todu" wx:for-index="i" wx:key="i" data-id="{{todu.id}}">
-          <view class="cu-avatar round lg" style="background-image:url({{todu.coverImg}});" bindtap="viewImg" data-item="{{todu.coverImg}}"></view>
+          <image class="cu-avatar" src="{{todu.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{todu.coverImg}}" />
           <view class="good-content" bindtap="onProduct" data-item="{{todu}}">
             <view class="good-name">{{todu.name}}</view>
             <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>

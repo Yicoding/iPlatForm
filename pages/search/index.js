@@ -160,7 +160,7 @@ Page({
     app.globalData.goodItem = item;
     app.globalData.showItem = true;
     setTimeout(() => {
-      wx.navigateBack();
+      wx.switchTab({ url: '../index/index' });
     }, 200);
   },
   // 跳转到详情页面

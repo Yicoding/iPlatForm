@@ -53,7 +53,7 @@
 
   <view class="container">
     <view class="good-box" wx:for="{{ goodList }}" wx:key data-id="{{item.id}}">
-      <view class="cu-avatar round lg" style="background-image:url({{item.coverImg}});" bindtap="viewImg" data-item="{{item.coverImg}}"></view>
+      <image class="cu-avatar" src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
       <view class="good-content" bindtap="linkDetail"  data-id="{{item.id}}">
         <view class="good-name">{{item.name}}</view>
         <!-- <view class="good-desc">{{item.desc}}</view> -->

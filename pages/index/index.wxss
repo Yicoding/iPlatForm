@@ -17,10 +17,16 @@
   overflow: hidden;
   white-space: nowrap;
   font-size: 28rpx;
+  display: inline-block;
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
 }
 
 .VerticalNav.nav .cu-item.cur {
   background-color: #f1f1f1;
+  position: relative;
+  color: #39b54a;
 }
 .VerticalNav.nav .cu-item.cur::after {
   content: "";
