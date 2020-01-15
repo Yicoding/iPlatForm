@@ -36,6 +36,7 @@ Page({
     goodNum: 1,
     visible: false,
     shopList: [],
+    isAdd: false,
   },
   onLoad() {
     this.setData({ userInfo: app.globalData.userInfo }, () => {
@@ -247,15 +248,21 @@ Page({
         }
       });
       app.globalData.isprvent = false;
-      const shopList = [{
+      const shopList = this.data.shopList;
+      shopList.push({
         good_id: id,
         num: goodNum,
         priceType: goodPriceType,
         unitType: goodUnitType
-      }];
+      });
       this.setData({
         show: false,
         shopList
+      }, () => {
+        this.setData({ isAdd: true });
+        setTimeout(() => {
+          this.setData({ isAdd: false });
+        }, 640);
       });
     } catch (e) {
       console.log('添加购物车失败', e);
@@ -293,6 +300,11 @@ Page({
       this.setData({
         show: false,
         shopList
+      }, () => {
+        this.setData({ isAdd: true });
+        setTimeout(() => {
+          this.setData({ isAdd: false });
+        }, 640);
       });
     } catch (e) {
       console.log('修改购物车失败', e);

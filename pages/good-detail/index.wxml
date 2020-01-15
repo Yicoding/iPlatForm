@@ -64,11 +64,10 @@
 </view>
 <view class="foot-bar">
   <van-goods-action class="van-goods-actio">
-    <van-goods-action-icon
-      icon="cart-o"
-      text="购物车"
-      bind:click="onClickIcon"
-    />
+    <view class="shop-box" bindtap="onClickIcon">
+      <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopList.length}}" />
+      <text>购物车</text>
+    </view>
     <van-goods-action-button
       text="加入购物车"
       type="warning"
@@ -191,3 +190,6 @@
     <wux-white-space size="large" />
   </view>
 </view>
+
+<!-- 购物球 -->
+<image wx:if="{{isAdd}}" class="shop-ball" mode="aspectFill" src="{{coverImg}}" />

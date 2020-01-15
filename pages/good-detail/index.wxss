@@ -98,12 +98,12 @@ page{
   bottom: 0;
   left: 0;
   right: 0;
+  background: #fff;
   z-index: 90;
 }
 
 .iphone-bottom{
   height: 40rpx;
-  background: #fff;
 }
 
 /*选规格*/
@@ -230,14 +230,52 @@ page{
   color: #6c6;
 }
 
+.shop-box{
+  width: 130rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+  color: #7d7e80;
+}
+
 .shop-num{
-  font-size: 60rpx;
-  margin-left: 88rpx;
-  position: relative;
-  top: 8rpx;
+  font-size: 40rpx;
+  margin-bottom: -5rpx;
+  margin-top: 8rpx;
 }
 
 .btn{
   margin: 120rpx 40rpx 0;
 }
 
+/*购物球*/
+.shop-ball{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  position: fixed;
+  top: 10%;
+  left: 275rpx;
+  z-index: 80;
+  animation: myBall .65s linear;
+}
+@keyframes myBall {
+  0%{
+    top: 10%;
+    left: 275rpx;
+    transform: scale(1);
+  }
+  50%{
+    top: 45%;
+    left: 120rpx;
+    transform: scale(.7);
+  }
+  100%{
+    top: 110%;
+    left: 0;
+    transform: scale(.3);
+  }
+}
