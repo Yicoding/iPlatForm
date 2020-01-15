@@ -19,8 +19,11 @@ const ajax = obj => {
             title: '登录过期啦',
             icon: 'none'
           });
-          wx.reLaunch({ url: '../login/index' });
-        } {
+          setTimeout(() => {
+            wx.reLaunch({ url: '../login/index' });
+          }, 1500);
+          reject(data.data);
+        } else {
           reject(data.data);
           wx.showModal({
             title: '出错啦',
