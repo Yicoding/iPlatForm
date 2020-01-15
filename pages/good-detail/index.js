@@ -247,7 +247,16 @@ Page({
         }
       });
       app.globalData.isprvent = false;
-      this.setData({ show: false });
+      const shopList = [{
+        good_id: id,
+        num: goodNum,
+        priceType: goodPriceType,
+        unitType: goodUnitType
+      }];
+      this.setData({
+        show: false,
+        shopList
+      });
     } catch (e) {
       console.log('添加购物车失败', e);
     } finally {
@@ -265,6 +274,7 @@ Page({
       const { good_id, unitType, priceType, num } = item;
       const { goodNum, writePrice } = this.data;
       console.log('item', item);
+      const numTotal = Number(num) + Number(goodNum);
       await ajax({
         url: config.service.updateShop,
         method: 'PUT',
@@ -273,12 +283,17 @@ Page({
           unitType,
           priceType,
           user_id: this.data.userInfo.id,
-          num: Number(num) + Number(goodNum),
+          num: numTotal,
           writePrice
         }
       });
       app.globalData.isprvent = false;
-      this.setData({ show: false });
+      const shopList = this.data.shopList;
+      shopList[index].num = numTotal;
+      this.setData({
+        show: false,
+        shopList
+      });
     } catch (e) {
       console.log('修改购物车失败', e);
     } finally {
