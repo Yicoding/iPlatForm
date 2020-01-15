@@ -280,12 +280,12 @@ page{
   }
   60%{
     top: 45%;
-    left: 120rpx;
+    left: 60rpx;
     transform: scale(.7);
   }
   100%{
     top: 110%;
-    left: 0;
+    left: -100rpx;
     transform: scale(.3);
   }
 }
