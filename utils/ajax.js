@@ -14,7 +14,13 @@ const ajax = obj => {
       success: function ({ data }) {
         if (data.code === 0) {
           resolve(data);
-        } else {
+        } else if (data.code === 403) { // 登录过期
+          wx.showToast({
+            title: '登录过期啦',
+            icon: 'none'
+          });
+          wx.reLaunch({ url: '../login/index' });
+        } {
           reject(data.data);
           wx.showModal({
             title: '出错啦',
