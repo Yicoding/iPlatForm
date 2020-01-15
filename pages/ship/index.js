@@ -29,7 +29,9 @@ Page({
       buttons: [{
         text: '查看未发货'
       }]
-    }
+    },
+    touchS: [0, 0],
+    touchE: [0, 0],
   },
   // 页面出现
   onLoad(options) {
@@ -69,7 +71,7 @@ Page({
         shipList
       });
       if (unShipList.length === 0) {
-        this.setData({active: 1});
+        this.setData({ active: 1 });
       }
     } catch (e) {
       console.log('getOrderDetailList报错', e);
@@ -100,7 +102,7 @@ Page({
         title: '发货完成',
         icon: 'none'
       });
-      this.setData({disabled: true});
+      this.setData({ disabled: true });
       setTimeout(() => {
         wx.hideToast();
         wx.navigateBack();
@@ -167,7 +169,7 @@ Page({
             shipList
           });
           if (unShipList.length === 0) {
-            this.setData({active: 1});
+            this.setData({ active: 1 });
           }
         }, 1400);
       } else {
@@ -190,7 +192,7 @@ Page({
             shipList
           });
           if (shipList.length === 0) {
-            this.setData({active: 0});
+            this.setData({ active: 0 });
           }
         }, 1400);
       }
@@ -240,7 +242,7 @@ Page({
             shipList: [...unShipList, ...shipList],
             unShipList: []
           });
-          this.setData({active: 1});
+          this.setData({ active: 1 });
         }, 1400);
       } else { // 一键撤回
         shipList.forEach(item => {
@@ -256,7 +258,7 @@ Page({
             unShipList: [...shipList, ...unShipList],
             shipList: []
           });
-          this.setData({active: 0});
+          this.setData({ active: 0 });
         }, 1400);
       }
     } catch (e) {
@@ -277,5 +279,39 @@ Page({
         }
       }
     })
-  }
+  },
+  // 触摸事件
+  touchStart: function (e) {
+    this.data.touchS = [];
+    this.data.touchE = [];
+    let sx = e.touches[0].pageX;
+    let sy = e.touches[0].pageY;
+    this.data.touchS = [sx, sy];
+  },
+  touchMove: function (e) {
+    let sx = e.touches[0].pageX;
+    let sy = e.touches[0].pageY;
+    this.data.touchE = [sx, sy];
+  },
+  touchEnd: function (e) {
+    let start = this.data.touchS
+    let end = this.data.touchE
+    console.log(start)
+    console.log(end)
+    if (start[0] < end[0] - 80) {
+      console.log('右滑', this.data.active);
+      if (this.data.active === 0) {
+        return;
+      }
+      this.changeTabs({ detail: { index: 0 } });
+    } else if (start[0] > end[0] + 80) {
+      console.log('左滑', this.data.active);
+      if (this.data.active === 1) {
+        return;
+      }
+      this.changeTabs({ detail: { index: 1 } });
+    } else {
+      console.log('静止');
+    }
+  },
 })

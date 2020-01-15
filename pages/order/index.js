@@ -18,7 +18,9 @@ Page({
     msg: {
       icon: '/images/order-empty.png',
       title: '您暂时还没有订单哦～'
-    }
+    },
+    touchS: [0, 0],
+    touchE: [0, 0],
   },
   pageIndex: 0,
   pageSize: 10,
@@ -115,19 +117,7 @@ Page({
   changeTabs(e) {
     console.log(e)
     const { index } = e.detail;
-    if (index === 0) {
-      this.setData({ state: '' });
-    } else {
-      this.setData({ state: index });
-    }
-    this.setData({ active: index });
-    wx.pageScrollTo({
-      scrollTop: 0,
-      success: () => {
-        this.pageIndex = 0;
-        this.getOrderList();
-      }
-    });
+    this.delActive(index);
   },
   // 打开日历
   openCalendar() {
@@ -170,5 +160,55 @@ Page({
     wx.navigateTo({
       url: `../order-detail/index?id=${id}`
     })
-  }
+  },
+  // 触摸事件
+  touchStart: function (e) {
+    this.data.touchS = [];
+    this.data.touchE = [];
+    let sx = e.touches[0].pageX;
+    let sy = e.touches[0].pageY;
+    this.data.touchS = [sx, sy];
+  },
+  touchMove: function (e) {
+    let sx = e.touches[0].pageX;
+    let sy = e.touches[0].pageY;
+    this.data.touchE = [sx, sy];
+  },
+  touchEnd: function (e) {
+    let start = this.data.touchS
+    let end = this.data.touchE
+    console.log(start)
+    console.log(end)
+    if (start[0] < end[0] - 80) {
+      console.log('右滑', this.data.active);
+      if (this.data.active === 0) {
+        return;
+      }
+      this.delActive(this.data.active - 1);
+    } else if (start[0] > end[0] + 80) {
+      console.log('左滑', this.data.active);
+      if (this.data.active === 4) {
+        return;
+      }
+      this.delActive(this.data.active + 1);
+    } else {
+      console.log('静止');
+    }
+  },
+  delActive(active) {
+    if (active === 0) {
+      this.setData({ state: '' });
+    } else {
+      this.setData({ state: active });
+    }
+    this.setData({ active }, () => {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        success: () => {
+          this.pageIndex = 0;
+          this.getOrderList();
+        }
+      });
+    });
+  },
 })
