@@ -259,10 +259,12 @@ Page({
         show: false,
         shopList
       }, () => {
-        this.setData({ isAdd: true });
         setTimeout(() => {
-          this.setData({ isAdd: false });
-        }, 640);
+          this.setData({ isAdd: true });
+          setTimeout(() => {
+            this.setData({ isAdd: false });
+          }, 890);
+        }, 300);
       });
     } catch (e) {
       console.log('添加购物车失败', e);
@@ -301,10 +303,12 @@ Page({
         show: false,
         shopList
       }, () => {
-        this.setData({ isAdd: true });
         setTimeout(() => {
-          this.setData({ isAdd: false });
-        }, 640);
+          this.setData({ isAdd: true });
+          setTimeout(() => {
+            this.setData({ isAdd: false });
+          }, 890);
+        }, 300);
       });
     } catch (e) {
       console.log('修改购物车失败', e);

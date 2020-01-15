@@ -260,15 +260,25 @@ page{
   top: 10%;
   left: 275rpx;
   z-index: 80;
-  animation: myBall .65s linear;
+  animation: myBall .9s linear;
 }
 @keyframes myBall {
   0%{
     top: 10%;
     left: 275rpx;
+    transform: scale(3);
+  }
+  15%{
+    top: 10%;
+    left: 275rpx;
     transform: scale(1);
   }
-  50%{
+  40%{
+    top: 10%;
+    left: 275rpx;
+    transform: scale(1);
+  }
+  60%{
     top: 45%;
     left: 120rpx;
     transform: scale(.7);
