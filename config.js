@@ -6,7 +6,6 @@
 // var host = 'https://0az3korx.qcloud.la/weapp'; // 开发
 // var host = 'http://localhost:3005'; // 调试
 var host = 'https://ilovelyplat.com:3000'; // 生产
-var hostServer = 'https://ilovelyplat.com:3002'; // 生产
 
 var config = {
 

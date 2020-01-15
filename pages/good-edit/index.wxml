@@ -96,6 +96,7 @@
   <van-field
     value="{{ desc }}"
     label="商品描述"
+    input-align="right"
     placeholder="请输入商品描述"
     border="{{ false }}"
     bind:input="fieldChange"

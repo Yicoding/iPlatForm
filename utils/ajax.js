@@ -3,9 +3,15 @@
  * @param {*} obj 
  */
 const ajax = obj => {
+  const { phone = '', token = '' } = wx.getStorageSync('userInfo');
   return new Promise((resolve, reject) => {
     wx.request(Object.assign(obj, {
-      success: function({ data }) {
+      header: {
+        phone,
+        token
+      }
+    }, {
+      success: function ({ data }) {
         if (data.code === 0) {
           resolve(data);
         } else {
@@ -18,7 +24,7 @@ const ajax = obj => {
           })
         }
       },
-      fail: function(e) {
+      fail: function (e) {
         reject(e);
         wx.showModal({
           title: '出错啦',

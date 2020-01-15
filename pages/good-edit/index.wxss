@@ -1,5 +1,5 @@
 .food{
-  padding-bottom: 140rpx;
+  padding-bottom: 250rpx;
   background: #fff;
 }
 .coverImg{
@@ -35,7 +35,7 @@
 }
 /*iphonex*/
 .foodX{
-  padding-bottom: 230rpx;
+  padding-bottom: 300rpx;
 }
 .footX{
   padding-bottom: 30rpx;
