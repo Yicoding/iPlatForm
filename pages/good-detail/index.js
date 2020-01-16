@@ -37,7 +37,7 @@ Page({
     visible: false,
     shopList: [],
     isAdd: false,
-    showPrice: false,
+    isShow: false,
   },
   onLoad() {
     this.setData({ userInfo: app.globalData.userInfo });
@@ -320,8 +320,8 @@ Page({
     }
   },
   // 控制显隐
-  switchChange(e) {
+  setShow(e) {
     const value = e.detail.value;
-    this.setData({ showPrice: value });
+    this.setData({ isShow: value });
   },
 });

@@ -3,8 +3,8 @@
  * @param {*} obj 
  */
 const ajax = obj => {
-  const { phone = '', token = '' } = wx.getStorageSync('userInfo');
   return new Promise((resolve, reject) => {
+    const { phone = '', token = '' } = wx.getStorageSync('userInfo');
     wx.request(Object.assign(obj, {
       header: {
         phone,
