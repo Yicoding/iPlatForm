@@ -2,7 +2,7 @@
 
 <view class="food">
   <image class="coverImg" mode="aspectFill" src="{{coverImg}}" />
-  <view class="title">商品信息</view>
+  <view class="title"><text>商品信息</text> <switch checked="{{showPrice}}" bindchange="switchChange" /></view>
   <view class="container">
     <view class="line">
       <view class="item">
@@ -29,11 +29,11 @@
     <view class="line">
       <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
         <view>进货单价</view>
-        <view>{{buySingle}}</view>
+        <view>{{showPrice ? buySingle : '***'}}</view>
       </view>
       <view class="item">
         <view>批发单价</view>
-        <view>{{midSingle}}</view>
+        <view>{{showPrice ? midSingle : '***'}}</view>
       </view>
       <view class="item">
         <view>零售单价</view>
@@ -43,11 +43,11 @@
     <view class="line">
       <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
         <view>进货总价</view>
-        <view>{{buyAll}}</view>
+        <view>{{showPrice ? buyAll : '***'}}</view>
       </view>
       <view class="item">
         <view>批发总价</view>
-        <view>{{midAll}}</view>
+        <view>{{showPrice ? midAll : '***'}}</view>
       </view>
       <view class="item">
         <view>零售总价</view>

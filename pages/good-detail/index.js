@@ -37,11 +37,10 @@ Page({
     visible: false,
     shopList: [],
     isAdd: false,
+    showPrice: false,
   },
   onLoad() {
-    this.setData({ userInfo: app.globalData.userInfo }, () => {
-      this.getShoplist();
-    });
+    this.setData({ userInfo: app.globalData.userInfo });
     try {
       const data = wx.getStorageSync('goodDetail');
       console.log('goodDetail', data);
@@ -56,6 +55,9 @@ Page({
     } catch (e) {
       console.log('获取goodDetail缓存失败', e);
     }
+  },
+  onShow() {
+    this.getShoplist();
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
@@ -316,5 +318,10 @@ Page({
     } finally {
       wx.hideLoading();
     }
-  }
+  },
+  // 控制显隐
+  switchChange(e) {
+    const value = e.detail.value;
+    this.setData({ showPrice: value });
+  },
 });

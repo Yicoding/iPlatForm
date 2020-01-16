@@ -14,10 +14,12 @@ page{
   color: #000;
   font-size: 40rpx;
   font-weight: bold;
-  text-align: center;
   padding: 50rpx;
   position: relative;
   margin-bottom: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title:after{
@@ -30,6 +32,10 @@ page{
   height: 4rpx;
   border-radius: 2rpx;
   background: darkred;
+}
+
+.title text{
+  margin-right: 20rpx;
 }
 
 .container{

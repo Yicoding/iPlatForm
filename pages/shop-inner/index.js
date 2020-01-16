@@ -173,6 +173,7 @@ Page({
       const shopInvalidList = JSON.parse(JSON.stringify(this.data.shopInvalidList));
       shopInvalidList.splice(index, 1);
       this.setData({ shopInvalidList });
+      app.globalData.isprvent = false;
     } catch (e) {
       console.log('removeShopInvalid报错', e);
     } finally {
@@ -205,6 +206,7 @@ Page({
       });
       shopList.splice(index, 1);
       this.setData({ shopList });
+      app.globalData.isprvent = false;
     } catch (e) {
       console.log('removeShopById报错', e);
     } finally {
@@ -259,6 +261,7 @@ Page({
         shopInvalidList: [],
         totalPrice: 0
       });
+      app.globalData.isprvent = false;
     } catch (e) {
       console.log('removeShopByUser接口报错', e);
     } finally {
