@@ -1,73 +1,75 @@
-<view class="tab-box">
-  <van-cell border="{{false}}">
-    <view slot="title" class="date-box" bindtap="openCalendar">
-      <view class="search-box">
-        <van-icon custom-class="search-i" name="search" />
-        <text>查看订单日期</text>
-      </view>
-      <text class="date-txt">{{value[0]}}</text>
-      <van-button wx:if="{{value.length}}" size="small" type="warning" round catchtap="clearDate">清除</van-button>
-    </view>
-  </van-cell>
-  <van-tabs
-    active="{{ active }}"
-    bind:change="changeTabs"
-  >
-    <van-tab title="全部"></van-tab>
-    <van-tab title="待付款"></van-tab>
-    <van-tab title="待发货"></van-tab>
-    <van-tab title="已完成"></van-tab>
-    <van-tab title="已取消"></van-tab>
-  </van-tabs>
-</view>
-<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
-  <view wx:for="{{orderList}}" wx:key class="order-item" catchtap="linkDetail" data-id="{{item.id}}">
-    <view wx:if="{{active === 0}}">
-      <state-box state="{{item.state}}" />
-    </view>
-    <van-cell>
-        <view slot="title" class="order-line">
-        <text>订单编号</text>
-        <l-tag shape="square" bg-color="orange">{{item.id}}</l-tag>
-        <!-- <text class="red">{{item.id}}</text> -->
-      </view>  
-    </van-cell>
-    <van-cell>
-      <view slot="title" class="order-line">
-        <text>订单金额</text>
-        <text class="red txt-bg">{{item.total}}</text>
+<view bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" class="touch-box">
+  <view class="tab-box">
+    <van-cell border="{{false}}">
+      <view slot="title" class="date-box" bindtap="openCalendar">
+        <view class="search-box">
+          <van-icon custom-class="search-i" name="search" />
+          <text>查看订单日期</text>
+        </view>
+        <text class="date-txt">{{value[0]}}</text>
+        <van-button wx:if="{{value.length}}" size="small" type="warning" round catchtap="clearDate">清除</van-button>
       </view>
     </van-cell>
-    <van-cell>
-      <view slot="title" class="order-line">
-        <text>订单状态</text>
-        <text class="red">{{item.state === 1 ? '待付款' : item.state === 2 ? '待发货' : item.state === 3 ? '已完成' : '已取消'}}</text>
-      </view>
-    </van-cell>
-    <van-cell wx:if="{{item.customerName}}" title="客户姓名" value="{{item.customerName}}" />
-    <van-cell wx:if="{{item.customerPhone}}" title="客户手机" value="{{item.customerPhone}}" />
-    <van-cell wx:if="{{item.customerSite}}" title="客户地址" value="{{item.customerSite}}" border="{{ false }}" />
-    <wux-white-space />
-    <van-steps
-      wx:if="{{item.state !== 4}}"
-      steps="{{ item.steps }}"
-      active="{{ item.active }}"
-    />
+    <van-tabs
+      active="{{ active }}"
+      bind:change="changeTabs"
+    >
+      <van-tab title="全部"></van-tab>
+      <van-tab title="待付款"></van-tab>
+      <van-tab title="待发货"></van-tab>
+      <van-tab title="已完成"></van-tab>
+      <van-tab title="已取消"></van-tab>
+    </van-tabs>
   </view>
-</view>
-<loadmore
-  wx:if="{{orderList.length > 0}}"
-  show="{{true}}"
-  line
-  type="{{loading ? 'loading' : 'end'}}"
-  end-text="我是有底线的"
-/>
+  <view>
+    <view wx:for="{{orderList}}" wx:key class="order-item" catchtap="linkDetail" data-id="{{item.id}}">
+      <view wx:if="{{active === 0}}">
+        <state-box state="{{item.state}}" />
+      </view>
+      <van-cell>
+          <view slot="title" class="order-line">
+          <text>订单编号</text>
+          <l-tag shape="square" bg-color="orange">{{item.id}}</l-tag>
+          <!-- <text class="red">{{item.id}}</text> -->
+        </view>  
+      </van-cell>
+      <van-cell>
+        <view slot="title" class="order-line">
+          <text>订单金额</text>
+          <text class="red txt-bg">{{item.total}}</text>
+        </view>
+      </van-cell>
+      <van-cell>
+        <view slot="title" class="order-line">
+          <text>订单状态</text>
+          <text class="red">{{item.state === 1 ? '待付款' : item.state === 2 ? '待发货' : item.state === 3 ? '已完成' : '已取消'}}</text>
+        </view>
+      </van-cell>
+      <van-cell wx:if="{{item.customerName}}" title="客户姓名" value="{{item.customerName}}" />
+      <van-cell wx:if="{{item.customerPhone}}" title="客户手机" value="{{item.customerPhone}}" />
+      <van-cell wx:if="{{item.customerSite}}" title="客户地址" value="{{item.customerSite}}" border="{{ false }}" />
+      <wux-white-space />
+      <van-steps
+        wx:if="{{item.state !== 4}}"
+        steps="{{ item.steps }}"
+        active="{{ item.active }}"
+      />
+    </view>
+  </view>
+  <loadmore
+    wx:if="{{orderList.length > 0}}"
+    show="{{true}}"
+    line
+    type="{{loading ? 'loading' : 'end'}}"
+    end-text="我是有底线的"
+  />
 
-<!-- 订单为空 -->
-<empty-show
-  visible="{{ orderList.length === 0 && !loading }}"
-  icon="{{ msg.icon }}"
-  title="{{ msg.title }}"
-/>
+  <!-- 订单为空 -->
+  <empty-show
+    visible="{{ orderList.length === 0 && !loading }}"
+    icon="{{ msg.icon }}"
+    title="{{ msg.title }}"
+  />
+</view>
 
 <wux-calendar id="wux-calendar" />

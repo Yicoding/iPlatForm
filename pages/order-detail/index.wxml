@@ -74,7 +74,11 @@
     end-text="我是有底线的"
   />
 </view>
-<view class="btn-group">
-  <view class="btn-left {{ isIpx && orderInfo.state !== 4 && 'btn-group-iphoneX' }}" bindtap="resetOrder" wx:if="{{orderInfo.state !== 4}}">重新下单</view>
-  <view class="btn-right {{ isIpx && 'btn-group-iphoneX' }}" bindtap="onceOrder">再来一单</view>
+<view class="bottom-box">
+  <view class="btn-group">
+    <view class="btn-left" bindtap="resetOrder" wx:if="{{orderInfo.state !== 4}}">重新下单</view>
+    <view class="btn-right" bindtap="onceOrder">再来一单</view>
+  </view>
+  <wux-white-space size="large" wx:if="{{ isIpx }}" />
+  <wux-white-space size="large" wx:if="{{ isIpx }}" />
 </view>

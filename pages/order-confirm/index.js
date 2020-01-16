@@ -172,6 +172,7 @@ Page({
       wx.showToast({
         title: '提交成功'
       });
+      app.globalData.isprvent = false;
       setTimeout(() => {
         wx.redirectTo({
           url: `../order-detail/index?id=${data.id}`

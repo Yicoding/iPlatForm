@@ -127,13 +127,17 @@
   justify-content: flex-end;
 }
 
-.btn-group{
+.bottom-box{
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
   z-index: 999;
+  background: #fff;
+}
+
+.btn-group{
+  display: flex;
 }
 
 .btn-group-iphoneX{
@@ -151,9 +155,9 @@
 }
 
 .btn-left{
-  background: #ff976a;
+  background: coral;
 }
 
 .btn-right{
-  background: #1989fa;
+  background: #07c160;
 }

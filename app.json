@@ -15,6 +15,7 @@
     "pages/setting/index",
     "pages/ship/index",
     "pages/shop/index",
+    "pages/shop-inner/index",
     "pages/unit/index",
     "pages/user/index",
     "pages/user-edit/index",

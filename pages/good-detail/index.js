@@ -110,7 +110,7 @@ Page({
   },
   // 查看购物车
   onClickIcon() {
-    wx.switchTab({ url: '../shop/index' });
+    wx.navigateTo({ url: '../shop-inner/index' });
   },
   // 加入购物车/立即购买
   onClickButton(e) {
@@ -207,6 +207,7 @@ Page({
           writePrice,
         }],
         success: () => {
+          this.setData({ show: false });
           wx.navigateTo({ url: `../order-confirm/index?buyNow=${true}` });
         }
       });

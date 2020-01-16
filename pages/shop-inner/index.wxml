@@ -1,0 +1,72 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<view class="good-box {{isIpx && 'good-box-iphonex'}}">
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopInvalidList}}" wx:key>
+    <view class="good-item">
+      <view class="remove-mask">
+        <view class="remove-txt">已失效</view>
+      </view>
+      <image src="{{item.coverImg}}" mode="aspectFill" />
+      <view class="good-info">
+        <view class="good-name">{{item.name}}</view>
+        <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName}}、{{
+          item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''
+        }}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{tools.setSingle(item)}}</text></view>
+        <view class="space-info">
+          <view class="space-price">
+            <text>总价：</text>
+            <text>￥</text>
+            {{tools.setAll(item)}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view slot="right" class="remove" bindtap="removeInvalid" data-item="{{item}}" data-index="{{index}}">删除</view>
+  </van-swipe-cell>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopList}}" wx:key>
+    <view class="good-item">
+      <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
+      <view class="good-info">
+        <view class="good-name">{{item.name}}</view>
+        <view class="good-tip"><text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName + ' x ' + item.unitDecimal + item.unitSingleName}}、{{
+          item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''
+        }}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{tools.setSingle(item)}}</text></view>
+        <view class="space-info">
+          <view class="space-price">
+            <text>总价：</text>
+            <text>￥</text>
+            {{tools.setAll(item)}}
+          </view>
+          <wux-input-number value="{{item.num}}" shape="circle" color="balanced" slot="footer" min="{{1}}" max="{{9999}}" controlled bindchange="shopChange" data-index="{{index}}" data-item="{{item}}" disabled="{{false}}" />
+        </view>
+      </view>
+    </view>
+    <view slot="right" class="remove" bindtap="remove" data-item="{{item}}" data-index="{{index}}">删除</view>
+  </van-swipe-cell>
+  <loadmore
+    wx:if="{{shopList.length > 0 && shopInvalidList.length > 0}}"
+    show="{{true}}"
+    line
+    type="end"
+    end-text="我是有底线的"
+  />
+</view>
+
+<!-- 购物车为空 -->
+<empty-show
+  visible="{{ shopList.length === 0 && shopInvalidList.length === 0 && !loading }}"
+  icon="{{ msg.icon }}"
+  title="{{ msg.title }}"
+  buttons="{{ msg.buttons }}"
+  bind:click="buttonClicked"
+/>
+
+
+<van-submit-bar
+  price="{{ totalPrice*100 }}"
+  button-text="去结算"
+  disabled="{{shopList.length === 0}}"
+  bind:submit="onSubmit"
+>
+  <view class="clear-btn {{ shopList.length === 0 && shopInvalidList.length === 0 && 'btn-empty' }}" bindtap="clearShop">清空购物车</view>
+</van-submit-bar>
