@@ -13,7 +13,7 @@
     <l-grid l-class="grid" row-num="4" show-border="{{true}}">
       <l-grid-item 
         wx:for="{{grids}}"
-        wx:key="{{index}}"
+        wx:key="index"
         key="{{index}}"
         slot="{{index}}"
         bind:linitemtap="gridTap"
@@ -30,7 +30,7 @@
     <l-grid l-class="grid" row-num="4" show-border="{{true}}">
       <l-grid-item 
         wx:for="{{gridsStaff}}"
-        wx:key="{{index}}"
+        wx:key="index"
         key="{{index}}"
         slot="{{index}}"
         bind:linitemtap="gridTap"

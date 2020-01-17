@@ -25,7 +25,7 @@
             </view>
             <view class="{{ classes.bd }}">
                 <view class="{{ classes.weekdays }}" wx:if="{{ weekHeader }}">
-                    <block wx:for="{{ weeks }}" wx:key="">
+                    <block wx:for="{{ weeks }}" wx:key="index">
                         <view class="{{ classes.weekday }} {{ item.weekend ? prefixCls + '__weekday--weekend' : '' }}">
                             {{ item.dayName }}
                         </view>
@@ -33,16 +33,16 @@
                 </view>
                 <view class="{{ classes.months }}">
                     <view class="{{ classes.monthsContent }}" bindtouchstart="onTouchStart" catchtouchmove="{{ swiping ? 'noop' : '' }}" capture-bind:touchmove="onTouchMove" bindtouchend="onTouchEnd" style="{{ wrapperTranslate }}">
-                        <block wx:for="{{ months }}" wx:for-item="month" wx:key="">
+                        <block wx:for="{{ months }}" wx:for-item="month" wx:key="month">
                             <view
                                 data-year="{{ month.year }}"
                                 data-month="{{ month.month }}"
                                 class="{{ classes.month }} {{ index === 0 ? (prefixCls + '__month--prev') : index === 1 ? (prefixCls + '__month--current') : (prefixCls + '__month--next') }}"
                                 style="{{ monthsTranslate[index] }}"
                             >
-                                <block wx:for="{{ month.items }}" wx:for-item="row" wx:key="">
+                                <block wx:for="{{ month.items }}" wx:for-item="row" wx:key="row">
                                     <view class="{{ classes.days }}">
-                                        <block wx:for="{{ row }}" wx:for-item="col" wx:key="">
+                                        <block wx:for="{{ row }}" wx:for-item="col" wx:key="col">
                                             <view
                                             data-year="{{ col.year }}"
                                             data-month="{{ col.month }}"

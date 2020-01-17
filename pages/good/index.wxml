@@ -6,19 +6,19 @@
 </view>
 <view class="VerticalBox">
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
-    <view class="cu-item {{index==TabCur?'cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'cur':''}}" wx:for="{{list}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
       {{item.name}}
     </view>
     <view style="height: 120rpx"></view>
   </scroll-view>
   <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
-    <view class="type-container {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key id="main-{{index}}">
+    <view class="type-container {{index === list.length - 1 && 'last-view'}}" wx:for="{{list}}" wx:key="index" id="main-{{index}}">
       <view class="type-box">
         <view class="type-name">
           <text class="cuIcon-title"></text>
           {{item.name}}
         </view>
-        <van-swipe-cell right-width="{{ 65 }}" wx:for="{{item.children}}" wx:for-item="todu" wx:for-index="i" wx:key data-id="{{todu.id}}" disabled="{{ userInfo.role_name !== 'admin'}}">
+        <van-swipe-cell right-width="{{ 65 }}" wx:for="{{item.children}}" wx:for-item="todu" wx:for-index="i" wx:key="i" data-id="{{todu.id}}" disabled="{{ userInfo.role_name !== 'admin'}}">
           <view class="good-box">
             <image class="cu-avatar" src="{{todu.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{todu.coverImg}}" />
             <view class="good-content" bindtap="linkDetail" data-item="{{todu}}">

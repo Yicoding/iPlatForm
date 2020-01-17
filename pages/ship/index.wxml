@@ -10,7 +10,7 @@
 <view class="touch-box" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
   <!-- 未发货 -->
   <view hidden="{{active == 1}}" class="good-box {{isIpx && 'good-box-iphonex'}}">
-    <view class="good-item {{item.ani && 'hide-line'}}" wx:for="{{unShipList}}" wx:key>
+    <view class="good-item {{item.ani && 'hide-line'}}" wx:for="{{unShipList}}" wx:key="index">
       <van-checkbox
         custom-class="icon-check"
         value="{{ item.isChecked }}"
@@ -37,7 +37,7 @@
   </view>
   <!-- 已发货 -->
   <view hidden="{{active === 0}}" class="good-box {{isIpx && 'good-box-iphonex'}}">
-    <view class="good-item {{item.ani && 'hide-line-left'}}" wx:for="{{shipList}}" wx:key>
+    <view class="good-item {{item.ani && 'hide-line-left'}}" wx:for="{{shipList}}" wx:key="index">
       <van-checkbox
         custom-class="icon-check"
         value="{{ item.isChecked }}"

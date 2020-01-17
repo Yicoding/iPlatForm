@@ -1,7 +1,7 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 <view class="good-box">
-  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopInvalidList}}" wx:key>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopInvalidList}}" wx:key="index">
     <view class="good-item">
       <view class="remove-mask">
         <view class="remove-txt">已失效</view>
@@ -23,7 +23,7 @@
     </view>
     <view slot="right" class="remove" bindtap="removeInvalid" data-item="{{item}}" data-index="{{index}}">删除</view>
   </van-swipe-cell>
-  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopList}}" wx:key>
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopList}}" wx:key="index">
     <view class="good-item">
       <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
       <view class="good-info">

@@ -1,7 +1,7 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 <view class="good-box">
-  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{userList}}" wx:key disabled="{{ userInfo.role_name !== 'admin' }}">
+  <van-swipe-cell right-width="{{ 65 }}" wx:for="{{userList}}" wx:key="index" disabled="{{ userInfo.role_name !== 'admin' }}">
     <view class="good-item">
       <image src="{{item.avatar || avatar}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.avatar || avatar}}" />
       <view class="good-info" bindtap="linkUser" data-id="{{item.id}}">

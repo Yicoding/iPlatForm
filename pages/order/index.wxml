@@ -22,7 +22,7 @@
     </van-tabs>
   </view>
   <view>
-    <view wx:for="{{orderList}}" wx:key class="order-item" catchtap="linkDetail" data-id="{{item.id}}">
+    <view wx:for="{{orderList}}" wx:key="index" class="order-item" catchtap="linkDetail" data-id="{{item.id}}">
       <view wx:if="{{active === 0}}">
         <state-box state="{{item.state}}" />
       </view>

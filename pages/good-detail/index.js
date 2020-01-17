@@ -284,7 +284,7 @@ Page({
     try {
       const item = this.data.shopList[index];
       const { good_id, unitType, priceType, num } = item;
-      const { goodNum, writePrice } = this.data;
+      const { goodNum, writePrice, goodPriceType } = this.data;
       console.log('item', item);
       const numTotal = Number(num) + Number(goodNum);
       await ajax({
@@ -294,6 +294,7 @@ Page({
           good_id,
           unitType,
           priceType,
+          value: goodPriceType,
           user_id: this.data.userInfo.id,
           num: numTotal,
           writePrice

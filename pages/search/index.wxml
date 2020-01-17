@@ -22,7 +22,7 @@
       </view>
     </view>
     <view class="btn-group">
-      <view class="btn-gray" wx:for="{{ keyword }}" wx:key wx:if="{{index < num}}" catchtap="btnSearch" data-value="{{ item }}">
+      <view class="btn-gray" wx:for="{{ keyword }}" wx:key="index" wx:if="{{index < num}}" catchtap="btnSearch" data-value="{{ item }}">
         <view class="btn-txt">
           <text>{{item}}</text>
           <block wx:if="{{ isDelete }}">
@@ -52,7 +52,7 @@
   />
 
   <view class="container">
-    <view class="good-box" wx:for="{{ goodList }}" wx:key data-id="{{item.id}}">
+    <view class="good-box" wx:for="{{ goodList }}" wx:key="index" data-id="{{item.id}}">
       <image class="cu-avatar" src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
       <view class="good-content" bindtap="linkDetail"  data-id="{{item.id}}">
         <view class="good-name">{{item.name}}</view>

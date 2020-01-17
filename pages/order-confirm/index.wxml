@@ -31,7 +31,7 @@
       data-type="address"
     />
   </van-cell-group>
-  <view class="good-item" wx:for="{{shopList}}" wx:key>
+  <view class="good-item" wx:for="{{shopList}}" wx:key="index">
     <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
     <view class="good-info">
       <view class="good-name">{{item.name}}</view>

@@ -3,7 +3,7 @@
   <view class="cell">名称</view>
   <view class="cell-s" wx:if="{{ userInfo.role_name === 'admin' }}">操作</view>
 </view>
-<van-swipe-cell right-width="{{ 65 }}" wx:for="{{dataList}}" wx:key disabled="{{ userInfo.role_name !== 'admin' }}">
+<van-swipe-cell right-width="{{ 65 }}" wx:for="{{dataList}}" wx:key="index" disabled="{{ userInfo.role_name !== 'admin' }}">
   <view class="line">
     <view class="num">{{index+1}}</view>
     <view class="cell">
