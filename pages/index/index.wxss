@@ -78,6 +78,10 @@
   padding-bottom: 130rpx;
 }
 
+.last-type{
+  min-height: 91vh;
+}
+
 .good-box{
   display: flex;
   padding: 30rpx 30rpx 30rpx 0;

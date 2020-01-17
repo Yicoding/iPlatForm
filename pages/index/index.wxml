@@ -13,6 +13,7 @@
       wx:for="{{ cities }}"
       wx:for-item="item"
       wx:key="item"
+      class="{{ index === cities.length - 1 && 'last-type' }}"
     >
       <view class="line-bottom">
         <van-index-anchor index="{{ item.key }}" />
