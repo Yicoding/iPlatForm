@@ -76,6 +76,7 @@
   min-height: 100%;
   margin-bottom: 0;
   padding-bottom: 130rpx;
+  box-sizing: border-box;
 }
 
 .last-type{
