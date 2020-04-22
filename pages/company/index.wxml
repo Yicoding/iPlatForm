@@ -1,0 +1,26 @@
+<view
+  wx:for="{{getList}}"
+  wx:key="index"
+>
+  <wux-white-space size="large" />
+  <l-card
+    type="primary"
+    l-img-class="right-card"
+    position="left"
+    image="{{item.logo}}"
+    data-index="{{index}}"
+    bindtap="linkCompany"
+  >
+    <view>
+      <view class="name">{{item.name}}</view>
+      <view class="address">{{item.address}}</view>
+    </view>
+  </l-card>
+</view>
+<view class="btn">
+  <van-button
+    type="danger"
+    size="large"
+    bindtap="loginOut"
+  >退出登录</van-button>
+</view>

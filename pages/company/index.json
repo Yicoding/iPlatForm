@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "系统列表",
+  "usingComponents": {
+    "wux-white-space": "/miniprogram_npm/wux-weapp/white-space/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "l-card": "/miniprogram_npm/lin-ui/card/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index"
+  }
+}

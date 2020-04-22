@@ -221,7 +221,7 @@ Page({
         wx.navigateBack();
       }, 1500);
     } catch (e) {
-      console.log(`${url}报错`, e);
+      console.log(`saveFun报错`, e);
     } finally {
       wx.hideLoading();
     }

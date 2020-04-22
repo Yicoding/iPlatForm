@@ -72,13 +72,25 @@ Page({
         }
       });
       console.log('loginByWx', data);
-      app.globalData.userInfo = data;
+      if (data && data.length && data.length === 1) {
+        app.globalData.userInfo = data[0];
+        wx.setStorage({
+          key: 'userInfo',
+          data: data[0]
+        });
+        wx.reLaunch({
+          url: '../index/index'
+        });
+        return;
+      }
+      app.globalData.userList = data;
       wx.setStorage({
-        key: 'userInfo',
-        data
+        key: 'userList',
+        data: data
       });
-      return wx.switchTab({
-        url: '../index/index'
+      return wx.reLaunch({
+        url: '../company/index'
+        // url: '../index/index'
         // url: '../mine/index'
         // url: '../order/index'
         // url: '../shop/index'

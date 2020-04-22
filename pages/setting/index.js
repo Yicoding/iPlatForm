@@ -4,9 +4,17 @@ const app = getApp()
 
 Page({
   data: {
-    
+    isMultiple: false
   },
   onLoad() {
+    wx.getStorage({
+      key: 'userList',
+      success: ({ data }) => {
+        if (data) {
+          this.setData({ isMultiple: true });
+        }
+      }
+    });
   },
   // 退出
   loginOut() {
@@ -66,5 +74,11 @@ Page({
         console.log('err', err);
       }
     })
+  },
+  // 切换公司
+  switchCompany() {
+    wx.reLaunch({
+      url: '../company/index'
+    });
   }
 })

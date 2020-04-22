@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/login/index",
+    "pages/company/index",
     "pages/good/index",
     "pages/good-edit/index",
     "pages/good-detail/index",

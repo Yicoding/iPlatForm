@@ -2,4 +2,8 @@
 <wux-white-space />
 <van-cell title="识别订单二维码" is-link bind:click="showCamare" />
 <wux-white-space />
+<block wx:if="{{isMultiple}}">
+  <van-cell title="切换公司" is-link bind:click="switchCompany" />
+  <wux-white-space />
+</block>
 <van-cell title="退出登录" is-link bind:click="loginOut" />

@@ -111,6 +111,9 @@ Page({
           sort
         }
       });
+      if (!data.data.length) {
+        return;
+      }
       console.log('getGoodsList', data.data);
       this.setData({ goodList: data.data });
       this.setData({ hasMore: data.data.length >= this.pageSize - 1 });

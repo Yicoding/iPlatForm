@@ -21,6 +21,14 @@ const ajax = obj => {
           });
           wx.reLaunch({ url: '../login/index' });
           reject(data.data);
+        } else if (data.code === -1) {
+          reject(data.error);
+          wx.showModal({
+            title: '出错啦',
+            content: data.error,
+            showCancel: false,
+            confirmColor: '#e4393c'
+          })
         } else {
           reject(data.data);
           wx.showModal({
