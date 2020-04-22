@@ -148,6 +148,7 @@ Page({
         }
       });
       const cities = data.data.map(item => {
+        item.sellSingle = String(item.sellSingle);
         return Object.assign({}, {
           pinyin: convertAll(item.name)
         }, item);
