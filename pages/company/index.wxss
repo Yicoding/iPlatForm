@@ -12,3 +12,7 @@
 .btn {
   padding: 30rpx;
 }
+
+.card-img {
+  border-radius: 12rpx;
+}

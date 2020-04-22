@@ -10,6 +10,7 @@
     image="{{item.logo}}"
     data-index="{{index}}"
     bindtap="linkCompany"
+    l-img-class="card-img"
   >
     <view>
       <view class="name">{{item.name}}</view>
