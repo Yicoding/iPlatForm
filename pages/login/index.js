@@ -12,13 +12,22 @@ Page({
   },
   onLoad: function () {
     // 获取本地用户信息
-    wx.getStorage({
-      key: 'userInfo',
-      success: ({ data }) => {
-        const { phone, password } = data;
+    try {
+      const userList = wx.getStorageSync('userList');
+      console.log('userList', userList);
+      if (userList) {
+        const { phone, password } = userList[0];
+        return this.loginByWx(phone, password);
+      }
+      const userInfo = wx.getStorageSync('userInfo');
+      console.log('userInfo', userInfo);
+      if (userInfo) {
+        const { phone, password } = userInfo;
         this.loginByWx(phone, password);
       }
-    })
+    } catch (e) {
+      console.log('login onLoad报错', e);
+    }
   },
   // 键盘输入时
   changeVal(e) {
