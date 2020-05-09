@@ -2,7 +2,12 @@ var config = require('../config')
 
 function uploadFile(filePath) {
     return new Promise((resolve, reject) => {
+        const { phone = '', token = '' } = wx.getStorageSync('userInfo');
         wx.uploadFile({
+            header: {
+                phone,
+                token
+            },
             // url: config.service.uploadUrl,
             url: config.service.putObject,
             filePath: filePath,
@@ -10,7 +15,7 @@ function uploadFile(filePath) {
             success: function (res) {
                 console.log(res)
                 res = JSON.parse(res.data)
-                if(res.code == 0) {
+                if (res.code == 0) {
                     // resolve(res.data.imgUrl)
                     resolve(`https://${res.data.Location}`)
                 } else {
