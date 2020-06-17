@@ -191,7 +191,8 @@ Page({
         url: config.service.removeShopByUser,
         method: 'PUT',
         data: {
-          user_id: this.data.userInfo.id
+          user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id
         }
       });
       console.log('removeShopByUser', data);

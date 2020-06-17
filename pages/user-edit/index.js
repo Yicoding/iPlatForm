@@ -21,7 +21,7 @@ Page({
     phone: '',
     password: '',
     age: '',
-    role_id: null,
+    role_id: 3,
     sex: 'man',
     coverImg: 'https://qcloudtest-1257454171.cos.ap-guangzhou.myqcloud.com/present/1574164351806-FFphnQmq.jpg',
     avatar: '',

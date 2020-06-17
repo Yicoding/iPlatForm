@@ -235,7 +235,8 @@ Page({
           priceType: goodPriceType || this.data.goodPriceType,
           user_id: this.data.userInfo.id,
           num,
-          writePrice: writePrice
+          writePrice: writePrice,
+          company_id: this.data.userInfo.company_id,
         }
       });
       if (goodPriceType) {
