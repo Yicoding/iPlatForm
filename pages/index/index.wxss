@@ -174,7 +174,7 @@
 
 .space-box{
   background: #fff;
-  border-radius: 10rpx;
+  border-radius: 5rpx;
   padding: 25rpx 0;
   text-align: justify;
 }

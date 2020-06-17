@@ -23,7 +23,7 @@ page{
 
 .good-item{
   background: #fff;
-  border-radius: 10rpx;
+  border-radius: 5rpx;
   padding: 20rpx;
   margin-top: 20rpx;
   display: flex;
@@ -83,7 +83,7 @@ page{
   font-size: 26rpx;
   background: coral;
   padding: 15rpx 20rpx;
-  border-radius: 10rpx;
+  border-radius: 5rpx;
   margin-left: 20rpx;
 }
 

@@ -737,7 +737,10 @@ Page({
   },
   // 开关
   onChangeSwitch({ detail }) {
-    this.setData({ checked: detail });
+    this.setData({
+      checked: detail,
+      showPop: false
+    });
     // 存储
     wx.setStorage({
       key: 'checked',

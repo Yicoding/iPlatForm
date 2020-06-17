@@ -1,11 +1,10 @@
 page{
-  padding: 40rpx 30rpx;
+  padding: 40rpx 0;
   box-sizing: border-box;
 }
 
 .card{
   padding: 40rpx;
-  border-radius: 10rpx;
 }
 
 .menu{

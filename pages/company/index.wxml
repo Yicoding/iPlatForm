@@ -1,11 +1,11 @@
 <view
   wx:for="{{getList}}"
   wx:key="index"
+  class="company"
 >
   <wux-white-space size="large" />
   <l-card
     type="primary"
-    l-img-class="right-card"
     position="left"
     image="{{item.logo}}"
     data-index="{{index}}"

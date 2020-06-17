@@ -1,6 +1,6 @@
 
 .good-box{
-  padding: 20rpx 15rpx 110rpx;
+  padding: 20rpx 0 110rpx;
 }
 
 .good-box-iphonex{
@@ -9,7 +9,6 @@
 
 .good-item{
   background: #fff;
-  border-radius: 10rpx;
   padding: 20rpx;
   margin-bottom: 20rpx;
   display: flex;
@@ -93,7 +92,7 @@
   font-size: 26rpx;
   background: coral;
   padding: 15rpx 20rpx;
-  border-radius: 10rpx;
+  border-radius: 5rpx;
   margin-left: 20rpx;
 }
 

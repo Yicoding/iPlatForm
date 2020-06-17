@@ -44,9 +44,8 @@ page{
 }
 
 .order-item{
-  margin: 40rpx 20rpx;
+  margin: 40rpx 0;
   background: #fff;
-  border-radius: 10rpx;
   padding: 20rpx;
   position: relative;
 }
