@@ -39,7 +39,7 @@
       },
       {
         "pagePath": "pages/shop/index",
-        "text": "宝箱",
+        "text": "购物车",
         "iconPath": "images/icon/gift-box.png",
         "selectedIconPath": "images/icon/gift-box.png"
       },
