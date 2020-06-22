@@ -48,7 +48,10 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.getShoplist,
-        data: { user_id: this.data.userInfo.id }
+        data: {
+          user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id
+        }
       });
       console.log('getShoplist', data);
       this.setData({ shopList: data });
@@ -83,7 +86,10 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.getShoplistInValid,
-        data: { user_id: this.data.userInfo.id }
+        data: {
+          user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id
+        }
       });
       console.log('getShoplistInValid', data);
       this.setData({ shopInvalidList: data });

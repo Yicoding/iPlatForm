@@ -186,7 +186,8 @@ Page({
       const { data } = await ajax({
         url: config.service.getShoplist,
         data: {
-          user_id: this.data.userInfo.id
+          user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id
         }
       });
       const countInfo = {};
