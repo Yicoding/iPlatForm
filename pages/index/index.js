@@ -30,7 +30,8 @@ Page({
     cities: [],
     scrollTop: 0,
     showPop: false,
-    checked: false
+    checked: false,
+    isShow: false, // 购物车
   },
   onLoad() {
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
@@ -687,11 +688,17 @@ Page({
     }
     this.setData({ goodNum: val });
   },
-  // 查看购物车
+  // 去结算
   onSubmit() {
-    wx.switchTab({
-      url: '../shop/index'
-    });
+    // wx.switchTab({
+    //   url: '../shop/index'
+    // });
+    wx.navigateTo({ url: '../order-confirm/index' });
+  },
+  // 查看购物车
+  showShop() {
+    console.log('showShop');
+    this.setData({ isShow: !this.data.isShow })
   },
   // 跳转到搜索页面
   linkSearch() {

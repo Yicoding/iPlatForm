@@ -38,12 +38,6 @@
         "selectedIconPath": "images/icon/food.png"
       },
       {
-        "pagePath": "pages/shop/index",
-        "text": "购物车",
-        "iconPath": "images/icon/gift-box.png",
-        "selectedIconPath": "images/icon/gift-box.png"
-      },
-      {
         "pagePath": "pages/order/index",
         "text": "订单",
         "iconPath": "images/icon/diary.png",

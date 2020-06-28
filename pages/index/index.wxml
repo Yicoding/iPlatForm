@@ -60,7 +60,12 @@
               <text class="icon-price">￥</text>{{todu.sellSingle}}<text wx:if="{{todu.sellSingle !== todu.sellAll}}"> /<text class="icon-price">￥</text>{{todu.sellAll}}</text>
             </view>
           </view>
-          <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
+          <!-- <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view> -->
+          <view class="add-box">
+            <image src="../../images/reduce.png" mode="aspectFill" />
+            <text>{{countInfo[todu.id]}}</text>
+            <image src="../../images/add.png" mode="aspectFill" />
+          </view>
         </view>
       </view>
     </view>
@@ -185,11 +190,12 @@
 
 <van-submit-bar
   price="{{ totalPrice*100 }}"
-  button-text="查看购物车"
+  button-text="去结算"
   bind:submit="onSubmit"
+  bindtap="showShop"
   safe-area-inset-bottom="{{false}}"
 >
-  <van-icon bindtap="onSubmit" class="shop-num" name="cart-o" info="{{shopNum}}" />
+  <van-icon class="shop-num" name="cart-o" info="{{shopNum}}" />
 </van-submit-bar>
 <view class="icon-transpage" bindtap="onClosePop">
   <wux-icon type="ios-play" color="#fff" size="20" wux-class="{{ showPop && 'icon-play-left' }}" />

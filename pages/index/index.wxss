@@ -348,3 +348,19 @@
 .search {
   flex: 1;
 }
+
+.add-box {
+  font-size: 28rpx;
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 130rpx;
+  position: relative;
+}
+
+.add-box image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
