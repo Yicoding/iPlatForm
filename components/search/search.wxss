@@ -1,7 +1,7 @@
 .container{
     background: #fff;
     height: 100rpx;
-    padding: 0 30rpx;
+    padding: 0 16rpx;
     display: flex;
     align-items: center;
     position: relative;
@@ -15,6 +15,7 @@ input{
     flex: 1;
     height: 65rpx;
     border-radius: 33rpx;
+    font-size: 26rpx;
 }
 
 .icon-search{
@@ -41,4 +42,8 @@ input{
 
 .btn{
     margin-left: 30rpx;
+}
+
+.btn button {
+    width: auto !important;
 }

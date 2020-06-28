@@ -74,7 +74,10 @@ Page({
     try {
       const { data } = await ajax({
         url: config.service.getShoplist,
-        data: { user_id: this.data.userInfo.id }
+        data: {
+          user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id
+        }
       });
       console.log('getShoplist', data);
       this.setData({ shopList: data });
@@ -243,6 +246,7 @@ Page({
         method: 'POST',
         data: {
           user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id,
           good_id: id,
           num: goodNum,
           priceType: goodPriceType,

@@ -7,11 +7,15 @@ Component({
     properties: {
         focus: {
             type: Boolean,
-            default: false
+            value: false
         },
         disabled: {
             type: Boolean,
-            default: false
+            value: false
+        },
+        showBtn: {
+            type: Boolean,
+            value: true
         }
     },
     /**
@@ -21,7 +25,7 @@ Component({
         text: '',
     },
     attached() {
-
+        console.log('showBtn', this.properties.showBtn)
     },
     methods: {
         // 键盘输入时触发

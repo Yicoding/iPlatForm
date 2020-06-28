@@ -1,8 +1,11 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 <!-- 搜索 -->
-<view bindtap="linkSearch">
-  <search disabled="{{true}}" />
+<view class="header">
+  <view class="search" bindtap="linkSearch">
+    <search disabled showBtn="{{false}}" />
+  </view>
+  <i-icon type="scan" size="32" color="#ffc200" bindtap="scan" />
 </view>
 <view class="index-box" wx:if="{{checked}}">
   <van-index-bar

@@ -752,5 +752,27 @@ Page({
     } else {
       this.getGoodsByCompany();
     }
+  },
+  // 扫码
+  scan() {
+    wx.scanCode({
+      success: (res) => {
+        console.log('res', res);
+        const { result } = res;
+        const arr = result.match(/([0-9]+)#/);
+        if (arr && arr.length > 0 && arr[1]) {
+          console.log('arr', arr);
+        } else {
+          wx.showToast({
+            title: '无效的二维码，请更换',
+            duration: 2500,
+            icon: 'none'
+          })
+        }
+      },
+      fail: (err) => {
+        console.log('err', err);
+      }
+    })
   }
 })

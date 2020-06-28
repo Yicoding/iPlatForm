@@ -4,7 +4,8 @@
   <view class="order-flex-item">
     <view>订单编号</view>
     <view>
-      <l-tag shape="square" bg-color="orange">{{orderInfo.id}}</l-tag>
+      <!-- <l-tag shape="square" bg-color="orange">{{orderInfo.id}}</l-tag> -->
+      <text>{{orderInfo.id}}</text>
     </view>
   </view>
   <view class="order-flex-item">
@@ -33,7 +34,7 @@
 <van-cell wx:if="{{orderInfo.state === 1 || orderInfo.state === 2}}">
   <view slot="title" class="order-btn-box">
     <van-button wx:if="{{orderInfo.state === 1}}" type="primary" size="small" bindtap="changeState">确认付款</van-button>
-    <van-button wx:if="{{orderInfo.state === 2}}" type="primary" size="small" bindtap="linkShip">去发货</van-button>
+    <van-button wx:if="{{orderInfo.state === 2}}" type="primary" size="small" bindtap="linkShip">核对货物</van-button>
   </view>
 </van-cell>
 <van-cell wx:if="{{orderInfo.customerName}}" title="客户姓名" value="{{orderInfo.customerName}}" />

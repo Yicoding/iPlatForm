@@ -11,8 +11,7 @@
     bindconfirm="onConfim"
   />
   <text hidden="{{!text}}" class="cancel" bindtap="cancel">取消</text>
-  <!-- <image class="icon-user" src="{{avatar}}" bindtap="switchEdit" /> -->
-  <view class="btn">
+  <view class="btn" wx:if="{{ showBtn }}">
     <van-button type="primary" round size="small" bindtap="goSearch">搜索</van-button>
   </view>
 </view>

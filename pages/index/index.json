@@ -18,6 +18,7 @@
     "van-index-bar": "/miniprogram_npm/vant/index-bar/index",
     "van-index-anchor": "/miniprogram_npm/vant/index-anchor/index",
     "van-popup": "/miniprogram_npm/vant/popup/index",
-    "van-switch": "/miniprogram_npm/vant/switch/index"
+    "van-switch": "/miniprogram_npm/vant/switch/index",
+    "i-icon": "/miniprogram_npm/iview/icon/index"
   }
 }

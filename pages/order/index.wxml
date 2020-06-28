@@ -29,8 +29,8 @@
       <van-cell>
           <view slot="title" class="order-line">
           <text>订单编号</text>
-          <l-tag shape="square" bg-color="orange">{{item.id}}</l-tag>
-          <!-- <text class="red">{{item.id}}</text> -->
+          <!-- <l-tag shape="square" bg-color="orange">{{item.id}}</l-tag> -->
+          <text>{{item.id}}</text>
         </view>  
       </van-cell>
       <van-cell>

@@ -137,10 +137,6 @@ Page({
       const unShipList = JSON.parse(JSON.stringify(this.data.unShipList));
       const shipList = JSON.parse(JSON.stringify(this.data.shipList));
       const { index, type, check, id } = e.currentTarget.dataset;
-      wx.showLoading({
-        title: '加载中...',
-        mask: true
-      });
       const { data } = await ajax({
         url: config.service.updateOrderGood,
         method: 'PUT',
@@ -154,53 +150,36 @@ Page({
         unShipList.forEach(item => {
           item.disabled = true;
         });
-        unShipList[index].ani = true;
-        this.setData({ unShipList });
-        setTimeout(() => {
-          const item = unShipList[index];
-          item.ani = false;
-          unShipList.forEach(item => {
-            item.disabled = false;
-          });
-          unShipList.splice(index, 1);
-          shipList.unshift(item);
-          this.setData({
-            unShipList,
-            shipList
-          });
-          if (unShipList.length === 0) {
-            this.setData({ active: 1 });
-          }
-        }, 1400);
+        const item = unShipList[index];
+        unShipList.forEach(item => {
+          item.disabled = false;
+        });
+        unShipList.splice(index, 1);
+        shipList.unshift(item);
+        this.setData({
+          unShipList,
+          shipList
+        });
       } else {
         shipList[index].isChecked = check;
-        shipList[index].ani = true;
         shipList.forEach(item => {
           item.disabled = true;
         });
-        this.setData({ shipList });
-        setTimeout(() => {
-          const item = shipList[index];
-          item.ani = false;
-          shipList.forEach(item => {
-            item.disabled = false;
-          });
-          shipList.splice(index, 1);
-          unShipList.unshift(item);
-          this.setData({
-            unShipList,
-            shipList
-          });
-          if (shipList.length === 0) {
-            this.setData({ active: 0 });
-          }
-        }, 1400);
+        const item = shipList[index];
+        shipList.forEach(item => {
+          item.disabled = false;
+        });
+        shipList.splice(index, 1);
+        unShipList.unshift(item);
+        this.setData({
+          unShipList,
+          shipList
+        });
       }
       console.log('updateOrderGood', data);
     } catch (e) {
       console.log('updateOrderGood报错', e);
     } finally {
-      wx.hideLoading();
     }
   },
   // 一键操作

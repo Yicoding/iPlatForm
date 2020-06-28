@@ -338,3 +338,13 @@
 .icon-play-left{
   transform: rotateY(180deg);
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.search {
+  flex: 1;
+}

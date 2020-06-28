@@ -154,7 +154,7 @@
 }
 
 .btn-left{
-  background: coral;
+  background: #e4393c;
 }
 
 .btn-right{
