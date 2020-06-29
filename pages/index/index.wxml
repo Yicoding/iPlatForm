@@ -5,7 +5,7 @@
   <view class="search" bindtap="linkSearch">
     <search disabled showBtn="{{false}}" />
   </view>
-  <i-icon type="scan" size="32" color="#ffc200" bindtap="scan" />
+  <i-icon type="scan" size="32" color="#ff976a" bindtap="scan" />
 </view>
 <view class="index-box" wx:if="{{checked}}">
   <van-index-bar
@@ -62,9 +62,10 @@
           </view>
           <!-- <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view> -->
           <view class="add-box">
-            <image src="../../images/reduce.png" mode="aspectFill" />
-            <text>{{countInfo[todu.id]}}</text>
-            <image src="../../images/add.png" mode="aspectFill" />
+            <image wx:if="{{countInfo[todu.id]}}" bindtap="calcNum" data-todu="{{todu}}" data-type="reduce" src="../../images/reduce.png" mode="aspectFill" />
+            <view class="empty-img" wx:else />
+            <text wx:if="{{countInfo[todu.id]}}">{{countInfo[todu.id]}}</text>
+            <image bindtap="calcNum" data-todu="{{todu}}" data-type="add" src="../../images/add.png" mode="aspectFill" />
           </view>
         </view>
       </view>
@@ -189,10 +190,12 @@
 </view>
 
 <van-submit-bar
+  custom-class="submit-bar"
   price="{{ totalPrice*100 }}"
   button-text="去结算"
   bind:submit="onSubmit"
   bindtap="showShop"
+  disabled="{{shopList.length === 0}}"
   safe-area-inset-bottom="{{false}}"
 >
   <van-icon class="shop-num" name="cart-o" info="{{shopNum}}" />
@@ -210,5 +213,48 @@
   <view class="pop-box">
     <van-cell title="切换页面" border="{{false}}" />
     <van-switch custom-class="switch" size="20px" checked="{{ checked }}" bind:change="onChangeSwitch" />
+  </view>
+</van-popup>
+<!-- 底部弹出层 -->
+<van-popup
+  z-index="{{90}}"
+  duration="{{250}}"
+  custom-class="popup-shop"
+  show="{{ isShow }}"
+  position="bottom"
+  bind:close="showShop"
+>
+  <view class="shop-box">
+    <view class="shop-title">
+      <text>已选商品</text>
+      <view class="shop-delete" bindtap="clearShop">
+        <van-icon custom-class="icon-delete" name="delete" color="#999" size="20px" catchtap="delete" />
+        <text>清空</text>
+      </view>
+    </view>
+    <view class="good-box-shop">
+      <van-swipe-cell right-width="{{ 65 }}" wx:for="{{shopList}}" wx:key="index">
+        <view class="good-item">
+          <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
+          <view class="good-info">
+            <view class="good-name">{{item.name}}</view>
+            <view class="space-info-shop">
+              <view class="space-price">
+                <text>总价：</text>
+                <text>￥</text>
+                {{tools.setAll(item)}}
+              </view>
+              <view class="add-box">
+                <image wx:if="{{item.num}}" bindtap="calcNum" data-todu="{{item}}" data-type="reduce" src="../../images/reduce.png" mode="aspectFill" data-site="shop" />
+                <view class="empty-img" wx:else />
+                <text>{{item.num}}</text>
+                <image bindtap="calcNum" data-todu="{{item}}" data-type="add" src="../../images/add.png" mode="aspectFill" data-site="shop" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view slot="right" class="remove" bindtap="remove" data-item="{{item}}" data-index="{{index}}">删除</view>
+      </van-swipe-cell>
+    </view>
   </view>
 </van-popup>

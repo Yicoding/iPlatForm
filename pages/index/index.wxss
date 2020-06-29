@@ -1,3 +1,4 @@
+@import './shop.wxss';
 /* pages/component/nav/nav.wxss */
 .VerticalNav.nav {
   width: 200rpx;
@@ -362,5 +363,48 @@
 .add-box image {
   width: 40rpx;
   height: 40rpx;
+  margin: 0;
 }
 
+.empty-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.submit-bar {
+  box-shadow: 0 0 5px 1px #efefef;
+}
+
+.popup-shop {
+  /* max-height: 60% !important; */
+  height: auto !important;
+}
+
+.shop-box {
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  overflow: hidden;
+}
+
+.shop-title {
+  background: rgba(248, 238, 217, .8);
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.shop-delete {
+  display: flex;
+  align-items: center;
+}
+
+.icon-delete {
+  position: relative;
+  top: 3rpx;
+}
+
+.shop-delete text {
+  margin-left: 8rpx;
+}

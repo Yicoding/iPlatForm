@@ -261,6 +261,8 @@ Page({
             midAll: this.data.good.midAll,
             sellSingle: this.data.good.sellSingle,
             sellAll: this.data.good.sellAll,
+            coverImg: this.data.good.coverImg,
+            name: this.data.good.name
           }],
           countInfo,
           todu: {
@@ -627,6 +629,44 @@ Page({
     console.log('countInfo-shopChange', countInfo)
     this.editShop(value);
   },
+  // 改版数量变化
+  calcNum(e) {
+    console.log('shopList', this.data.shopList);
+    const { todu, type, site } = e.currentTarget.dataset;
+    // const { id, good_id } = todu;
+    if (site === 'shop') {
+      todu.id = todu.good_id;
+    }
+    const { id } = todu;
+    console.log('todu', todu);
+    const countInfo = this.data.countInfo;
+    console.log('countInfo', countInfo);
+    let shopNum = this.data.shopNum;
+    this.setData({ good: todu }, () => {
+      if (type === 'add') { // 修改
+        if (countInfo[id]) {
+          countInfo[id] += 1;
+          this.editShop(countInfo[id]);
+        } else { // 新增
+          this.shopChangeAdd();
+        }
+        shopNum += 1;
+      } else { // 修改
+        if (countInfo[id] > 1) {
+          countInfo[id] -= 1;
+          this.editShop(countInfo[id]);
+        } else { // 删除
+          if (site === 'shop' && this.data.shopList.length === 1) {
+            this.setData({ isShow: false });
+          }
+          countInfo[id] = 0;
+          this.editShop(countInfo[id]);
+        }
+        shopNum -= 1;
+      }
+      this.setData({ countInfo, shopNum });
+    });
+  },
   editShop(val) { // 修改购物车
     console.log('editShop', val);
     const index = this.data.shopList.findIndex(item => (
@@ -674,7 +714,9 @@ Page({
           midAll: this.data.good.midAll,
           sellSingle: this.data.good.sellSingle,
           sellAll: this.data.good.sellAll,
-          writePrice: this.data.todu.writePrice
+          writePrice: this.data.todu.writePrice,
+          coverImg: this.data.good.coverImg,
+          name: this.data.good.name
         }]
       })
       this.setData({
@@ -693,12 +735,53 @@ Page({
     // wx.switchTab({
     //   url: '../shop/index'
     // });
-    wx.navigateTo({ url: '../order-confirm/index' });
+    if (this.data.shopList.length === 0) {
+      return;
+    }
+    if (this.data.isShow) {
+      this.setData({ isShow: false }, () => {
+        setTimeout(() => {
+          wx.navigateTo({ url: '../order-confirm/index' });
+        }, 200);
+      });
+    }
   },
   // 查看购物车
   showShop() {
+    if (this.data.shopList.length === 0) {
+      return;
+    }
     console.log('showShop');
     this.setData({ isShow: !this.data.isShow })
+  },
+  // 删除该用户全部购物车
+  async clearShop() {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    try {
+      const { data } = await ajax({
+        url: config.service.removeShopByUser,
+        method: 'PUT',
+        data: {
+          user_id: this.data.userInfo.id,
+          company_id: this.data.userInfo.company_id
+        }
+      });
+      console.log('removeShopByUser', data);
+      this.setData({
+        shopList: [],
+        totalPrice: 0,
+        countInfo: {},
+        shopNum: 0,
+        isShow: false
+      });
+    } catch (e) {
+      console.log('removeShopByUser接口报错', e);
+    } finally {
+      wx.hideLoading();
+    }
   },
   // 跳转到搜索页面
   linkSearch() {
