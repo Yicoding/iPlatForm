@@ -32,8 +32,21 @@ Page({
     showPop: false,
     checked: false,
     isShow: false, // 购物车
+    hide_good_box: true,
+    bus_x: 0,
+    bus_y: 0,
   },
   onLoad() {
+    // 购物车动画
+    this.busPos = {};
+
+    // this.busPos['x'] = app.globalData.ww / 2;
+    this.busPos['x'] = 30;
+
+    this.busPos['y'] = app.globalData.hh - 50;
+
+    console.log('购物车坐标', this.busPos)
+    /** */
     console.log('app.globalData.userInfo**', app.globalData.userInfo)
     this.setData({ userInfo: app.globalData.userInfo });
     try {
@@ -222,10 +235,10 @@ Page({
   },
   // 新增购物车
   async addShop(goodPriceType = null, writePrice = null) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
     const num = 1;
     try {
       const { data } = await ajax({
@@ -284,17 +297,17 @@ Page({
       console.log('addShop', data);
       wx.hideLoading();
     } catch (e) {
-      wx.hideLoading();
+      // wx.hideLoading();
       console.log('addShop报错', e);
     }
   },
   // 修改单个购物车商品数量
   async updateShop(num, value = null, writePrice = null, key = null) {
     console.log('updateShop**num', num, value, this.data.goodUnitType);
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
     try {
       const { data } = await ajax({
         url: config.service.updateShop,
@@ -350,16 +363,16 @@ Page({
       console.log('updateShop', data);
       wx.hideLoading();
     } catch (e) {
-      wx.hideLoading();
+      // wx.hideLoading();
       console.log('updateShop报错', e);
     }
   },
   // 删除单个购物车
   async removeShop() {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
     try {
       const { data } = await ajax({
         url: config.service.removeShop,
@@ -374,7 +387,7 @@ Page({
       console.log('removeShop', data);
       wx.hideLoading();
     } catch (e) {
-      wx.hideLoading();
+      // wx.hideLoading();
       console.log('removeShop报错', e);
     }
   },
@@ -631,16 +644,16 @@ Page({
   },
   // 改版数量变化
   calcNum(e) {
-    console.log('shopList', this.data.shopList);
+    console.log('calcNum', e.touches['0']);
     const { todu, type, site } = e.currentTarget.dataset;
     // const { id, good_id } = todu;
     if (site === 'shop') {
       todu.id = todu.good_id;
+    } else if (type === 'add') {
+      this.touchOnGoods(e);
     }
     const { id } = todu;
-    console.log('todu', todu);
     const countInfo = this.data.countInfo;
-    console.log('countInfo', countInfo);
     let shopNum = this.data.shopNum;
     this.setData({ good: todu }, () => {
       if (type === 'add') { // 修改
@@ -744,6 +757,8 @@ Page({
           wx.navigateTo({ url: '../order-confirm/index' });
         }, 200);
       });
+    } else {
+      wx.navigateTo({ url: '../order-confirm/index' });
     }
   },
   // 查看购物车
@@ -807,7 +822,7 @@ Page({
     wx.setStorage({
       key: "goodDetail",
       data: item,
-      success: (res)=> {
+      success: (res) => {
         wx.navigateTo({
           url: `../good-detail/index`
         });
@@ -864,5 +879,92 @@ Page({
         console.log('err', err);
       }
     })
+  },
+  touchOnGoods: function (e) {
+
+    // 如果good_box正在运动
+
+    if (!this.data.hide_good_box) return;
+
+    this.finger = {};
+
+    var topPoint = {};
+
+    this.finger['x'] = e.touches["0"].clientX;
+
+    this.finger['y'] = e.touches["0"].clientY;
+
+    if (this.finger['y'] < this.busPos['y']) {
+
+      topPoint['y'] = this.finger['y'] - 150;
+
+    } else {
+
+      topPoint['y'] = this.busPos['y'] - 150;
+
+    }
+
+    topPoint['x'] = Math.abs(this.finger['x'] - this.busPos['x']) / 2;
+
+    if (this.finger['x'] > this.busPos['x']) {
+
+      topPoint['x'] = (this.finger['x'] - this.busPos['x']) / 2 + this.busPos['x'];
+
+    } else {
+
+      topPoint['x'] = (this.busPos['x'] - this.finger['x']) / 2 + this.finger['x'];
+
+    }
+
+    this.linePos = app.bezier([this.finger, topPoint, this.busPos], 20);
+
+    this.startAnimation();
+
+  },
+
+  startAnimation: function () {
+
+    var index = 0,
+
+      that = this,
+
+      bezier_points = that.linePos['bezier_points'],
+
+      len = bezier_points.length - 1;
+
+    this.setData({
+
+      hide_good_box: false,
+
+      bus_x: that.finger['x'],
+
+      bus_y: that.finger['y']
+
+    })
+
+    this.timer = setInterval(function () {
+
+      index++;
+
+      that.setData({
+
+        bus_x: bezier_points[index]['x'],
+
+        bus_y: bezier_points[index]['y']
+
+      })
+
+      if (index >= len) {
+
+        clearInterval(that.timer);
+
+        that.setData({
+
+          hide_good_box: true,
+
+        })
+
+      }
+    }, 15);
   }
 })

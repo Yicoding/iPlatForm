@@ -92,50 +92,59 @@
   <view class="space-box">
     <view class="space-container">
       <view class="space-title">{{name}}</view>
-      <wux-white-space size="large" />
-      <wux-white-space size="small" />
-      <view class="space-item-title">
-        <text>规格</text>
-      </view>
-      <wux-white-space />
-      <view>
-        <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{unitOne.name}}</van-button>
-        <van-button wx:if="{{unitOne.id !== unitDouble.id}}" type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{unitDouble.name}}({{num}}{{unitOne.name}})</van-button>
-      </view>
-      <wux-white-space size="large" />
-      <wux-white-space size="small" />
-      <view class="space-item-title">
-        <text>价格</text>
-        <switch checked="{{showPrice}}" bindchange="switchChange" />
-      </view>
-      <wux-white-space size="small" />
-      <view>
-        <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售({{
-          goodUnitType === 1 ? sellSingle : sellAll
-        }})</van-button>
-        <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
-          goodUnitType === 1 ? midSingle : midAll
-        }})</van-button>
-        <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{
-          writePrice ? '(' + writePrice + ')' : ''
-        }}</van-button>
-      </view>
+      <block wx:if="{{userInfo.companyType === 1}}">
+        <wux-white-space size="large" />
+        <wux-white-space size="small" />
+        <view class="space-item-title">
+          <text>规格</text>
+        </view>
+        <wux-white-space />
+        <view>
+          <van-button class="space-check-item" type="{{goodUnitType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodUnitType">{{unitOne.name}}</van-button>
+          <van-button wx:if="{{unitOne.id !== unitDouble.id}}" type="{{goodUnitType === 2 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodUnitType">{{unitDouble.name}}({{num}}{{unitOne.name}})</van-button>
+        </view>
+        <wux-white-space size="large" />
+        <wux-white-space size="small" />
+        <view class="space-item-title">
+          <text>价格</text>
+          <switch checked="{{showPrice}}" bindchange="switchChange" />
+        </view>
+        <wux-white-space size="small" />
+        <view>
+          <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售({{
+            goodUnitType === 1 ? sellSingle : sellAll
+          }})</van-button>
+          <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
+            goodUnitType === 1 ? midSingle : midAll
+          }})</van-button>
+          <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{
+            writePrice ? '(' + writePrice + ')' : ''
+          }}</van-button>
+        </view>
+      </block>
     </view>
-    <wux-white-space size="large" />
-    <wux-white-space size="large" />
-    <view class="space-txt">
-      <text>已选规格：</text>
-      {{goodNum}}{{goodUnitType === 1 ? unitOne.name : unitDouble.name + ' x ' + num + unitOne.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{tools.setSingle({
-        unitType: goodUnitType,
-        priceType: goodPriceType,
-        sellSingle: sellSingle,
-        midSingle: midSingle,
-        sellAll: sellAll,
-        midAll: midAll,
-        writePrice: writePrice
-      })}}元
-    </view>
-    <wux-white-space size="large" />
+    <block wx:if="{{userInfo.companyType === 1}}">
+      <wux-white-space size="large" />
+      <wux-white-space size="large" />
+      <view class="space-txt">
+        <text>已选规格：</text>
+        {{goodNum}}{{goodUnitType === 1 ? unitOne.name : unitDouble.name + ' x ' + num + unitOne.name}}、{{goodPriceType === 1 ? '零售' : goodPriceType === 2 ? '批发' : '自定义'}}、单价{{tools.setSingle({
+          unitType: goodUnitType,
+          priceType: goodPriceType,
+          sellSingle: sellSingle,
+          midSingle: midSingle,
+          sellAll: sellAll,
+          midAll: midAll,
+          writePrice: writePrice
+        })}}元
+      </view>
+      <wux-white-space size="large" />
+    </block>
+    <block wx:else>
+      <wux-white-space size="large" />
+      <wux-white-space size="large" />
+      <wux-white-space size="large" />
+    </block>
     <view class="space-info">
       <view class="space-price">
         <text>总价：</text>

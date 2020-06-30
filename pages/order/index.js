@@ -199,7 +199,7 @@ Page({
     if (active === 0) {
       this.setData({ state: '' });
     } else {
-      this.setData({ state: active });
+      this.setData({ state: this.data.userInfo.companyType !== 1 ? active + 2 : active });
     }
     this.setData({ active }, () => {
       wx.pageScrollTo({

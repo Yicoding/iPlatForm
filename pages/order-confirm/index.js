@@ -154,20 +154,26 @@ Page({
     this.setData({ loading: true });
     try {
       const { spendAll, totalPrice, name, phone, address, userInfo } = this.data;
+      const values = {
+        company_id: userInfo.company_id,
+        spend: AmtFixed(spendAll),
+        total: AmtFixed(totalPrice),
+        gain: AmtFixed(totalPrice - spendAll),
+        createUser: this.data.userInfo.id,
+        customerName: name,
+        customerPhone: phone,
+        customerSite: address,
+        orderList
+      };
+      if (userInfo.companyType === 2) {
+        values.payUser = this.data.userInfo.id;
+        values.finishUser = this.data.userInfo.id;
+        values.state = 3;
+      }
       const { data, code } = await ajax({
         url: config.service.addOrder,
         method: 'POST',
-        data: {
-          company_id: userInfo.company_id,
-          spend: AmtFixed(spendAll),
-          total: AmtFixed(totalPrice),
-          gain: AmtFixed(totalPrice - spendAll),
-          createUser: this.data.userInfo.id,
-          customerName: name,
-          customerPhone: phone,
-          customerSite: address,
-          orderList
-        }
+        data: values
       });
       console.log('addOrder', data);
       this.removeShopByUser();

@@ -408,3 +408,18 @@
 .shop-delete text {
   margin-left: 8rpx;
 }
+
+/* 加入购物车 */
+.good_box {
+  width: 30rpx;
+  height: 30rpx;
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  left: 50%;
+  top: 50%;
+  z-index: 99;
+  background: #ff976a;
+}
+  
+  

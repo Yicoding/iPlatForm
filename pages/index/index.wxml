@@ -31,7 +31,13 @@
             <text class="icon-price">￥</text>{{todu.sellSingle}}<text wx:if="{{todu.sellSingle !== todu.sellAll}}"> /<text class="icon-price">￥</text>{{todu.sellAll}}</text>
           </view>
         </view>
-        <view class="good-btn {{checked && 'good-btn-right'}}" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
+        <view wx:if="{{userInfo.companyType === 1}}" class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
+        <view class="add-box" wx:else>
+          <image wx:if="{{countInfo[todu.id]}}" bindtap="calcNum" data-todu="{{todu}}" data-type="reduce" src="../../images/reduce.png" mode="aspectFill" />
+          <view class="empty-img" wx:else />
+          <text wx:if="{{countInfo[todu.id]}}">{{countInfo[todu.id]}}</text>
+          <image bindtap="calcNum" data-todu="{{todu}}" data-type="add" src="../../images/add.png" mode="aspectFill" />
+        </view>
       </view>
     </view>
   </van-index-bar>
@@ -60,8 +66,8 @@
               <text class="icon-price">￥</text>{{todu.sellSingle}}<text wx:if="{{todu.sellSingle !== todu.sellAll}}"> /<text class="icon-price">￥</text>{{todu.sellAll}}</text>
             </view>
           </view>
-          <!-- <view class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view> -->
-          <view class="add-box">
+          <view wx:if="{{userInfo.companyType === 1}}" class="good-btn" bindtap="showSpace" data-item="{{todu}}">选规格<wux-badge class="good-btn-badge" count="{{countInfo[todu.id]}}" overflowCount="99" /></view>
+          <view class="add-box" wx:else>
             <image wx:if="{{countInfo[todu.id]}}" bindtap="calcNum" data-todu="{{todu}}" data-type="reduce" src="../../images/reduce.png" mode="aspectFill" />
             <view class="empty-img" wx:else />
             <text wx:if="{{countInfo[todu.id]}}">{{countInfo[todu.id]}}</text>
@@ -238,6 +244,9 @@
           <image src="{{item.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{item.coverImg}}" />
           <view class="good-info">
             <view class="good-name">{{item.name}}</view>
+            <view class="good-tip" wx:if="{{userInfo.companyType === 1}}">
+              <text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName + ' x ' + item.unitDecimal + item.unitSingleName}}、{{item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''}}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{tools.setSingle(item)}}</text>
+            </view>
             <view class="space-info-shop">
               <view class="space-price">
                 <text>总价：</text>
@@ -258,3 +267,7 @@
     </view>
   </view>
 </van-popup>
+
+<!-- 加入购物车 -->
+<view class="good_box" hidden="{{hide_good_box}}"  style="left: {{bus_x}}px; top: {{bus_y}}px;"></view>
+
