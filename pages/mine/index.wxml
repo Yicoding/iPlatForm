@@ -26,7 +26,8 @@
   </view>
 </block>
 <block wx:elif="{{userInfo.role_name === 'staff'}}">
-  <view class="grid-box">
+  <van-cell title="设置" is-link bind:click="goSetting" />
+  <!-- <view class="grid-box">
     <l-grid l-class="grid" row-num="4" show-border="{{true}}">
       <l-grid-item 
         wx:for="{{gridsStaff}}"
@@ -40,7 +41,7 @@
         <view class="text">{{item.text}}</view>
       </l-grid-item>
     </l-grid>
-  </view>
+  </view> -->
 </block>
 <view wx:if="{{!isFixed}}" class="space-top" />
 <!-- 排序 -->

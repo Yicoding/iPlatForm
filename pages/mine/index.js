@@ -199,5 +199,9 @@ Page({
     }, () => {
       this.getGoodsList();
     });
+  },
+  // 跳转到设置页面
+  goSetting() {
+    wx.navigateTo({ url: '../setting/index' });
   }
 })
