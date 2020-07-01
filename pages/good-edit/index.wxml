@@ -13,86 +13,56 @@
     bind:input="fieldChange"
     data-key="name"
   />
-  <wux-cell title="单价单位" is-link extra="{{ tools.singleTitle(unitSingle, unitList) }}" bind:click="onClick1"></wux-cell>
-  <wux-cell title="总单位" is-link extra="{{ tools.singleTitle(unitAll, unitList) }}" bind:click="onClick2"></wux-cell>
   <wux-cell title="商品类别" is-link extra="{{ tools.multipleTitle(typeName, typeList) }}" bind:click="onClick3"></wux-cell>
-  <van-field
-    value="{{ num }}"
-    required
-    input-align="right"
-    clearable
-    type="number"
-    label="商品数量"
-    placeholder="请输入商品数量"
-    bind:input="fieldChange"
-    data-key="num"
-  />
-  <van-field
-    value="{{ buySingle }}"
-    required
-    clearable
-    input-align="right"
-    type="digit"
-    label="进货单价(元)"
-    placeholder="请输入进货单价"
-    bind:input="fieldChange"
-    data-key="buySingle"
-  />
-  <!-- <van-field
-    value="{{ buyAll }}"
-    required
-    clearable
-    input-align="right"
-    type="digit"
-    label="进货总价(元)"
-    placeholder="请输入进货总价"
-    bind:input="fieldChange"
-    data-key="buyAll"
-  /> -->
-  <van-field
-    value="{{ midSingle }}"
-    required
-    input-align="right"
-    clearable
-    type="digit"
-    label="批发单价(元)"
-    placeholder="请输入批发单价"
-    bind:input="fieldChange"
-    data-key="midSingle"
-  />
-  <!-- <van-field
-    value="{{ midAll }}"
-    required
-    input-align="right"
-    clearable
-    type="digit"
-    label="批发总价(元)"
-    placeholder="请输入批发总价"
-    bind:input="fieldChange"
-    data-key="midAll"
-  /> -->
+  <block wx:if="{{userInfo.companyType === 1}}">
+    <wux-cell title="单价单位" is-link extra="{{ tools.singleTitle(unitSingle, unitList) }}" bind:click="onClick1"></wux-cell>
+    <wux-cell title="总单位" is-link extra="{{ tools.singleTitle(unitAll, unitList) }}" bind:click="onClick2"></wux-cell>
+    <van-field
+      value="{{ num }}"
+      required
+      input-align="right"
+      clearable
+      type="number"
+      label="商品数量"
+      placeholder="请输入商品数量"
+      bind:input="fieldChange"
+      data-key="num"
+    />
+    <van-field
+      value="{{ buySingle }}"
+      required
+      clearable
+      input-align="right"
+      type="digit"
+      label="进货单价(元)"
+      placeholder="请输入进货单价"
+      bind:input="fieldChange"
+      data-key="buySingle"
+    />
+    <van-field
+      value="{{ midSingle }}"
+      required
+      input-align="right"
+      clearable
+      type="digit"
+      label="批发单价(元)"
+      placeholder="请输入批发单价"
+      bind:input="fieldChange"
+      data-key="midSingle"
+    />
+  </block>
+  <wux-cell wx:else title="单位" is-link extra="{{ tools.singleTitle(unitSingle, unitList) }}" bind:click="onClick1"></wux-cell>
   <van-field
     value="{{ sellSingle }}"
     required
     input-align="right"
     clearable
     type="digit"
-    label="零售单价(元)"
-    placeholder="请输入零售单价"
+    label="{{userInfo.companyType === 1 ? '零售单价(元)' : '单价(元)'}}"
+    placeholder="{{userInfo.companyType === 1 ? '请输入零售单价' : '请输入单价'}}"
     bind:input="fieldChange"
     data-key="sellSingle"
   />
-  <!-- <van-field
-    value="{{ sellAll }}"
-    required
-    input-align="right"
-    clearable
-    type="digit"
-    label="零售总价(元)"
-    placeholder="请输入零售总价"
-    bind:input="fieldChange"
-    data-key="sellAll"
-  /> -->
   <van-field
     value="{{ desc }}"
     label="商品描述"

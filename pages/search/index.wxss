@@ -1,12 +1,19 @@
 page{
   background: #fff;
-  padding-bottom: 60rpx;
-  box-sizing: border-box;
   height: 100%;
 }
 
 .space{
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-box {
+  flex: 1;
+  padding-bottom: 50rpx;
+  overflow-y: auto;
 }
 
 .title{
@@ -158,7 +165,7 @@ page{
   margin-top: 10rpx;
 }
 
-.good-price text{
+.good-price .icon-price{
   font-size: 20rpx;
 }
 

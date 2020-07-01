@@ -356,19 +356,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 130rpx;
+  width: 150rpx;
   position: relative;
 }
 
 .add-box image {
-  width: 40rpx;
-  height: 40rpx;
+  width: 48rpx;
+  height: 48rpx;
   margin: 0;
 }
 
 .empty-img {
-  width: 40rpx;
-  height: 40rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 
 .submit-bar {
@@ -407,6 +407,7 @@
 
 .shop-delete text {
   margin-left: 8rpx;
+  color: #999;
 }
 
 /* 加入购物车 */

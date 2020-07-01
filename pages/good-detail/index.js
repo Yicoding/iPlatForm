@@ -121,6 +121,11 @@ Page({
   onClickButton(e) {
     console.log(e);
     const { type } = e.currentTarget.dataset;
+    if (this.data.userInfo.companyType !== 1 && type === 'addShop') {
+      return this.setData({ type }, () => {
+        this.onConfirm();
+      });
+    }
     this.setData({
       show: true,
       type
@@ -235,10 +240,10 @@ Page({
   },
   // 新增
   async addShop() {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
     try {
       const { id, goodNum, goodPriceType, goodUnitType, writePrice } = this.data;
       await ajax({
@@ -276,15 +281,15 @@ Page({
     } catch (e) {
       console.log('添加购物车失败', e);
     } finally {
-      wx.hideLoading();
+      // wx.hideLoading();
     }
   },
   // 修改购物车
   async editShop(index) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
     try {
       const item = this.data.shopList[index];
       const { good_id, unitType, priceType, num } = item;
@@ -321,7 +326,7 @@ Page({
     } catch (e) {
       console.log('修改购物车失败', e);
     } finally {
-      wx.hideLoading();
+      // wx.hideLoading();
     }
   },
   // 控制显隐

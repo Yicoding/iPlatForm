@@ -597,12 +597,13 @@ Page({
       value = 1;
     }
     value = Number(value);
-    if (value > 9999) {
-      wx.showToast({
-        title: '数量不能超过9999',
+    if (value > 999) {
+      value = 999;
+      this.setData({ goodNum: 999 });
+      return wx.showToast({
+        title: '数量不能超过999',
         icon: 'none'
       });
-      value = 9999;
     }
     const countInfo = this.data.countInfo;
     let shopNum = this.data.shopNum;
@@ -635,11 +636,22 @@ Page({
       countInfo[this.data.good.id] = value;
       shopNum += value;
     }
+    if (value > 999) {
+      countInfo[this.data.good.id] = 999;
+      shopNum -= 1;
+      this.setData({ goodNum: 999 });
+    }
     this.setData({
       countInfo,
       shopNum
     });
     console.log('countInfo-shopChange', countInfo)
+    if (value > 999) {
+      return wx.showToast({
+        title: '数量不能超过999',
+        icon: 'none'
+      });
+    }
     this.editShop(value);
   },
   // 改版数量变化
@@ -659,6 +671,13 @@ Page({
       if (type === 'add') { // 修改
         if (countInfo[id]) {
           countInfo[id] += 1;
+          if (countInfo[id] > 999) {
+            countInfo[id] = 999;
+            return wx.showToast({
+              title: '数量不能超过999',
+              icon: 'none'
+            });
+          }
           this.editShop(countInfo[id]);
         } else { // 新增
           this.shopChangeAdd();

@@ -2,7 +2,7 @@
 
 <view class="food">
   <image class="coverImg" mode="aspectFill" src="{{coverImg}}" />
-  <view class="title"><text>商品信息</text> <switch checked="{{isShow}}" bindchange="setShow" /></view>
+  <view class="title"><text>商品信息</text> <switch wx:if="{{userInfo.companyType === 1}}" checked="{{isShow}}" bindchange="setShow" /></view>
   <view class="container">
     <view class="line">
       <view class="item">
@@ -10,48 +10,56 @@
         <view>{{name}}</view>
       </view>
     </view>
-    <view class="line">
-      <view class="item">
-        <view>单价单位</view>
-        <view>{{tools.matchVal(unitSingle, unitList, 'id')}}</view>
+    <block wx:if="{{userInfo.companyType === 1}}">
+      <view class="line">
+        <view class="item">
+          <view>单价单位</view>
+          <view>{{tools.matchVal(unitSingle, unitList, 'id')}}</view>
+        </view>
+        <view class="item">
+          <view>总单位</view>
+          <view>{{tools.matchVal(unitAll, unitList, 'id')}}</view>
+        </view>
       </view>
-      <view class="item">
-        <view>总单位</view>
-        <view>{{tools.matchVal(unitAll, unitList, 'id')}}</view>
+      <view class="line">
+        <view class="item">
+          <view>商品数量</view>
+          <view>1{{tools.matchVal(unitAll, unitList, 'id')}} = {{num}}{{tools.matchVal(unitSingle, unitList, 'id')}}</view>
+        </view>
       </view>
-    </view>
-    <view class="line">
-      <view class="item">
-        <view>商品数量</view>
-        <view>1{{tools.matchVal(unitAll, unitList, 'id')}} = {{num}}{{tools.matchVal(unitSingle, unitList, 'id')}}</view>
+      <view class="line">
+        <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
+          <view>进货单价</view>
+          <view>{{isShow ? buySingle : '***'}}</view>
+        </view>
+        <view class="item">
+          <view>批发单价</view>
+          <view>{{isShow ? midSingle : '***'}}</view>
+        </view>
+        <view class="item">
+          <view>零售单价</view>
+          <view>{{sellSingle}}</view>
+        </view>
       </view>
-    </view>
-    <view class="line">
-      <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
-        <view>进货单价</view>
-        <view>{{isShow ? buySingle : '***'}}</view>
+      <view class="line">
+        <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
+          <view>进货总价</view>
+          <view>{{isShow ? buyAll : '***'}}</view>
+        </view>
+        <view class="item">
+          <view>批发总价</view>
+          <view>{{isShow ? midAll : '***'}}</view>
+        </view>
+        <view class="item">
+          <view>零售总价</view>
+          <view>{{sellAll}}</view>
+        </view>
       </view>
+    </block>
+    <view class="line" wx:else>
       <view class="item">
-        <view>批发单价</view>
-        <view>{{isShow ? midSingle : '***'}}</view>
-      </view>
-      <view class="item">
-        <view>零售单价</view>
+        <view>价格</view>
         <view>{{sellSingle}}</view>
-      </view>
-    </view>
-    <view class="line">
-      <view class="item" wx:if="{{ userInfo.role_name === 'admin' }}">
-        <view>进货总价</view>
-        <view>{{isShow ? buyAll : '***'}}</view>
-      </view>
-      <view class="item">
-        <view>批发总价</view>
-        <view>{{isShow ? midAll : '***'}}</view>
-      </view>
-      <view class="item">
-        <view>零售总价</view>
-        <view>{{sellAll}}</view>
       </view>
     </view>
     <view class="line" wx:if="{{desc}}">
@@ -107,14 +115,14 @@
         <wux-white-space size="small" />
         <view class="space-item-title">
           <text>价格</text>
-          <switch checked="{{showPrice}}" bindchange="switchChange" />
+          <!-- <switch checked="{{showPrice}}" bindchange="switchChange" /> -->
         </view>
-        <wux-white-space size="small" />
+        <wux-white-space />
         <view>
           <van-button class="space-check-item" type="{{goodPriceType === 1 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{1}}" data-key="goodPriceType">零售({{
             goodUnitType === 1 ? sellSingle : sellAll
           }})</van-button>
-          <van-button wx:if="{{showPrice}}" type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
+          <van-button type="{{goodPriceType === 2 ? 'primary' : 'default'}}" class="space-check-item" size="small" bindtap="switchType" data-value="{{2}}" data-key="goodPriceType">批发({{
             goodUnitType === 1 ? midSingle : midAll
           }})</van-button>
           <van-button type="{{goodPriceType === 3 ? 'primary' : 'default'}}" size="small" bindtap="switchType" data-value="{{3}}" data-key="goodPriceType">自定义{{

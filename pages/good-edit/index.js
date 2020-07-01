@@ -25,7 +25,7 @@ Page({
     midAll: '',
     sellSingle: '',
     sellAll: '',
-    num: '',
+    num: '1',
     desc: '',
     origin: '',
   },
@@ -125,7 +125,12 @@ Page({
         if (index !== -1) {
           this.setData({
             unitSingle: value
-          })
+          });
+          if (this.data.userInfo.companyType !== 1) {
+            this.setData({
+              unitAll: value
+            });
+          }
         }
       },
     })
@@ -193,28 +198,35 @@ Page({
     const { detail } = e;
     const { key } = e.currentTarget.dataset;
     this.setData({ [key]: detail });
+    if (this.data.userInfo.company_id !== 1) {
+      this.setData({
+        buySingle: detail,
+        midSingle: detail
+      });
+    }
   },
   // 保存按钮
   save() {
     const { name, coverImg, unitSingle, unitAll, typeName, num, buySingle, midSingle, sellSingle  } = this.data;
+    const { companyType } = this.data.userInfo;
     if (!name.trim()) {
       this.saveToast('商品名');
     } else if (!coverImg.trim()) {
       this.saveToast('商品图片');
-    } else if (!unitSingle) {
-      this.saveToast('单价单位');
-    } else if (!unitAll) {
-      this.saveToast('总单位');
     } else if (!typeName) {
       this.saveToast('商品类别');
-    } else if (!num) {
+    } else if (!unitSingle) {
+      this.saveToast(companyType === 1 ? '单价单位' : '单位');
+    } else if (!unitAll && companyType === 1) {
+      this.saveToast('总单位');
+    } else if (!num && companyType === 1) {
       this.saveToast('商品数量');
-    } else if (!buySingle) {
+    } else if (!buySingle && companyType === 1) {
       this.saveToast('进货单价');
-    } else if (!midSingle) {
+    } else if (!midSingle && companyType === 1) {
       this.saveToast('批发单价');
     } else if (!sellSingle) {
-      this.saveToast('零售单价');
+      this.saveToast(companyType === 1 ? '零售单价' : '单价');
     } else {
       this.saveFun();
     }
