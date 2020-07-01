@@ -31,7 +31,7 @@
     <view class="line">
       <view class="item">
         <view>个性签名</view>
-        <view>{{sign}}</view>
+        <view>{{sign || '-'}}</view>
       </view>
     </view>
   </view>
