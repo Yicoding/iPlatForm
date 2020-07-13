@@ -58,6 +58,12 @@ Page({
     } catch (e) {
       console.log('checked报错', e);
     }
+    this.getShoplist();
+    if (this.data.checked) {
+      this.getGoodsList();
+    } else {
+      this.getGoodsByCompany();
+    }
   },
   onShow() {
     if (app.globalData.showItem) {
@@ -77,17 +83,25 @@ Page({
         }
       });
     }
-    if (app.globalData.isprvent) {
-      app.globalData.isprvent = false;
-      return;
+    if (app.globalData.isUpdateShop) {
+      app.globalData.isUpdateShop = false;
+      this.getShoplist();
+    }
+    
+    if (app.globalData.isUpdateGood) {
+      app.globalData.isUpdateGood = false;
+      if (this.data.checked) {
+        this.getGoodsList();
+      } else {
+        this.getGoodsByCompany();
+      }
+    }
+    // 购物车展示
+    if (app.globalData.showShopModal) {
+      app.globalData.showShopModal = false;
+      this.setData({ isShow: true });
     }
 
-    this.getShoplist();
-    if (this.data.checked) {
-      this.getGoodsList();
-    } else {
-      this.getGoodsByCompany();
-    }
   },
   // 监听用户下拉动作
   onPullDownRefresh() {
@@ -819,7 +833,6 @@ Page({
   },
   // 跳转到搜索页面
   linkSearch() {
-    app.globalData.isprvent = true;
     wx.navigateTo({
       url: '../search/index'
     });
@@ -832,11 +845,9 @@ Page({
       current: item, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     });
-    app.globalData.isprvent = true;
   },
   // 查看商品详情
   onProduct(e) {
-    app.globalData.isprvent = true;
     const { item } = e.currentTarget.dataset;
     wx.setStorage({
       key: "goodDetail",
@@ -984,6 +995,6 @@ Page({
         })
 
       }
-    }, 15);
+    }, 30);
   }
 })

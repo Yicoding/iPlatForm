@@ -4,9 +4,10 @@ const app = getApp()
 
 Page({
   data: {
-    
+    userInfo: {}
   },
   onLoad() {
+    this.setData({ userInfo: app.globalData.userInfo });
   },
   // 跳转
   linkMenu(e) {

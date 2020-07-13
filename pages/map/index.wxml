@@ -1,25 +1,28 @@
 <view class="card menu" bindtap="linkMenu" data-url="menu">
   <view class="title">
-    <view class="icon">
-      <view class="icon-content">
-        <van-icon name="apps-o" color="#fff" size="25px" />
-      </view>
-    </view>
+    <van-icon name="column" color="rgb(255, 221, 159)" size="30px" />
     <view class="name">菜单列表</view>
-    <van-icon name="eye-o" color="#fff" size="40px" />
+    <van-icon name="eye" color="rgb(255, 221, 159)" size="40px" />
   </view>
   <view class="txt">点我查看公司菜单列表</view>
 </view>
 <wux-white-space size="large" />
 <view class="card unit" bindtap="linkMenu" data-url="unit">
-  <view class="title">
-    <view class="icon">
-      <view class="icon-content-unit">
-        <van-icon name="cluster-o" color="#fff" size="25px" />
-      </view>
-    </view>
+  <view class="title title-unit">
+    <van-icon name="cluster" color="rgb(124, 81, 5)" size="30px" />
     <view class="name">规格列表</view>
-    <van-icon name="eye-o" color="#fff" size="40px" />
+    <van-icon name="eye" color="rgb(124, 81, 5)" size="40px" />
   </view>
-  <view class="txt">点我查看公司规格列表</view>
+  <view class="txt title-unit">点我查看公司规格列表</view>
 </view>
+<block wx:if="{{userInfo.companyType === 3}}">
+  <wux-white-space size="large" />
+  <view class="card hobby" bindtap="linkMenu" data-url="hobby">
+    <view class="title title-hobby">
+      <van-icon name="label" color="rgb(64, 89, 128)" size="30px" />
+      <view class="name">偏好设置</view>
+      <van-icon name="eye" color="rgb(64, 89, 128)" size="40px" />
+    </view>
+    <view class="txt title-hobby">点我查看偏好设置</view>
+  </view>
+</block>

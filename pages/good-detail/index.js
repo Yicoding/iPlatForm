@@ -259,7 +259,7 @@ Page({
           writePrice
         }
       });
-      app.globalData.isprvent = false;
+      app.globalData.isUpdateShop = true;
       const shopList = this.data.shopList;
       shopList.push({
         good_id: id,
@@ -309,7 +309,7 @@ Page({
           writePrice
         }
       });
-      app.globalData.isprvent = false;
+      app.globalData.isUpdateShop = true;
       const shopList = this.data.shopList;
       shopList[index].num = numTotal;
       this.setData({

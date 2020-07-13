@@ -12,7 +12,7 @@ Page({
     active: 0,
     isIpx: app.globalData.isIpx,
     userInfo: {},
-    isprvent: false,
+    isPrevent: false,
   },
   // 页面出现
   onLoad(options) {
@@ -21,12 +21,11 @@ Page({
       id,
       userInfo: app.globalData.userInfo
     });
-    // this.getOrderDetail(id);
     this.getOrderDetailList(id);
   },
   onShow() {
-    if (this.data.isprvent) {
-      this.setData({ isprvent: false });
+    if (this.data.isPrevent) {
+      this.setData({ isPrevent: false });
       return;
     }
     const { id } = this.data;
@@ -264,8 +263,10 @@ Page({
         }
       });
       console.log('addShopMultiple', data);
+      app.globalData.isUpdateShop = true;
+      app.globalData.showShopModal = true;
       wx.switchTab({
-        url: '../shop/index'
+        url: '../index/index'
       });
     } catch (e) {
       console.log('addShopMultiple报错', e);
@@ -281,6 +282,6 @@ Page({
       current: item, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     });
-    this.setData({ isprvent: true });
+    this.setData({ isPrevent: true });
   }
 })

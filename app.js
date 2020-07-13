@@ -38,7 +38,9 @@ App({
     isAlertGood: false,
     goodItem: {},
     showItem: false,
-    isprvent: false
+    isUpdateShop: false,
+    isUpdateGood: false,
+    showShopModal: false,
   },
 
   /**

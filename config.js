@@ -42,6 +42,12 @@ var config = {
         addUnit: `${host}/addUnit`, // 新增单位
         updateUnit: `${host}/updateUnit`, // 更新单个单位
         removeUnit: `${host}/removeUnit`, // 删除单个单位
+        // 偏好
+        getHobbyList: `${host}/getHobbyList`, // 查看单位列表
+        getHobbyDetail: `${host}/getHobbyDetail`, // 查看单个单位
+        addHobby: `${host}/addHobby`, // 新增单位
+        updateHobby: `${host}/updateHobby`, // 更新单个单位
+        removeHobby: `${host}/removeHobby`, // 删除单个单位
         // 订单
         getOrderList: `${host}/getOrderList`, // 查看订单列表
         getOrderDetail: `${host}/getOrderDetail`, // 查看订单详情

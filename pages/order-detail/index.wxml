@@ -45,12 +45,15 @@
 <van-cell wx:if="{{orderInfo.state === 4 && orderInfo.payTime}}" title="付款时间" value="{{orderInfo.payUser.name + ' ' + tools.toTimeFormat(orderInfo.payTime)}}" />
 <van-cell wx:if="{{orderInfo.state === 4 && orderInfo.finishTime}}" title="发货时间" value="{{orderInfo.finishUser.name + ' ' + tools.toTimeFormat(orderInfo.finishTime)}}" />
 <van-cell wx:if="{{orderInfo.state === 4}}" title="取消状态说明" value="{{tools.stateInfo(orderInfo)}}" border="{{false}}" />
-<block wx:if="{{orderInfo.state !== 4}}">
+<block wx:if="{{orderInfo.state !== 4 && userInfo.companyType === 1}}">
   <wux-white-space />
   <van-steps
     steps="{{ steps }}"
     active="{{ active }}"
   />
+</block>
+<block wx:if="{{orderInfo.state !== 4 && userInfo.companyType !== 1}}">
+  <van-cell title="创建时间" value="{{orderInfo.createUser.name + ' ' + tools.toTimeFormat(orderInfo.createTime)}}" />
 </block>
 <view class="good-box {{isIpx && orderInfo.state !== 4 && 'good-box-iphonex'}}">
   <view class="good-item" wx:for="{{orderList}}" wx:key="index">

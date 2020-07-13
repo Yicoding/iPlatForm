@@ -11,12 +11,13 @@
       </view>
     </van-cell>
     <van-tabs
+      wx:if="{{userInfo.companyType}}"
       active="{{ active }}"
       bind:change="changeTabs"
     >
       <van-tab title="全部"></van-tab>
-      <van-tab title="待付款" wx:if="{{userInfo.companyType !== 2}}"></van-tab>
-      <van-tab title="待发货" wx:if="{{userInfo.companyType !== 2}}"></van-tab>
+      <van-tab title="待付款" wx:if="{{userInfo.companyType === 1}}"></van-tab>
+      <van-tab title="待发货" wx:if="{{userInfo.companyType === 1}}"></van-tab>
       <van-tab title="已完成"></van-tab>
       <van-tab title="已取消"></van-tab>
     </van-tabs>
@@ -50,12 +51,12 @@
       <van-cell wx:if="{{item.customerSite}}" title="客户地址" value="{{item.customerSite}}" border="{{ false }}" />
       <wux-white-space />
       <van-steps
-        wx:if="{{item.state !== 4 && userInfo.companyType !== 2}}"
+        wx:if="{{item.state !== 4 && userInfo.companyType === 1}}"
         steps="{{ item.steps }}"
         active="{{ item.active }}"
       />
-      <van-cell wx:if="{{userInfo.companyType === 2}}" title="创建人" value="{{item.createUser.name}}" />
-      <van-cell wx:if="{{userInfo.companyType === 2}}" title="创建时间" value="{{item.createTime}}" />
+      <van-cell wx:if="{{userInfo.companyType !== 1}}" title="创建人" value="{{item.createUser.name}}" />
+      <van-cell wx:if="{{userInfo.companyType !== 1}}" title="创建时间" value="{{item.createTime}}" />
     </view>
   </view>
   <loadmore

@@ -198,7 +198,7 @@ Page({
     const { detail } = e;
     const { key } = e.currentTarget.dataset;
     this.setData({ [key]: detail });
-    if (this.data.userInfo.company_id !== 1) {
+    if (this.data.userInfo.company_id !== 1 && key === 'sellSingle') {
       this.setData({
         buySingle: detail,
         midSingle: detail
@@ -273,6 +273,7 @@ Page({
       });
       console.log('getUnitList', data);
       app.globalData.isAlertGood = true;
+      app.globalData.isUpdateGood = true;
       setTimeout(() => {
         wx.showToast({
           title: '保存成功',

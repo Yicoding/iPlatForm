@@ -123,6 +123,7 @@ Page({
         method: 'PUT',
         data: { id }
       });
+      app.globalData.isUpdateGood = true;
       console.log('removeGoods', data);
       this.getGoodsByCompany();
     } catch (e) {
@@ -142,7 +143,6 @@ Page({
 
   // 跳转到搜索页面
   linkSearch() {
-    app.globalData.isprvent = true;
     wx.navigateTo({
       url: '../search/index'
     });

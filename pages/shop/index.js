@@ -18,15 +18,15 @@ Page({
     },
     loading: true,
     userInfo: {},
-    isprvent: false,
+    isPrevent: false,
   },
   onLoad() {
     this.setData({ userInfo: app.globalData.userInfo });
   },
   // 页面出现
   onShow() {
-    if (this.data.isprvent) {
-      this.setData({ isprvent: false });
+    if (this.data.isPrevent) {
+      this.setData({ isPrevent: false });
       return;
     }
     this.getShoplist();
@@ -285,6 +285,6 @@ Page({
       current: item, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     });
-    this.setData({ isprvent: true });
+    this.setData({ isPrevent: true });
   }
 })

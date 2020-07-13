@@ -4,21 +4,33 @@ page{
 }
 
 .card{
-  padding: 40rpx;
+  padding: 60rpx 40rpx;
 }
 
 .menu{
-  background: linear-gradient(to right, #F1776A, #F85F68);
+  background: linear-gradient(120deg, rgb(55, 54, 54), rgb(91, 90, 89) 30%, rgb(20, 20, 20));
 }
 
 .unit{
-  background: linear-gradient(to right, #488ED2, #3F64C2);
+  background: linear-gradient(120deg, rgb(255, 241, 219), rgb(252, 236, 207) 30%, rgb(223, 175, 108));
+}
+
+.hobby {
+  background: linear-gradient(120deg, rgb(214, 235, 255), rgb(219, 234, 251) 30%, rgb(91, 128, 181));
 }
 
 .title{
   display: flex;
   align-items: center;
-  color: #fff;
+  color: rgb(255, 221, 159);
+}
+
+.title-hobby {
+  color: rgb(64, 89, 128) !important;
+}
+
+.title-unit {
+  color: rgb(124, 81, 5) !important;
 }
 
 .icon{
@@ -35,7 +47,7 @@ page{
 .icon-content-unit{
   width: 80rpx;
   height: 80rpx;
-  background: #F1776A;
+  background: rgb(55, 54, 54);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +66,7 @@ page{
 }
 
 .txt{
-  color: #ffff;
+  color: rgb(255, 221, 159);
   font-size: 30rpx;
   text-align: right;
   margin-top: 100rpx;

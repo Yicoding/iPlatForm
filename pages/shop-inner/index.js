@@ -18,7 +18,7 @@ Page({
     },
     loading: true,
     userInfo: {},
-    isprvent: false,
+    isPrevent: false,
     isIpx: app.globalData.isIpx,
   },
   onLoad() {
@@ -26,8 +26,8 @@ Page({
   },
   // 页面出现
   onShow() {
-    if (this.data.isprvent) {
-      this.setData({ isprvent: false });
+    if (this.data.isPrevent) {
+      this.setData({ isPrevent: false });
       return;
     }
     this.getShoplist();
@@ -117,6 +117,7 @@ Page({
           num
         }
       });
+      app.globalData.isUpdateShop = true;
       const shopList = JSON.parse(JSON.stringify(this.data.shopList));
       const todu = shopList[index];
       this.setData({
@@ -176,7 +177,7 @@ Page({
       const shopInvalidList = JSON.parse(JSON.stringify(this.data.shopInvalidList));
       shopInvalidList.splice(index, 1);
       this.setData({ shopInvalidList });
-      app.globalData.isprvent = false;
+      app.globalData.isPrevent = false;
     } catch (e) {
       console.log('removeShopInvalid报错', e);
     } finally {
@@ -197,6 +198,7 @@ Page({
           id
         }
       });
+      app.globalData.isUpdateShop = true;
       console.log('removeShopById', data);
       const shopList = JSON.parse(JSON.stringify(this.data.shopList));
       const todu = shopList[index];
@@ -209,7 +211,7 @@ Page({
       });
       shopList.splice(index, 1);
       this.setData({ shopList });
-      app.globalData.isprvent = false;
+      app.globalData.isPrevent = false;
     } catch (e) {
       console.log('removeShopById报错', e);
     } finally {
@@ -259,13 +261,14 @@ Page({
           company_id: this.data.userInfo.company_id
         }
       });
+      app.globalData.isUpdateShop = true;
       console.log('removeShopByUser', data);
       this.setData({
         shopList: [],
         shopInvalidList: [],
         totalPrice: 0
       });
-      app.globalData.isprvent = false;
+      app.globalData.isPrevent = false;
     } catch (e) {
       console.log('removeShopByUser接口报错', e);
     } finally {
@@ -286,6 +289,6 @@ Page({
       current: item, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     });
-    this.setData({ isprvent: true });
+    this.setData({ isPrevent: true });
   }
 })

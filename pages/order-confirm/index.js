@@ -165,7 +165,7 @@ Page({
         customerSite: address,
         orderList
       };
-      if (userInfo.companyType === 2) {
+      if (userInfo.companyType !== 1) {
         values.payUser = this.data.userInfo.id;
         values.finishUser = this.data.userInfo.id;
         values.state = 3;
@@ -181,7 +181,6 @@ Page({
       wx.showToast({
         title: '提交成功'
       });
-      app.globalData.isprvent = false;
       setTimeout(() => {
         wx.redirectTo({
           url: `../order-detail/index?id=${data.id}`
@@ -204,6 +203,7 @@ Page({
           company_id: this.data.userInfo.company_id
         }
       });
+      app.globalData.isUpdateShop = true;
       console.log('removeShopByUser', data);
     } catch (e) {
       console.log('removeShopByUser接口报错', e);

@@ -18,6 +18,7 @@
     "pages/shop/index",
     "pages/shop-inner/index",
     "pages/unit/index",
+    "pages/hobby/index",
     "pages/user/index",
     "pages/user-edit/index",
     "pages/user-detail/index"
