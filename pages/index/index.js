@@ -670,8 +670,10 @@ Page({
   },
   // 改版数量变化
   calcNum(e) {
-    console.log('calcNum', e.touches['0']);
+    // console.log('calcNum', e.touches['0']);
     const { todu, type, site } = e.currentTarget.dataset;
+    console.log('calcNum', e.currentTarget.dataset, this.data.countInfo);
+    // this.setData({ goodUnitType: todu.unitType });
     // const { id, good_id } = todu;
     if (site === 'shop') {
       todu.id = todu.good_id;
@@ -750,6 +752,7 @@ Page({
         });
       }
     } else { // 不存在新增
+      console.log('log', this.data.good);
       this.setData({
         shopList: [...this.data.shopList, {
           good_id: this.data.good.id,
@@ -762,7 +765,10 @@ Page({
           sellAll: this.data.good.sellAll,
           writePrice: this.data.todu.writePrice,
           coverImg: this.data.good.coverImg,
-          name: this.data.good.name
+          name: this.data.good.name,
+          unitSingleName: this.data.good.unitSingleName || this.data.good.unitOne.name,
+          unitAllName: this.data.good.unitAllName || this.data.good.unitDouble.name,
+          unitDecimal: this.data.good.unitDecimal || this.data.good.num
         }]
       })
       this.setData({
@@ -995,6 +1001,6 @@ Page({
         })
 
       }
-    }, 30);
+    }, app.globalData.platform === 'android' ? 30 : 15);
   }
 })

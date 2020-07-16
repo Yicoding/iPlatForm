@@ -25,7 +25,7 @@
         <image class="cu-avatar" src="{{todu.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{todu.coverImg}}" />
         <view class="good-content" bindtap="onProduct" data-item="{{todu}}">
           <view class="good-name">{{todu.name}}</view>
-          <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
+          <view class="good-num">1{{todu.unitDouble.name}}<text wx:if="{{todu.num != '1'}}"> = {{todu.num}}{{todu.unitOne.name}}</text></view>
           <view class="good-num">总销售 {{todu.saleNum}} 次</view>
           <view class="good-price">
             <text class="icon-price">￥</text>{{todu.sellSingle}}<text wx:if="{{todu.sellSingle !== todu.sellAll}}"> /<text class="icon-price">￥</text>{{todu.sellAll}}</text>
@@ -60,7 +60,7 @@
           <image class="cu-avatar" src="{{todu.coverImg}}" mode="aspectFill" bindtap="viewImg" data-item="{{todu.coverImg}}" />
           <view class="good-content" bindtap="onProduct" data-item="{{todu}}">
             <view class="good-name">{{todu.name}}</view>
-            <view wx:if="{{todu.num != '1'}}" class="good-num">1{{todu.unitDouble.name}} = {{todu.num}}{{todu.unitOne.name}}</view>
+            <view class="good-num">1{{todu.unitDouble.name}}<text wx:if="{{todu.num != '1'}}"> = {{todu.num}}{{todu.unitOne.name}}</text></view>
             <view class="good-num">总销售 {{todu.saleNum}} 次</view>
             <view class="good-price">
               <text class="icon-price">￥</text>{{todu.sellSingle}}<text wx:if="{{todu.sellSingle !== todu.sellAll}}"> /<text class="icon-price">￥</text>{{todu.sellAll}}</text>
@@ -246,6 +246,9 @@
             <view class="good-name">{{item.name}}</view>
             <view class="good-tip" wx:if="{{userInfo.companyType === 1}}">
               <text>已选规格：</text>{{item.num}}{{item.unitType === 1 ? item.unitSingleName : item.unitAllName + ' x ' + item.unitDecimal + item.unitSingleName}}、{{item.priceType === 1 ? '零售' : item.priceType === 2 ? '批发' : ''}}<text wx:if="{{item.priceType === 3}}" class="red">自定义</text>、单价：<text class="red">{{tools.setSingle(item)}}</text>
+            </view>
+            <view class="good-tip" wx:if="{{userInfo.companyType !== 1}}">
+              <text>规格：</text><text>{{item.unitSingleName}}</text>
             </view>
             <view class="space-info-shop">
               <view class="space-price">

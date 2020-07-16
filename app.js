@@ -28,6 +28,7 @@ App({
         } else {
           _that.globalData.isIpx = false;
         }
+        _that.globalData.platform = res.platform;
       }
     })
   },
@@ -41,6 +42,7 @@ App({
     isUpdateShop: false,
     isUpdateGood: false,
     showShopModal: false,
+    platform: '',
   },
 
   /**
